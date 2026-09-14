@@ -1,0 +1,135 @@
+{
+  "id": "fake-job-offer-001",
+  "title": {
+    "kh": "",
+    "en": ""
+  },
+  "category": "opportunity",
+  "durationSeconds": 180,
+  "elements": [
+    {
+      "id": "e01",
+      "kind": "sender",
+      "from": "them",
+      "text": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "e02",
+      "kind": "message",
+      "from": "them",
+      "text": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "e03",
+      "kind": "message",
+      "from": "them",
+      "text": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "e04",
+      "kind": "amount",
+      "from": "them",
+      "text": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "e05",
+      "kind": "message",
+      "from": "you",
+      "text": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "e06",
+      "kind": "file",
+      "from": "them",
+      "text": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "e07",
+      "kind": "message",
+      "from": "them",
+      "text": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "e08",
+      "kind": "amount",
+      "from": "them",
+      "text": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "e09",
+      "kind": "phone",
+      "from": "them",
+      "text": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "e10",
+      "kind": "timestamp",
+      "from": "them",
+      "text": {
+        "kh": "",
+        "en": ""
+      }
+    }
+  ],
+  "flags": [
+    {
+      "elementId": "e01",
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "elementId": "e04",
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "elementId": "e06",
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "elementId": "e08",
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    }
+  ],
+  "rule": {
+    "kh": "",
+    "en": ""
+  }
+}

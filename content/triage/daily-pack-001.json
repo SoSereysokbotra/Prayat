@@ -1,0 +1,261 @@
+{
+  "id": "daily-pack-001",
+  "title": {
+    "kh": "",
+    "en": ""
+  },
+  "cards": [
+    {
+      "id": "c01",
+      "surface": "sms",
+      "category": "technical",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "c02",
+      "surface": "receipt",
+      "category": "trust",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": false,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "c03",
+      "surface": "url-bar",
+      "category": "technical",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "c04",
+      "surface": "qr",
+      "category": "authority",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "c05",
+      "surface": "telegram",
+      "category": "opportunity",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "c06",
+      "surface": "facebook",
+      "category": "authority",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": false,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "c07",
+      "surface": "sms",
+      "category": "trust",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": false,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "c08",
+      "surface": "telegram",
+      "category": "opportunity",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "c09",
+      "surface": "sms",
+      "category": "opportunity",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "c10",
+      "surface": "facebook",
+      "category": "trust",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "c11",
+      "surface": "url-bar",
+      "category": "technical",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": false,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "c12",
+      "surface": "telegram",
+      "category": "technical",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    }
+  ]
+}
