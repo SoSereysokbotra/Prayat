@@ -28,6 +28,7 @@ export default {
         'chrome-receipt':  'rgb(var(--color-chrome-receipt) / <alpha-value>)',
         'verdict-real':    'rgb(var(--color-verdict-real) / <alpha-value>)',
         'verdict-scam':    'rgb(var(--color-verdict-scam) / <alpha-value>)',
+        focus:             'rgb(var(--color-focus) / <alpha-value>)',
       },
       minHeight: {
         'card-min': 'var(--size-card-min)',
@@ -60,6 +61,8 @@ export default {
         icon:       'var(--space-icon)',
         bar:        'var(--space-bar)',
         qr:         'var(--size-qr)',
+        avatar:     'var(--size-avatar)',
+        ring:       'var(--space-ring)',
       },
       height: {
         'zone-threat':  'var(--zone-threat-h)',
@@ -69,6 +72,7 @@ export default {
         'card-min':     'var(--size-card-min)',
         qr:             'var(--size-qr)',
         'timer-bar':    'var(--space-timer-bar)',
+        avatar:         'var(--size-avatar)',
       },
       flexBasis: {
         'zone-threat':  'var(--zone-threat-h)',
