@@ -13,7 +13,7 @@ import type { ScenarioFull } from '../shared/types'
 import { OPTIONS_PER_STAGE, STAGE_COUNT } from '../shared/types'
 
 const scenario = JSON.parse(
-  readFileSync('content/shop-payment-scam.json', 'utf8'),
+  readFileSync('content/scenarios/shop-payment-scam.json', 'utf8'),
 ) as ScenarioFull
 
 let failed = 0

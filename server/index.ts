@@ -12,6 +12,8 @@ import { seedContent } from './db'
 import { healthRouter } from './routes/health'
 import { scenariosRouter } from './routes/scenarios'
 import { sessionsRouter } from './routes/sessions'
+import { triageRouter } from './routes/triage'
+import { investigationRouter } from './routes/investigation'
 import { docsRouter } from './routes/docs'
 import { fail, NOT_FOUND } from './lib/http'
 
@@ -23,7 +25,9 @@ app.use(express.json())
 /* Content is version-controlled in git; the database is disposable. Re-seeding
    on every boot means a wiped disk costs nothing but session history. */
 const loaded = seedContent()
-console.log(`[prayat] seeded ${loaded} scenario(s)`)
+console.log(
+  `[prayat] seeded ${loaded.scenarios} scenario(s), ${loaded.decks} deck(s), ${loaded.investigations} investigation(s)`,
+)
 
 /* ---- API ---------------------------------------------------------------- */
 
@@ -31,6 +35,8 @@ const api = express.Router()
 api.use('/health', healthRouter)
 api.use('/scenarios', scenariosRouter)
 api.use('/sessions', sessionsRouter)
+api.use('/triage', triageRouter)
+api.use('/investigations', investigationRouter)
 api.use('/docs', docsRouter)
 
 // An unknown /api/* path must not fall through to the SPA catch-all, or a typo

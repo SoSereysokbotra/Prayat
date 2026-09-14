@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { countScenarios } from '../db'
+import { counts } from '../db'
 
 export const healthRouter = Router()
 
@@ -8,6 +8,7 @@ healthRouter.get('/', (_req, res) => {
   res.json({
     status: 'ok',
     uptime: process.uptime(),
-    scenariosLoaded: countScenarios(),
+    scenariosLoaded: counts().scenarios,
+    content: counts(),
   })
 })
