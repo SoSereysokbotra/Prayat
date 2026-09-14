@@ -57,6 +57,9 @@ export function nextLevelAt(score: number): number | null {
 interface GameState {
   language: LanguageCode
   cumulativeScore: number
+  /** Set by Guardian, read by Consequence and Debrief. */
+  sessionId: string | null
+  setSessionId: (id: string | null) => void
   setLanguage: (language: LanguageCode) => void
   toggleLanguage: () => void
   addScore: (points: number) => void
@@ -72,6 +75,10 @@ export const useGameStore = create<GameState>((set, get) => ({
     const n = Number(raw)
     return Number.isFinite(n) && n >= 0 ? n : null
   }),
+
+  sessionId: null,
+
+  setSessionId: (sessionId) => set({ sessionId }),
 
   setLanguage: (language) => {
     writeStored(LANGUAGE_KEY, language)

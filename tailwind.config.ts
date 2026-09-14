@@ -55,6 +55,11 @@ export default {
         'zone-options': 'var(--zone-options-h)',
         'chat-pane':    'var(--size-chat-pane)',
       },
+      flexBasis: {
+        'zone-threat':  'var(--zone-threat-h)',
+        'zone-chat':    'var(--zone-chat-h)',
+        'zone-options': 'var(--zone-options-h)',
+      },
       transitionDuration: {
         'option-fade': 'var(--timing-option-fade)',
         route:         'var(--timing-route)',
