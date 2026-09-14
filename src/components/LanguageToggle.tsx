@@ -1,37 +1,36 @@
+import { Languages } from 'lucide-react'
 import { useGameStore } from '../store/gameStore'
 
 /**
- * KH / EN toggle. Present on every screen, mid-game included.
- * The inactive half stays legible — this is a switch, not a disabled control.
+ * KH / EN switch. Present on every screen, mid-game included.
+ *
+ * Deliberately quiet. As a two-pill segmented control it was the brightest
+ * element on every screen — a language switcher outshining the scam the player
+ * is supposed to be reading. It is now a single button showing the language it
+ * switches TO, which is both smaller and the clearer affordance: you read what
+ * you will get, not what you already have.
+ *
+ * `compact` drops the label entirely for gameplay screens, where the header is
+ * already carrying a timer, a score and a life count.
  */
-export default function LanguageToggle() {
+export default function LanguageToggle({ compact = false }: { compact?: boolean }) {
   const language = useGameStore((s) => s.language)
   const setLanguage = useGameStore((s) => s.setLanguage)
 
+  const next = language === 'kh' ? 'en' : 'kh'
+  const nextLabel = next === 'kh' ? 'ខ្មែរ' : 'EN'
+
   return (
-    <div
-      role="group"
-      aria-label="Language"
-      className="flex items-center gap-stack rounded-button border border-border bg-surface p-stack"
+    <button
+      type="button"
+      onClick={() => setLanguage(next)}
+      aria-label={next === 'kh' ? 'ប្ដូរទៅភាសាខ្មែរ' : 'Switch to English'}
+      className="tap-target flex items-center justify-center gap-stack rounded-button
+                 border border-border bg-surface px-stack text-small text-muted
+                 transition-colors duration-option-fade hover:text-text"
     >
-      {(['kh', 'en'] as const).map((code) => {
-        const active = language === code
-        return (
-          <button
-            key={code}
-            type="button"
-            onClick={() => setLanguage(code)}
-            aria-pressed={active}
-            className={`tap-target rounded-button px-stack text-small transition-colors duration-option-fade ${
-              active ? 'bg-primary text-primary-text' : 'text-muted'
-            }`}
-          >
-            <span className={code === 'kh' ? 'font-kh' : undefined}>
-              {code === 'kh' ? 'ខ្មែរ' : 'EN'}
-            </span>
-          </button>
-        )
-      })}
-    </div>
+      <Languages aria-hidden className="h-icon w-icon" />
+      {!compact && <span className={next === 'kh' ? 'font-kh' : undefined}>{nextLabel}</span>}
+    </button>
   )
 }
