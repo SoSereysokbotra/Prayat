@@ -143,8 +143,14 @@ const firstCorrect = awards.find((a) => a.correct)
 check('a correct card at streak 0 pays 10', firstCorrect ? firstCorrect.points === 10 : false,
   firstCorrect ? `paid ${firstCorrect.points}` : 'no correct answer in this deck order')
 check('a wrong card pays 0', awards.filter((a) => !a.correct).every((a) => a.points === 0))
-check('multiplier is 1 below a streak of 5',
-  awards.filter((a) => a.streak < 5).every((a) => a.multiplier === 1))
+// The multiplier is computed from the streak BEFORE this card. On a correct
+// answer the reported streak is that number plus one.
+const expected = (streakBefore) => (streakBefore >= 10 ? 2 : streakBefore >= 5 ? 1.5 : 1)
+check(
+  'the multiplier matches the streak the card was answered at',
+  awards.filter((a) => a.correct).every((a) => a.multiplier === expected(a.streak - 1)),
+  awards.filter((a) => a.correct).map((a) => `streak${a.streak - 1}->x${a.multiplier}`).join(' '),
+)
 
 /* ==========================================================================
    The Investigation

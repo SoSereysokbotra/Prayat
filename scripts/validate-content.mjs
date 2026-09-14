@@ -21,7 +21,7 @@ const OPTION_IDS = ['a', 'b', 'c', 'd']
 const SCAM_TYPES = ['government', 'job', 'crypto', 'romance', 'malware']
 
 const strict = process.argv.includes('--strict')
-const dir = join(process.cwd(), 'content')
+const dir = join(process.cwd(), 'content', 'scenarios')
 
 const errors = []
 const warnings = []
@@ -197,12 +197,12 @@ let files
 try {
   files = readdirSync(dir).filter((f) => f.endsWith('.json'))
 } catch {
-  console.error('✗ no content/ directory')
+  console.error('✗ no content/scenarios/ directory')
   process.exit(1)
 }
 
 if (files.length === 0) {
-  console.error('✗ no scenario files in content/')
+  console.error('✗ no scenario files in content/scenarios/')
   process.exit(1)
 }
 
