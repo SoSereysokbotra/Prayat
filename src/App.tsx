@@ -12,7 +12,11 @@ import SignUp from './pages/auth/SignUp'
 import VerifyEmail from './pages/auth/VerifyEmail'
 import ForgotPassword from './pages/auth/ForgotPassword'
 import ResetPassword from './pages/auth/ResetPassword'
+import Bootcamp from './pages/bootcamp/Bootcamp'
+import VipClub from './pages/bootcamp/VipClub'
+import UrlSorter from './pages/bootcamp/UrlSorter'
 import RequireAuth from './components/RequireAuth'
+import RequireBootcamp from './components/RequireBootcamp'
 import RedirectIfSignedIn from './components/RedirectIfSignedIn'
 import { useDocumentLanguage } from './hooks/useDocumentLanguage'
 
@@ -75,6 +79,35 @@ export default function App() {
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
 
+        {/* ---- Level 0 ----
+            Behind sign-in, but deliberately NOT behind the bootcamp gate —
+            gating the bootcamp on the bootcamp is a locked door with the key
+            inside. */}
+        <Route
+          path="/bootcamp"
+          element={
+            <RequireAuth>
+              <Bootcamp />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/bootcamp/vip-club"
+          element={
+            <RequireAuth>
+              <VipClub />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/bootcamp/url-sorter"
+          element={
+            <RequireAuth>
+              <UrlSorter />
+            </RequireAuth>
+          }
+        />
+
         {/* ---- protected: everything else ----
             A signed-out visitor opening any of these URLs directly lands on
             sign-in first, and is returned here afterwards. */}
@@ -82,7 +115,9 @@ export default function App() {
           path="/"
           element={
             <RequireAuth>
-              <Home />
+              <RequireBootcamp>
+                <Home />
+              </RequireBootcamp>
             </RequireAuth>
           }
         />
@@ -90,7 +125,9 @@ export default function App() {
           path="/coming-soon/:mode"
           element={
             <RequireAuth>
-              <ComingSoon />
+              <RequireBootcamp>
+                <ComingSoon />
+              </RequireBootcamp>
             </RequireAuth>
           }
         />
@@ -98,7 +135,9 @@ export default function App() {
           path="/guardian"
           element={
             <RequireAuth>
-              <Guardian />
+              <RequireBootcamp>
+                <Guardian />
+              </RequireBootcamp>
             </RequireAuth>
           }
         />
@@ -106,7 +145,9 @@ export default function App() {
           path="/triage"
           element={
             <RequireAuth>
-              <Triage />
+              <RequireBootcamp>
+                <Triage />
+              </RequireBootcamp>
             </RequireAuth>
           }
         />
@@ -114,7 +155,9 @@ export default function App() {
           path="/investigation"
           element={
             <RequireAuth>
-              <Investigation />
+              <RequireBootcamp>
+                <Investigation />
+              </RequireBootcamp>
             </RequireAuth>
           }
         />
@@ -122,7 +165,9 @@ export default function App() {
           path="/consequence"
           element={
             <RequireAuth>
-              <Consequence />
+              <RequireBootcamp>
+                <Consequence />
+              </RequireBootcamp>
             </RequireAuth>
           }
         />
@@ -130,7 +175,9 @@ export default function App() {
           path="/debrief"
           element={
             <RequireAuth>
-              <Debrief />
+              <RequireBootcamp>
+                <Debrief />
+              </RequireBootcamp>
             </RequireAuth>
           }
         />

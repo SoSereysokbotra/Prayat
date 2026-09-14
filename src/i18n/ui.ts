@@ -221,6 +221,51 @@ const strings = {
   signOut: { kh: 'ចាក​ចេញ', en: 'Sign out' },
   playingAsGuest: { kh: 'កំពុង​លេង​ជា​ភ្ញៀវ — ពិន្ទុ​រក្សា​ទុក​តែ​ក្នុង​ឧបករណ៍​នេះ', en: 'Playing as a guest — score saved on this device only' },
 
+  /* ---- bootcamp ---- */
+  levelZero: { kh: 'កម្រិត ០', en: 'Level 0' },
+  bootcampTitle: { kh: 'ការ​ហ្វឹកហាត់​សន្តិសុខ', en: 'Cyber Bootcamp' },
+  bootcampIntro: {
+    kh: 'ពីរ​មេរៀន​ខ្លី។ មេរៀន​នីមួយៗ​ផ្ដល់​ឧបករណ៍​មួយ​ដែល​អ្នក​នឹង​ប្រើ​ពិត​ប្រាកដ​ក្នុង​ល្បែង។',
+    en: 'Two short modules. Each one gives you a tool you will actually use in the game.',
+  },
+  bootcampLocked: {
+    kh: 'បញ្ចប់​មេរៀន​ទាំង​ពីរ​សិន ដើម្បី​បើក​ល្បែង​ទាំងអស់',
+    en: 'Finish both modules to unlock the game modes',
+  },
+  bootcampDoneAction: { kh: 'បើក​ល្បែង​ហើយ — ចូល​លេង', en: 'Unlocked — start playing' },
+  unlocks: { kh: 'នឹង​ផ្ដល់', en: 'Unlocks' },
+  toolUnlocked: { kh: 'ទទួល​បាន​ឧបករណ៍', en: 'Tool unlocked' },
+  toolAuthenticator: { kh: 'លេខ​សម្ងាត់​បញ្ជាក់', en: 'Authenticator Token' },
+  toolMagnifier: { kh: 'កញ្ចក់​ពង្រីក', en: 'Magnifying Glass' },
+  modulePassed: { kh: 'ជាប់​ហើយ', en: 'Passed' },
+  moduleFailed: { kh: 'មិន​ទាន់​ជាប់​ទេ', en: 'Not passed yet' },
+  tryModuleAgain: { kh: 'ព្យាយាម​ម្ដង​ទៀត', en: 'Try again' },
+  backToBootcamp: { kh: 'ត្រឡប់​ទៅ​មេរៀន', en: 'Back to the bootcamp' },
+  passMark: { kh: 'ត្រូវ​បាន​យ៉ាង​ហោច', en: 'Pass mark' },
+
+  /* ---- vip club ---- */
+  twoFactorOn: { kh: 'ការ​បញ្ជាក់​ពីរ​ជាន់ — បើក', en: 'Two-factor — ON' },
+  twoFactorOff: { kh: 'ការ​បញ្ជាក់​ពីរ​ជាន់ — បិទ', en: 'Two-factor — OFF' },
+  letThemIn: { kh: 'ឲ្យ​ចូល', en: 'Let them in' },
+  turnThemAway: { kh: 'បដិសេធ', en: 'Turn away' },
+  askForCode: { kh: 'សុំ​លេខ​បញ្ជាក់', en: 'Ask for the code' },
+  goodCall: { kh: 'សម្រេច​ចិត្ត​ត្រឹមត្រូវ', en: 'Good call' },
+  badCall: { kh: 'សម្រេច​ចិត្ត​ខុស', en: 'Wrong call' },
+  noWayToTell: { kh: 'អ្នក​គ្មាន​មធ្យោបាយ​ដឹង​ទេ', en: 'You had no way to tell' },
+  nextRound: { kh: 'ជុំ​បន្ទាប់', en: 'Next round' },
+
+  /* ---- url sorter ---- */
+  sortSafe: { kh: 'សុវត្ថិភាព', en: 'Safe' },
+  sortTrash: { kh: 'ក្លែងក្លាយ', en: 'Trash' },
+  thatOneWasSafe: { kh: 'នោះ​ជា​អាសយដ្ឋាន​ពិត', en: 'That one was real' },
+  thatOneWasFake: { kh: 'នោះ​ជា​អាសយដ្ឋាន​ក្លែងក្លាយ', en: 'That one was fake' },
+  nextCard: { kh: 'បន្ទាប់', en: 'Next' },
+  zoomIn: { kh: 'ពង្រីក', en: 'Zoom in' },
+  magnifierHint: {
+    kh: 'ប្រើ​កញ្ចក់​ពង្រីក ដើម្បី​អាន​អក្សរ​ម្ដង​មួយៗ',
+    en: 'Use the magnifying glass to read it character by character',
+  },
+
   /* ---- language ---- */
   languageName: { kh: 'ខ្មែរ', en: 'English' },
 } as const satisfies Record<string, { kh: string; en: string }>
