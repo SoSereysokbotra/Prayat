@@ -5,7 +5,7 @@ import ModeCard from '../components/ModeCard'
 import ScoreDisplay from '../components/ScoreDisplay'
 import ScreenState from '../components/ScreenState'
 import { useT, useIsKhmer } from '../hooks/useT'
-import { listScenarios, hasRealContent } from '../fixtures/scenario'
+import { listScenarios, placeholdersInUse } from '../api/client'
 
 type Status = 'loading' | 'ready' | 'error'
 
@@ -14,6 +14,7 @@ export default function Home() {
   const isKhmer = useIsKhmer()
   const [status, setStatus] = useState<Status>('loading')
   const [stageCount, setStageCount] = useState<number | null>(null)
+  const [placeholders, setPlaceholders] = useState(false)
 
   useEffect(() => {
     let cancelled = false
@@ -23,6 +24,7 @@ export default function Home() {
       .then((scenarios) => {
         if (cancelled) return
         setStageCount(scenarios[0]?.stageCount ?? null)
+        setPlaceholders(placeholdersInUse())
         setStatus('ready')
       })
       .catch(() => !cancelled && setStatus('error'))
@@ -82,7 +84,7 @@ export default function Home() {
         )}
       </section>
 
-      {!hasRealContent && (
+      {placeholders && (
         <p className="mt-section rounded-card border border-caution bg-surface p-stack text-small text-muted">
           Placeholder content in use — the scenario is still being written.
           Run <code>npm run validate:content</code> to see what is left.

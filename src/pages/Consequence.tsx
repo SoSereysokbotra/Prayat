@@ -4,7 +4,7 @@ import ScreenState from '../components/ScreenState'
 import { useIsKhmer } from '../hooks/useT'
 import { motionToken } from '../hooks/useMotionToken'
 import { useGameStore } from '../store/gameStore'
-import { getDebrief } from '../fixtures/scenario'
+import { getDebrief } from '../api/client'
 import type { Localized } from '../../shared/types'
 
 /**

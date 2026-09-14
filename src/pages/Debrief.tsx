@@ -6,7 +6,7 @@ import RedFlagCard from '../components/RedFlagCard'
 import ScreenState from '../components/ScreenState'
 import { useT, useIsKhmer } from '../hooks/useT'
 import { useGameStore } from '../store/gameStore'
-import { getDebrief } from '../fixtures/scenario'
+import { getDebrief } from '../api/client'
 import type { SessionSummary } from '../../shared/types'
 
 /**
