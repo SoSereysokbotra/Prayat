@@ -99,6 +99,8 @@
   --size-dot:        0.4rem;
   --size-chat-pane:  12rem;  /* pane height when no parent constrains it */
   --size-avatar:     2rem;
+  --size-field:      3rem;      /* form field height */
+  --size-code-box:   2.75rem;   /* one digit of the verification code */
   --space-ring:      0.1875rem;  /* focus ring width */
 
   /* ---- triage card chrome ---- */
@@ -110,6 +112,8 @@
   --color-verdict-real:    22 163 74;
   --color-verdict-scam:    220 38 38;
   --color-focus:           147 197 253;  /* focus ring — must clear both themes */
+  --color-input:           30 41 59;     /* form field background */
+  --color-input-border:    71 85 105;    /* a field must read as editable at rest */
   --size-card-min:   14rem;   /* a card never collapses below this */
   --size-qr:         7rem;
   --space-timer-bar: 0.375rem;
@@ -142,6 +146,8 @@
   --color-zone-threat:     254 242 242;
 
   --color-focus:           37 99 235;
+  --color-input:           255 255 255;
+  --color-input-border:    203 213 225;
 }
 
 /* --------------------------------------------------------------------------

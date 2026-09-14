@@ -29,6 +29,8 @@ export default {
         'verdict-real':    'rgb(var(--color-verdict-real) / <alpha-value>)',
         'verdict-scam':    'rgb(var(--color-verdict-scam) / <alpha-value>)',
         focus:             'rgb(var(--color-focus) / <alpha-value>)',
+        input:             'rgb(var(--color-input) / <alpha-value>)',
+        'input-border':    'rgb(var(--color-input-border) / <alpha-value>)',
       },
       minHeight: {
         'card-min': 'var(--size-card-min)',
@@ -63,6 +65,8 @@ export default {
         qr:         'var(--size-qr)',
         avatar:     'var(--size-avatar)',
         ring:       'var(--space-ring)',
+        field:      'var(--size-field)',
+        'code-box': 'var(--size-code-box)',
       },
       height: {
         'zone-threat':  'var(--zone-threat-h)',
@@ -73,6 +77,8 @@ export default {
         qr:             'var(--size-qr)',
         'timer-bar':    'var(--space-timer-bar)',
         avatar:         'var(--size-avatar)',
+        field:          'var(--size-field)',
+        'code-box':     'var(--size-code-box)',
       },
       flexBasis: {
         'zone-threat':  'var(--zone-threat-h)',
