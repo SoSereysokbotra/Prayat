@@ -13,4 +13,6 @@ export {
   containsAnswers,
   stripTriageCard,
   stripInvestigation,
+  stripBouncerRound,
+  stripUrlCard,
 } from '../../shared/strip'

@@ -364,3 +364,118 @@ export interface InvestigationSummary {
  *  brute-force every element and make the mode meaningless. */
 export const INVESTIGATION_WRONG_TAP_PENALTY_SECONDS = 10
 export const INVESTIGATION_DEFAULT_SECONDS = 180
+
+/* ==========================================================================
+   Level 0 — Cyber Bootcamp
+   --------------------------------------------------------------------------
+   A mandatory prerequisite: the game modes stay locked until it is finished.
+
+   Two modules. The VPN/HTTPS module was cut deliberately — "look for the
+   padlock" is no longer true (phishing sites carry valid certificates, which
+   is why Chrome dropped the padlock icon in 2023), and no scam in this app's
+   content involves network interception. Teaching it would have trained the
+   exact reflex scammers rely on.
+
+   Passing a module unlocks a TOOL rather than a grade. A tool changes how the
+   other modes play, so the foundational learning pays off where the player
+   actually feels it.
+   ========================================================================== */
+
+export type BootcampModuleId = 'vip-club' | 'url-sorter'
+
+export const BOOTCAMP_MODULE_IDS: readonly BootcampModuleId[] = ['vip-club', 'url-sorter'] as const
+
+/** What passing a module gives you. */
+export type ToolId = 'authenticator-token' | 'magnifying-glass'
+
+export const TOOL_OF_MODULE: Record<BootcampModuleId, ToolId> = {
+  'vip-club': 'authenticator-token',
+  'url-sorter': 'magnifying-glass',
+}
+
+/* ---- Module 1: The VIP Club (passwords vs 2FA) --------------------------- */
+
+/**
+ * What the bouncer can do at the door.
+ *
+ * `demandCode` only becomes available in the round where 2FA is switched on —
+ * the point of the module is that in rounds 1 and 2 you genuinely do not have
+ * that option, which is why a password alone cannot be enough.
+ */
+export type DoorAction = 'admit' | 'refuse' | 'demandCode'
+
+export interface BouncerRoundFull {
+  id: number
+  /** Who is at the door, and what they say. */
+  visitor: Localized
+  claim: Localized
+  /** True once 2FA is active — only then is demandCode offered. */
+  twoFactorOn: boolean
+  correctAction: DoorAction // NEVER sent to the client
+  /**
+   * Round 2 is designed to be failed. Whatever the player picks, the lesson is
+   * that they had no way to tell — which is the entire argument for 2FA.
+   */
+  unwinnable: boolean
+  outcome: Localized // NEVER sent before the player acts
+  lesson: Localized // NEVER sent before the player acts
+}
+
+export type BouncerRound = Omit<
+  BouncerRoundFull,
+  'correctAction' | 'outcome' | 'lesson' | 'unwinnable'
+>
+
+export interface DoorResult {
+  isCorrect: boolean
+  /** True when the round could not be won — shown as a lesson, not a failure. */
+  unwinnable: boolean
+  outcome: Localized
+  lesson: Localized
+  nextRound: BouncerRound | null
+  done: boolean
+  passed: boolean
+}
+
+/* ---- Module 2: The URL Sorter -------------------------------------------- */
+
+export type UrlVerdict = 'safe' | 'trash'
+
+export interface UrlCardFull {
+  id: string
+  /** Not localized. A URL is a URL in any language. */
+  url: string
+  isSafe: boolean // NEVER sent to the client
+  explanation: Localized // NEVER sent before the player sorts it
+}
+
+export type UrlCard = Omit<UrlCardFull, 'isSafe' | 'explanation'>
+
+export interface UrlSortResult {
+  isCorrect: boolean
+  wasSafe: boolean
+  explanation: Localized
+  correctSoFar: number
+  answered: number
+  nextCard: UrlCard | null
+  done: boolean
+  passed: boolean
+}
+
+/* ---- shared -------------------------------------------------------------- */
+
+export interface BootcampModuleSummary {
+  id: BootcampModuleId
+  title: Localized
+  blurb: Localized
+  /** The real-world analogy, shown before the module starts. */
+  analogy: Localized
+  tool: ToolId
+  itemCount: number
+}
+
+/**
+ * A module is passed, not scored. The bootcamp is a gate, and a gate that lets
+ * through a 60% understanding of what a fake domain looks like is not a gate.
+ */
+export const BOOTCAMP_PASS_RATIO = 0.8
