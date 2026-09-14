@@ -16,7 +16,8 @@
     "test:api": "node scripts/test-api.mjs",
     "preflight": "node scripts/preflight.mjs",
     "test:modes": "node scripts/test-modes.mjs",
-    "test:guard": "node scripts/test-auth-guard.mjs"
+    "test:guard": "node scripts/test-auth-guard.mjs",
+    "test:bootcamp": "node scripts/test-bootcamp.mjs"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.3",
