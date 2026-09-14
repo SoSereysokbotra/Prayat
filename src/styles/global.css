@@ -95,6 +95,21 @@
   --size-bubble-max: 85%;   /* a bubble never spans the full column */
   --size-dot:        0.4rem;
   --size-chat-pane:  12rem;  /* pane height when no parent constrains it */
+
+  /* ---- triage card chrome ---- */
+  --color-chrome-sms:      34 40 52;   /* phone SMS app */
+  --color-chrome-telegram: 24 34 45;
+  --color-chrome-facebook: 24 28 38;
+  --color-chrome-browser:  45 52 66;   /* address bar */
+  --color-chrome-receipt:  28 38 32;
+  --color-verdict-real:    22 163 74;
+  --color-verdict-scam:    220 38 38;
+  --size-card-min:   14rem;   /* a card never collapses below this */
+  --size-qr:         7rem;
+  --space-timer-bar: 0.375rem;
+  --timing-card-flip:      200ms;
+  --timing-explain-right:  2000ms;  /* correct: 2s */
+  --timing-explain-wrong:  3000ms;  /* wrong or missed: 3s, they need longer */
 }
 
 /* --------------------------------------------------------------------------

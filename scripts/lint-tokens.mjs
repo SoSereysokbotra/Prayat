@@ -93,16 +93,55 @@ for (const file of walk(SRC)) {
   }
 }
 
-if (violations.length === 0) {
-  console.log('✓ tokens clean — no hardcoded values outside global.css')
+/* ==========================================================================
+   Unmapped token check.
+   --------------------------------------------------------------------------
+   A colour token defined in global.css but never mapped in tailwind.config.ts
+   produces a class that does not exist. Tailwind drops unknown classes
+   SILENTLY — no warning, no build failure — so the element renders with no
+   background and the bug is visible only on screen.
+
+   This shipped once, on the Speed Triage REAL/SCAM buttons. Once is enough.
+   ========================================================================== */
+
+const unmapped = []
+
+try {
+  const css = readFileSync(join(ROOT, 'src', 'styles', 'global.css'), 'utf8')
+  const tw = readFileSync(join(ROOT, 'tailwind.config.ts'), 'utf8')
+
+  // :root only — the .theme-light block redefines the same names.
+  const rootBlock = css.slice(css.indexOf(':root'), css.indexOf('.theme-light'))
+  const defined = [...rootBlock.matchAll(/--color-([a-z0-9-]+)\s*:/g)].map((m) => m[1])
+
+  unmapped.push(...defined.filter((name) => !tw.includes(`--color-${name})`)))
+} catch (e) {
+  console.error(`could not run the unmapped-token check: ${e.message}`)
+  process.exit(1)
+}
+
+/* ---- report -------------------------------------------------------------- */
+
+if (violations.length === 0 && unmapped.length === 0) {
+  console.log('✓ tokens clean — no hardcoded values, every colour token mapped')
   process.exit(0)
 }
 
-console.error(`\n✗ ${violations.length} token violation(s):\n`)
-for (const v of violations) {
-  console.error(`  ${v.file}:${v.line}  [${v.rule}]`)
-  console.error(`    ${v.text}`)
-  console.error(`    → ${v.hint}\n`)
+if (violations.length > 0) {
+  console.error(`\n✗ ${violations.length} token violation(s):\n`)
+  for (const v of violations) {
+    console.error(`  ${v.file}:${v.line}  [${v.rule}]`)
+    console.error(`    ${v.text}`)
+    console.error(`    → ${v.hint}\n`)
+  }
+  console.error('Add the token to src/styles/global.css first, then use it.')
 }
-console.error('Add the token to src/styles/global.css first, then use it.\n')
+
+if (unmapped.length > 0) {
+  console.error(`\n✗ ${unmapped.length} colour token(s) defined but never mapped in tailwind.config.ts:\n`)
+  for (const name of unmapped) console.error(`  --color-${name}`)
+  console.error('\nTailwind drops unknown classes silently, so these render as nothing.')
+}
+
+console.error('')
 process.exit(1)

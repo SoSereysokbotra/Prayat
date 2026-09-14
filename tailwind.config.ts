@@ -20,6 +20,17 @@ export default {
         'bubble-auntie':  'rgb(var(--color-bubble-auntie) / <alpha-value>)',
         'bubble-player':  'rgb(var(--color-bubble-player) / <alpha-value>)',
         'zone-threat':    'rgb(var(--color-zone-threat) / <alpha-value>)',
+
+        'chrome-sms':      'rgb(var(--color-chrome-sms) / <alpha-value>)',
+        'chrome-telegram': 'rgb(var(--color-chrome-telegram) / <alpha-value>)',
+        'chrome-facebook': 'rgb(var(--color-chrome-facebook) / <alpha-value>)',
+        'chrome-browser':  'rgb(var(--color-chrome-browser) / <alpha-value>)',
+        'chrome-receipt':  'rgb(var(--color-chrome-receipt) / <alpha-value>)',
+        'verdict-real':    'rgb(var(--color-verdict-real) / <alpha-value>)',
+        'verdict-scam':    'rgb(var(--color-verdict-scam) / <alpha-value>)',
+      },
+      minHeight: {
+        'card-min': 'var(--size-card-min)',
       },
       borderRadius: {
         card:   'var(--radius-card)',
@@ -48,12 +59,16 @@ export default {
         tap:        'var(--space-tap)',
         icon:       'var(--space-icon)',
         bar:        'var(--space-bar)',
+        qr:         'var(--size-qr)',
       },
       height: {
         'zone-threat':  'var(--zone-threat-h)',
         'zone-chat':    'var(--zone-chat-h)',
         'zone-options': 'var(--zone-options-h)',
         'chat-pane':    'var(--size-chat-pane)',
+        'card-min':     'var(--size-card-min)',
+        qr:             'var(--size-qr)',
+        'timer-bar':    'var(--space-timer-bar)',
       },
       flexBasis: {
         'zone-threat':  'var(--zone-threat-h)',
