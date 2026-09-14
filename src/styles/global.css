@@ -63,6 +63,8 @@
   --space-section:  1.5rem;
   --space-stack:    0.75rem;
   --space-tap:      2.75rem;   /* 44px — minimum tap target */
+  --space-icon:     1.25rem;   /* icon box — use w-icon h-icon, not size={} */
+  --space-bar:      0.5rem;    /* score strip bar thickness */
 
   /* ---- type ------------------------------------------------------------- */
   --font-kh: 'Noto Sans Khmer', sans-serif;
@@ -70,6 +72,7 @@
   --text-title:  1.5rem;
   --text-body:   1rem;
   --text-small:  0.875rem;
+  --text-display: 2rem;        /* wordmark — the largest type in the app */
   --text-rule:   1.25rem;      /* the debrief rule — heaviest element */
   --leading-kh:  2;            /* Khmer diacritics clip at normal line-height */
   --leading-en:  1.5;

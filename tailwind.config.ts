@@ -31,10 +31,11 @@ export default {
         en: ['var(--font-en)'],
       },
       fontSize: {
-        title: 'var(--text-title)',
-        body:  'var(--text-body)',
-        small: 'var(--text-small)',
-        rule:  'var(--text-rule)',
+        display: 'var(--text-display)',
+        title:   'var(--text-title)',
+        body:    'var(--text-body)',
+        small:   'var(--text-small)',
+        rule:    'var(--text-rule)',
       },
       lineHeight: {
         kh: 'var(--leading-kh)',
@@ -45,6 +46,8 @@ export default {
         section:    'var(--space-section)',
         stack:      'var(--space-stack)',
         tap:        'var(--space-tap)',
+        icon:       'var(--space-icon)',
+        bar:        'var(--space-bar)',
       },
       height: {
         'zone-threat':  'var(--zone-threat-h)',
