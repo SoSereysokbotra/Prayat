@@ -1,0 +1,153 @@
+/* ==========================================================================
+   Prayat — design tokens
+   --------------------------------------------------------------------------
+   THIS IS THE ONLY FILE IN src/ ALLOWED TO CONTAIN A RAW VALUE.
+
+   No hex, no rgb(), no Tailwind palette classes anywhere else in src/.
+   If a value has no token, add the token HERE first, then use it.
+   Never inline "just this once."
+
+   Colours are stored as space-separated RGB channels (not hex) so Tailwind
+   opacity modifiers keep working: bg-surface/50 resolves correctly.
+
+   Run `npm run lint:tokens` to verify. It fails the build if anything leaks.
+   ========================================================================== */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* --------------------------------------------------------------------------
+   Khmer font — self-hosted.
+   NOT a Google Fonts @import: that blocks rendering, is slow on mobile data,
+   and a service worker cannot cache what CSS fetches before the worker
+   registers on first load.
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Noto Sans Khmer';
+  src: url('/fonts/NotoSansKhmer-Variable.woff2') format('woff2');
+  font-weight: 100 900;   /* variable font — one file covers every weight */
+  font-style: normal;
+  font-display: swap;
+  unicode-range: U+1780-17FF, U+19E0-19FF, U+200C-200D, U+25CC;
+}
+
+:root {
+  /* ---- colour — channels only, no rgb() wrapper ------------------------- */
+  --color-bg:            15 23 42;
+  --color-surface:       30 41 59;
+  --color-surface-alt:   51 65 85;
+  --color-text:          241 245 249;
+  --color-text-muted:    148 163 184;
+  --color-border:        51 65 85;
+
+  --color-primary:       56 130 246;   /* see note 1 in the build plan */
+  --color-primary-text:  255 255 255;  /* see note 2 in the build plan */
+  --color-danger:        220 38 38;
+  --color-safe:          22 163 74;
+  --color-caution:       245 158 11;
+
+  /* ---- chat-specific ---------------------------------------------------- */
+  --color-bubble-scammer:  69 26 26;
+  --color-bubble-auntie:   51 65 85;
+  --color-bubble-player:   30 58 95;
+  --color-zone-threat:     45 22 22;
+
+  /* ---- radius ----------------------------------------------------------- */
+  --radius-card:    0.75rem;
+  --radius-bubble:  1.25rem;
+  --radius-button:  0.75rem;
+
+  /* ---- spacing ---------------------------------------------------------- */
+  --space-screen-x: 1rem;
+  --space-section:  1.5rem;
+  --space-stack:    0.75rem;
+  --space-tap:      2.75rem;   /* 44px — minimum tap target */
+
+  /* ---- type ------------------------------------------------------------- */
+  --font-kh: 'Noto Sans Khmer', sans-serif;
+  --font-en: 'Inter', system-ui, sans-serif;
+  --text-title:  1.5rem;
+  --text-body:   1rem;
+  --text-small:  0.875rem;
+  --text-rule:   1.25rem;      /* the debrief rule — heaviest element */
+  --leading-kh:  2;            /* Khmer diacritics clip at normal line-height */
+  --leading-en:  1.5;
+
+  /* ---- Guardian zone heights -------------------------------------------- */
+  --zone-threat-h:  30%;
+  --zone-chat-h:    40%;
+  --zone-options-h: 30%;
+
+  /* ---- motion — these control the feel of the chat ----------------------- */
+  --timing-scammer-stagger: 600ms;
+  --timing-typing-min:      1500ms;
+  --timing-option-fade:     150ms;
+  --timing-consequence:     2500ms;
+  --timing-route:           200ms;
+}
+
+/* --------------------------------------------------------------------------
+   Light theme — overrides the SAME tokens. No component knows this exists.
+   Toggle by adding/removing .theme-light on <html>.
+   -------------------------------------------------------------------------- */
+.theme-light {
+  --color-bg:            248 250 252;
+  --color-surface:       255 255 255;
+  --color-surface-alt:   241 245 249;
+  --color-text:          15 23 42;
+  --color-text-muted:    100 116 139;
+  --color-border:        226 232 240;
+
+  --color-primary:       37 99 235;
+  --color-primary-text:  255 255 255;
+  --color-danger:        185 28 28;
+  --color-safe:          21 128 61;
+  --color-caution:       180 83 9;
+
+  --color-bubble-scammer:  254 226 226;
+  --color-bubble-auntie:   241 245 249;
+  --color-bubble-player:   219 234 254;
+  --color-zone-threat:     254 242 242;
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: rgb(var(--color-bg));
+    color: rgb(var(--color-text));
+    font-family: var(--font-en);
+    font-size: var(--text-body);
+    line-height: var(--leading-en);
+    margin: 0;
+    min-height: 100dvh;
+    overflow-x: hidden;          /* no horizontal scroll, ever */
+  }
+
+  /* Khmer glyphs stack above AND below the baseline. Any element that can
+     hold Khmer needs the taller line-height or the diacritics clip. */
+  :lang(km),
+  .font-kh {
+    font-family: var(--font-kh);
+    line-height: var(--leading-kh);
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+  }
+}
+
+@layer utilities {
+  /* Minimum 44px tap target, both axes. */
+  .tap-target {
+    min-height: var(--space-tap);
+    min-width: var(--space-tap);
+  }
+}
