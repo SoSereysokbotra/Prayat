@@ -67,6 +67,17 @@ const strings = {
   levelGuardian: { kh: 'អាណាព្យាបាល', en: 'Guardian' },
   levelProtector: { kh: 'អ្នក​ថែរក្សា', en: 'Protector' },
 
+  /* ---- debrief ---- */
+  debriefWinTitle: { kh: 'មីង​មិន​បាន​បង់​លុយ​ទេ', en: 'She did not pay' },
+  debriefLoseTitle: { kh: 'មីង​បាន​បង់​លុយ​ហើយ', en: 'She paid' },
+  whatScamHeading: { kh: 'នេះ​ជា​ការ​បោក​បញ្ឆោត​ប្រភេទ​ណា', en: 'What this scam was' },
+  redFlagsHeading: { kh: 'សញ្ញា​គ្រោះថ្នាក់​ទាំង​បី', en: 'The three red flags' },
+  ruleHeading: { kh: 'ច្បាប់​តែ​មួយ​ត្រូវ​ចាំ', en: 'The one rule to remember' },
+  realLifeHeading: { kh: 'ត្រូវ​ធ្វើ​យ៉ាង​ណា​ក្នុង​ជីវិត​ពិត', en: 'What to do in real life' },
+  scoreThisRound: { kh: 'ពិន្ទុ​ជុំ​នេះ', en: 'Score this round' },
+  shareCopied: { kh: 'បាន​ចម្លង​ហើយ', en: 'Copied' },
+  shareToFamily: { kh: 'ចែក​រំលែក​ទៅ​ក្រុម​គ្រួសារ', en: 'Share to family chat' },
+
   /* ---- actions ---- */
   start: { kh: 'ចាប់ផ្ដើម', en: 'Start' },
   back: { kh: 'ត្រឡប់​ក្រោយ', en: 'Back' },
