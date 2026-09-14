@@ -10,7 +10,7 @@ import TypingIndicator from '../components/TypingIndicator'
 import { useT, useIsKhmer } from '../hooks/useT'
 import { motionToken, sleep } from '../hooks/useMotionToken'
 import { useGameStore } from '../store/gameStore'
-import { createSession, submitDecision } from '../fixtures/scenario'
+import { createSession, listScenarios, submitDecision } from '../api/client'
 import type { Localized, Option, OptionId, Stage } from '../../shared/types'
 
 /**
@@ -90,7 +90,15 @@ export default function Guardian() {
   useEffect(() => {
     aliveRef.current = true
 
-    createSession()
+    // The prototype ships one scenario, so the catalogue's first entry is it.
+    // Going through the catalogue rather than hardcoding an id means adding a
+    // second scenario is a content change, not a code change.
+    listScenarios()
+      .then((scenarios) => {
+        const first = scenarios[0]
+        if (!first) throw new Error('no scenarios available')
+        return createSession(first.id, language)
+      })
       .then((session) => {
         if (!aliveRef.current) return
         sessionRef.current = session.sessionId
@@ -103,6 +111,11 @@ export default function Guardian() {
     return () => {
       aliveRef.current = false
     }
+    // `language` is intentionally omitted: it sets the session's language on
+    // the server at creation, and switching mid-game must not restart the run.
+    // The UI still re-renders in the new language because every string is
+    // Localized and picked at render time.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playStage, setSessionId])
 
   /* ---- the player answers ---- */
