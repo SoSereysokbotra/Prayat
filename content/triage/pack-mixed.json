@@ -1,0 +1,449 @@
+{
+  "id": "pack-mixed",
+  "title": {
+    "kh": "កញ្ចប់​ចម្រុះ",
+    "en": "Mixed pack"
+  },
+  "cards": [
+    {
+      "id": "m01",
+      "surface": "sms",
+      "category": "authority",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m02",
+      "surface": "telegram",
+      "category": "opportunity",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": false,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m03",
+      "surface": "facebook",
+      "category": "trust",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m04",
+      "surface": "url-bar",
+      "category": "technical",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": false,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m05",
+      "surface": "qr",
+      "category": "authority",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m06",
+      "surface": "receipt",
+      "category": "opportunity",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m07",
+      "surface": "sms",
+      "category": "trust",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": false,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m08",
+      "surface": "telegram",
+      "category": "technical",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m09",
+      "surface": "facebook",
+      "category": "authority",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": false,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m10",
+      "surface": "url-bar",
+      "category": "opportunity",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m11",
+      "surface": "qr",
+      "category": "trust",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m12",
+      "surface": "receipt",
+      "category": "technical",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": false,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m13",
+      "surface": "sms",
+      "category": "authority",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m14",
+      "surface": "telegram",
+      "category": "opportunity",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": false,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m15",
+      "surface": "facebook",
+      "category": "trust",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m16",
+      "surface": "url-bar",
+      "category": "technical",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m17",
+      "surface": "qr",
+      "category": "authority",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": false,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m18",
+      "surface": "receipt",
+      "category": "opportunity",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m19",
+      "surface": "sms",
+      "category": "trust",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": false,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    },
+    {
+      "id": "m20",
+      "surface": "telegram",
+      "category": "technical",
+      "sender": {
+        "kh": "",
+        "en": ""
+      },
+      "body": {
+        "kh": "",
+        "en": ""
+      },
+      "meta": {
+        "kh": "",
+        "en": ""
+      },
+      "isScam": true,
+      "explanation": {
+        "kh": "",
+        "en": ""
+      }
+    }
+  ]
+}
