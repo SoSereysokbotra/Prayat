@@ -17,7 +17,7 @@ export default {
         safe:             'rgb(var(--color-safe) / <alpha-value>)',
         caution:          'rgb(var(--color-caution) / <alpha-value>)',
         'bubble-scammer': 'rgb(var(--color-bubble-scammer) / <alpha-value>)',
-        'bubble-auntie':  'rgb(var(--color-bubble-auntie) / <alpha-value>)',
+        'bubble-relative': 'rgb(var(--color-bubble-relative) / <alpha-value>)',
         'bubble-player':  'rgb(var(--color-bubble-player) / <alpha-value>)',
         'zone-threat':    'rgb(var(--color-zone-threat) / <alpha-value>)',
 
@@ -31,14 +31,20 @@ export default {
         focus:             'rgb(var(--color-focus) / <alpha-value>)',
         input:             'rgb(var(--color-input) / <alpha-value>)',
         'input-border':    'rgb(var(--color-input-border) / <alpha-value>)',
+        'hero-text':       'rgb(var(--color-hero-text) / <alpha-value>)',
+        'hero-muted':      'rgb(var(--color-hero-muted) / <alpha-value>)',
       },
       minHeight: {
         'card-min': 'var(--size-card-min)',
+      },
+      maxHeight: {
+        'zone-options': 'var(--zone-options-h)',
       },
       borderRadius: {
         card:   'var(--radius-card)',
         bubble: 'var(--radius-bubble)',
         button: 'var(--radius-button)',
+        sheet:  'var(--radius-sheet)',
       },
       fontFamily: {
         kh: ['var(--font-kh)'],
@@ -51,6 +57,7 @@ export default {
         small:   'var(--text-small)',
         rule:    'var(--text-rule)',
         zoom:    'var(--text-zoom)',
+        countdown: 'var(--text-countdown)',
       },
       lineHeight: {
         kh: 'var(--leading-kh)',
@@ -68,6 +75,11 @@ export default {
         ring:       'var(--space-ring)',
         field:      'var(--size-field)',
         'code-box': 'var(--size-code-box)',
+        topbar:     'var(--size-topbar)',
+        wordmark:   'var(--size-wordmark)',
+        'sheet-overlap': 'var(--size-sheet-overlap)',
+        illustration:    'var(--size-illustration)',
+        'illustration-sm': 'var(--size-illustration-sm)',
       },
       height: {
         'zone-threat':  'var(--zone-threat-h)',

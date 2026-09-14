@@ -49,7 +49,7 @@
 
   /* ---- chat-specific ---------------------------------------------------- */
   --color-bubble-scammer:  69 26 26;
-  --color-bubble-auntie:   51 65 85;
+  --color-bubble-relative:   51 65 85;
   --color-bubble-player:   30 58 95;
   --color-zone-threat:     45 22 22;
 
@@ -79,12 +79,12 @@
   --leading-en:  1.5;
 
   /* ---- Guardian zone heights -------------------------------------------- */
-  /* Tuned against real option lengths: four wrapped Khmer options need more
-     room than the conversation does, and the threat pane only ever shows the
-     last message or two. */
-  --zone-threat-h:  25%;
-  --zone-chat-h:    35%;
-  --zone-options-h: 40%;
+  /* Tuned against real option lengths. The threat pane carries a sender row
+     and a timestamped bubble, so it needs a third of the box to show one
+     whole message; the reply zone takes whatever is left and scrolls. */
+  --zone-threat-h:  33%;
+  --zone-chat-h:    31%;
+  --zone-options-h: 36%;
 
   /* ---- motion — these control the feel of the chat ----------------------- */
   --timing-scammer-stagger: 600ms;
@@ -119,6 +119,34 @@
   --size-qr:         7rem;
   --space-timer-bar: 0.375rem;
   --timing-card-flip:      200ms;
+  --timing-countdown-tick: 1000ms;  /* 3 … 2 … 1 — one beat each */
+  --timing-milestone:      1500ms;  /* "5 streak!" banner on screen */
+  --timing-buzz-short:     50ms;    /* haptic: two seconds left */
+  --timing-buzz-wrong:     200ms;   /* haptic: wrong answer */
+  --timing-warn-at:        2000ms;  /* remaining time that triggers the short buzz */
+  --timing-countdown-go:   700ms;   /* how long GO! stays before the first card */
+  --text-countdown:        6rem;    /* the countdown digit — the largest type anywhere */
+
+  /* ---- home top bar ---- */
+  /* The banner is a fixed light illustration; it does NOT flip with the theme,
+     so the text on it has its own colour that stays dark in both themes. */
+  --image-topbar:      url('/topbar.jpg');
+  --size-topbar:       17rem;     /* full banner: sky + treeline + river */
+  --size-sheet-overlap: 8rem;     /* how far the content sheet rides up over the river */
+  --size-pull-max:      6.5rem;   /* maximum pull-to-refresh travel. Short of the overlap
+                                     so a strip of river stays behind the sheet's rounded
+                                     corners at full pull, instead of the page background. */
+  --timing-sheet-settle: 250ms;   /* the sheet sliding back up after a pull */
+  --size-wordmark:     3.25rem;    /* shield icon beside the wordmark */
+
+  /* ---- mode card illustrations ---- */
+  /* Round crops of the mode artwork. Sized so the Khmer title still has room
+     beside them on a 360px phone; the artwork is decoration, the title is not. */
+  --size-illustration:    7rem;    /* primary (Guardian) card */
+  --size-illustration-sm: 4.5rem;  /* supporting cards */
+  --radius-sheet:      1.5rem;    /* the content sheet curving over the banner */
+  --color-hero-text:   15 23 42;
+  --color-hero-muted:  51 65 85;
   --timing-explain-right:  2000ms;  /* correct: 2s */
   --timing-explain-wrong:  3000ms;  /* wrong or missed: 3s, they need longer */
 }
@@ -142,7 +170,7 @@
   --color-caution:       180 83 9;
 
   --color-bubble-scammer:  254 226 226;
-  --color-bubble-auntie:   241 245 249;
+  --color-bubble-relative:   241 245 249;
   --color-bubble-player:   219 234 254;
   --color-zone-threat:     254 242 242;
 
@@ -168,6 +196,9 @@
     margin: 0;
     min-height: 100dvh;
     overflow-x: hidden;          /* no horizontal scroll, ever */
+    /* The home sheet has its own pull-to-refresh. The browser's built-in one
+       would fight it, and reload a Guardian round by accident. */
+    overscroll-behavior-y: contain;
   }
 
   /* Khmer glyphs stack above AND below the baseline. Any element that can
@@ -246,6 +277,66 @@
   .screen-in {
     animation: screen-in var(--timing-route) ease-out;
   }
+
+  /* Home banner. Cover + centre so the temple and treeline survive a phone
+     crop and the sky stays clear behind the wordmark. */
+  .topbar-hero {
+    background-image: var(--image-topbar);
+    background-size: cover;
+    /* Biased right so the temple survives the phone crop; the sky stays clear
+       behind the wordmark on the left either way. */
+    background-position: 62% 50%;
+    background-repeat: no-repeat;
+    height: var(--size-topbar);
+  }
+
+  /* The content sheet is dragged by touch (see usePullToRefresh) and eases
+     back on release. No transition while the finger is down. */
+  .sheet-settle {
+    transition: transform var(--timing-sheet-settle) ease-out;
+  }
+
+  .refresh-spin {
+    animation: refresh-spin var(--timing-typing-dot) linear infinite;
+  }
+  .count-pop {
+    animation: count-pop var(--timing-option-fade) ease-out;
+  }
+
+  /* Verdict outline around the card. The colour lives in its own variable
+     so it never cascades into the card's text the way a text colour would. */
+  .verdict-outline {
+    outline: var(--space-ring) solid rgb(var(--verdict-color));
+    outline-offset: var(--space-ring);
+    border-radius: var(--radius-card);
+    animation: verdict-flash var(--timing-card-flip) ease-out 2;
+  }
+  .verdict-correct { --verdict-color: var(--color-safe); }
+  .verdict-wrong   { --verdict-color: var(--color-danger); }
+  .verdict-timeout { --verdict-color: var(--color-caution); }
+  @media (prefers-reduced-motion: reduce) {
+    .refresh-spin,
+    .count-pop,
+    .verdict-outline { animation: none; }
+  }
+}
+
+/* The card's verdict outline arriving: a flash, then it stays. */
+@keyframes verdict-flash {
+  0%   { outline-color: transparent; }
+  30%  { outline-color: rgb(var(--verdict-color)); }
+  60%  { outline-color: transparent; }
+  100% { outline-color: rgb(var(--verdict-color)); }
+}
+
+/* A countdown digit landing: big and faint, then snapping to size. */
+@keyframes count-pop {
+  from { opacity: 0; transform: scale(1.6); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes refresh-spin {
+  to { transform: rotate(360deg); }
 }
 
 @keyframes screen-in {

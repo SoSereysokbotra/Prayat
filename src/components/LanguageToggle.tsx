@@ -1,21 +1,55 @@
 import { Languages } from 'lucide-react'
 import { useGameStore } from '../store/gameStore'
 
-/**
- * KH / EN switch. Present on every screen, mid-game included.
- *
- * Deliberately quiet. As a two-pill segmented control it was the brightest
- * element on every screen — a language switcher outshining the scam the player
- * is supposed to be reading. It is now a single button showing the language it
- * switches TO, which is both smaller and the clearer affordance: you read what
- * you will get, not what you already have.
- *
- * `compact` drops the label entirely for gameplay screens, where the header is
- * already carrying a timer, a score and a life count.
- */
-export default function LanguageToggle({ compact = false }: { compact?: boolean }) {
+type Variant = 'quiet' | 'pill'
+
+interface LanguageToggleProps {
+  /** Drops the label for gameplay screens where the header is already busy. */
+  compact?: boolean
+  /**
+   * `quiet` (default) — a single button showing the language it switches TO.
+   * Used mid-game, where a bright switcher would outshine the scam the player
+   * is supposed to be reading.
+   *
+   * `pill` — a KH | EN segmented control. Only for the home banner, where
+   * there is nothing to compete with and a first-time player needs to see at
+   * a glance that the app speaks both languages.
+   */
+  variant?: Variant
+}
+
+export default function LanguageToggle({ compact = false, variant = 'quiet' }: LanguageToggleProps) {
   const language = useGameStore((s) => s.language)
   const setLanguage = useGameStore((s) => s.setLanguage)
+
+  if (variant === 'pill') {
+    const segment = (lang: 'kh' | 'en', label: string) => {
+      const active = language === lang
+      return (
+        <button
+          type="button"
+          onClick={() => setLanguage(lang)}
+          aria-pressed={active}
+          className={`tap-target rounded-button px-stack text-small font-semibold
+                      transition-colors duration-option-fade
+                      ${lang === 'kh' ? 'font-kh' : ''}
+                      ${active ? 'bg-primary text-primary-text' : 'text-muted hover:text-text'}`}
+        >
+          {label}
+        </button>
+      )
+    }
+    return (
+      <div
+        role="group"
+        aria-label="Language"
+        className="flex shrink-0 rounded-button border border-border bg-surface/80 p-ring backdrop-blur"
+      >
+        {segment('kh', 'ខ្មែរ')}
+        {segment('en', 'EN')}
+      </div>
+    )
+  }
 
   const next = language === 'kh' ? 'en' : 'kh'
   const nextLabel = next === 'kh' ? 'ខ្មែរ' : 'EN'

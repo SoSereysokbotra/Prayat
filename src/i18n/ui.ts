@@ -31,15 +31,68 @@ const strings = {
   speedTriage: { kh: 'វិនិច្ឆ័យ​រហ័ស', en: 'Speed Triage' },
   speedTriageBlurb: {
     kh: '៥ វិនាទី​ក្នុង​មួយ​សារ។ ពិត ឬ បោក?',
-    en: '5 seconds per card. REAL or SCAM?',
+    en: 'Real or Scam in 5 seconds',
   },
   investigation: { kh: 'ការ​ស៊ើប​អង្កេត', en: 'The Investigation' },
   investigationBlurb: {
     kh: 'រក​ឲ្យ​ឃើញ​សញ្ញា​គ្រោះថ្នាក់​ទាំងអស់ មុន​ពេល​អស់​ម៉ោង',
-    en: 'Find every red flag before the timer ends',
+    en: 'Find all red flags before time runs out',
   },
   comingSoon: { kh: 'នឹង​មាន​ក្នុង​ពេល​ឆាប់ៗ', en: 'Coming soon' },
+  pullToRefresh:    { kh: 'ទាញ​ចុះ​ដើម្បី​ផ្ទុក​ឡើង​វិញ', en: 'Pull down to refresh' },
+  releaseToRefresh: { kh: 'លែង​ដៃ​ដើម្បី​ផ្ទុក​ឡើង​វិញ', en: 'Release to refresh' },
+  refreshing:       { kh: 'កំពុង​ផ្ទុក​ឡើង​វិញ…', en: 'Refreshing…' },
   startHere: { kh: 'ចាប់ផ្ដើម​ទីនេះ', en: 'Start here' },
+
+  /* ---- welcome ---- */
+  welcomeHeadline: { kh: 'តើ​អ្នក​អាច​ស្គាល់​ការ​បោក​បាន​ទេ?', en: 'Would you spot the scam?' },
+  welcomeBody: {
+    kh: 'Prayat ដាក់​អ្នក​ចូល​ក្នុង​ការ​បោក​ពិត​មួយ។ សម្រេច​ចិត្ត។ មើល​អ្វី​ដែល​កើត​ឡើង។ រៀន​ពី​មូលហេតុ — ជា​ភាសា​ខ្មែរ ឬ​អង់គ្លេស។',
+    en: 'Prayat puts you inside a real scam. Make decisions. See what happens. Learn why — in Khmer or English.',
+  },
+  getStarted: { kh: 'ចាប់ផ្ដើម', en: 'Get started' },
+  threeWays: { kh: 'វិធី​ហ្វឹកហាត់​បី​យ៉ាង', en: 'Three ways to train' },
+  forEveryone: { kh: 'សម្រាប់​អ្នក។ សម្រាប់​ឪពុក​ម្ដាយ​អ្នក។', en: 'For you. For your parents.' },
+  forEveryoneBody: { kh: 'សម្រាប់​អ្នក​ណា​ក៏​ដោយ​ដែល​ប្រើ​ទូរស័ព្ទ។', en: 'For anyone who uses a phone.' },
+  khmerAndEnglish: { kh: 'ខ្មែរ និង អង់គ្លេស', en: 'Khmer and English' },
+  worksOffline: { kh: 'ដំណើរការ​ក្រៅ​បណ្ដាញ', en: 'Works offline' },
+  noAppStore: { kh: 'មិន​ចាំបាច់ App Store', en: 'No app store needed' },
+
+  /* ---- progress ---- */
+  myProgress: { kh: 'វឌ្ឍនភាព​របស់​ខ្ញុំ', en: 'My progress' },
+  totalScore: { kh: 'ពិន្ទុ​សរុប', en: 'Total score' },
+  streak: { kh: 'ថ្ងៃ​ជាប់​គ្នា', en: 'Streak' },
+  /* {n} is replaced with the day count */
+  streakDays: { kh: '{n} ថ្ងៃ', en: '{n} days' },
+  resistanceHeading: { kh: 'ពិន្ទុ​ការពារ​ពី​ការ​បោក', en: 'Scam resistance score' },
+  notTriedYet: { kh: 'មិន​ទាន់​សាកល្បង', en: 'Not tried yet' },
+  completedScenarios: { kh: 'សេណារីយ៉ូ​ដែល​បាន​បញ្ចប់', en: 'Completed scenarios' },
+  shareMyScore: { kh: 'ចែក​រំលែក​ពិន្ទុ​របស់​ខ្ញុំ', en: 'Share my score' },
+  shareScoreText: {
+    kh: 'ពិន្ទុ​ការពារ​ពី​ការ​បោក​របស់​ខ្ញុំ​នៅ​លើ Prayat៖ {score} · កម្រិត {level}។ សាកល្បង​ដោយ​ឥត​គិត​ថ្លៃ៖',
+    en: 'My scam resistance score on Prayat: {score} · Level {level}. Try it free:',
+  },
+  scamGovernment: { kh: 'ការ​បោក​ក្លែង​ជា​រដ្ឋាភិបាល', en: 'Government scams' },
+  scamJob: { kh: 'ការ​បោក​ការងារ', en: 'Job offer scams' },
+  scamCrypto: { kh: 'ការ​បោក​គ្រីបតូ', en: 'Crypto scams' },
+  scamRomance: { kh: 'ការ​បោក​ស្នេហា', en: 'Romance scams' },
+  scamMalware: { kh: 'ការ​បោក​តាម​កម្មវិធី​ព្យាបាទ', en: 'Malware scams' },
+
+  /* ---- scenario picker ---- */
+  chooseScenario: { kh: 'ជ្រើសរើស​សេណារីយ៉ូ', en: 'Choose a scenario' },
+  play: { kh: 'លេង', en: 'Play' },
+  locked: { kh: 'ជាប់​សោ', en: 'Locked' },
+  /* {n} is replaced with the scenario number */
+  playScenarioFirst: { kh: 'លេង​សេណារីយ៉ូ​ទី {n} មុន', en: 'Play scenario {n} first' },
+  difficulty: { kh: 'កម្រិត​លំបាក', en: 'Difficulty' },
+  yourMission: { kh: 'បេសកកម្ម​របស់​អ្នក', en: 'Your mission' },
+  warning: { kh: 'ប្រយ័ត្ន', en: 'Warning' },
+  warningFeelsReal: {
+    kh: 'ជម្រើស​ទាំងអស់​ត្រូវ​បាន​រចនា​ឲ្យ​មាន​អារម្មណ៍​ដូច​ពិត។ គិត​ឲ្យ​បាន​ល្អិតល្អន់។',
+    en: 'The choices are designed to feel real. Think carefully.',
+  },
+  startScenario: { kh: 'ចាប់ផ្ដើម​សេណារីយ៉ូ', en: 'Start scenario' },
+  outOf: { kh: 'ក្នុង​ចំណោម', en: 'of' },
   keepSharp: { kh: 'រក្សា​ការ​ប្រុង​ប្រយ័ត្ន​ឲ្យ​មុត​ស្រួច', en: 'Keep your instincts sharp' },
   daily: { kh: 'រៀងរាល់​ថ្ងៃ', en: 'daily' },
   weekly: { kh: 'រៀងរាល់​សប្ដាហ៍', en: 'weekly' },
@@ -56,25 +109,103 @@ const strings = {
 
   /* ---- guardian ---- */
   threatZoneLabel: {
-    kh: 'អ្នក​បោក​បញ្ឆោត កំពុង​សរសេរ​ទៅ​មីង',
-    en: 'The scammer is writing to Auntie',
+    kh: 'អ្វី​ដែល​អ្នក​បោក​បញ្ឆោត​ផ្ញើ​ទៅ​ពូ',
+    en: 'What the scammer sent Uncle',
   },
   watchOnly: { kh: 'មើល​បាន​តែ​ប៉ុណ្ណោះ', en: 'watch only' },
-  yourChatLabel: { kh: 'អ្នក និង មីង', en: 'You and Auntie' },
-  introWatchOnly: {
-    kh: 'អ្នក​មើល​ឃើញ​អ្វី​ដែល​អ្នក​បោក​បញ្ឆោត​សរសេរ​ទៅ​មីង ប៉ុន្តែ​អ្នក​មិន​អាច​ឆ្លើយ​ទៅ​គាត់​បាន​ទេ។',
-    en: 'You can see what the scammer writes to Auntie. You cannot reply to him.',
+  /* {name} is replaced with the relative's name */
+  yourChatWith: { kh: 'ការ​ជជែក​របស់​អ្នក​ជាមួយ {name}', en: 'Your chat with {name}' },
+  yourChatLabel: { kh: 'អ្នក និង ពូ', en: 'You and Uncle' },
+  whatDoYouReply: { kh: 'អ្នក​ឆ្លើយ​ថា​ម៉េច?', en: 'What do you reply?' },
+  stage: { kh: 'ដំណាក់កាល', en: 'Stage' },
+  score: { kh: 'ពិន្ទុ', en: 'Score' },
+  verified: { kh: 'បាន​ផ្ទៀងផ្ទាត់', en: 'Verified' },
+  forwardedFrom: { kh: 'បញ្ជូន​បន្ត​ពី', en: 'Forwarded from' },
+  waitingForRelative: { kh: 'រង់ចាំ​ពូ…', en: 'Waiting for Uncle…' },
+
+  /* ---- speed triage: packs ---- */
+  choosePack: { kh: 'ជ្រើសរើស​កញ្ចប់​សន្លឹក', en: 'Choose a card pack' },
+  cards: { kh: 'សន្លឹក', en: 'cards' },
+  dailyChallenge: { kh: 'បញ្ហា​ប្រចាំ​ថ្ងៃ', en: 'Daily challenge' },
+  /* {n} = number of cards */
+  todaysCards: { kh: 'សន្លឹក {n} របស់​ថ្ងៃ​នេះ', en: "Today's {n} cards" },
+  newEveryMorning: { kh: 'ថ្មី​រៀងរាល់​ព្រឹក', en: 'New every morning' },
+  playDaily: { kh: 'លេង​ប្រចាំ​ថ្ងៃ', en: 'Play daily' },
+
+  /* ---- speed triage: game over ---- */
+  gameOver: { kh: 'ចប់​ហ្គេម', en: 'Game over' },
+  cardsSurvived: { kh: 'សន្លឹក​ដែល​បាន​ឆ្លង', en: 'Cards survived' },
+  scoreLabel: { kh: 'ពិន្ទុ', en: 'Score' },
+  bestStreak: { kh: 'ជាប់​គ្នា​ល្អ​បំផុត', en: 'Best streak' },
+  yourHighScore: { kh: 'ពិន្ទុ​ខ្ពស់​បំផុត​របស់​អ្នក', en: 'Your high score' },
+  newRecord: { kh: 'ថ្មី!', en: 'NEW!' },
+  previousBest: { kh: 'ល្អ​បំផុត​ពី​មុន', en: 'Previous best' },
+  struggledWith: { kh: 'អ្នក​ពិបាក​ជាមួយ', en: 'You struggled with' },
+  /* {n} = number wrong */
+  nWrong: { kh: 'ខុស {n}', en: '{n} wrong' },
+  allCorrect: { kh: 'ត្រូវ​ទាំងអស់', en: 'all correct' },
+  tip: { kh: 'គន្លឹះ', en: 'Tip' },
+  /* {pack} = pack name */
+  tryPackTip: { kh: 'សាកល្បង​កញ្ចប់ "{pack}" ដើម្បី​ពង្រឹង​ជំនាញ​នេះ', en: 'Try the "{pack}" pack to improve that skill' },
+  changePack: { kh: 'ប្ដូរ​កញ្ចប់', en: 'Change pack' },
+  home: { kh: 'ទំព័រ​ដើម', en: 'Home' },
+  shareScore: { kh: 'ចែក​រំលែក​ពិន្ទុ', en: 'Share score' },
+  /* {n} = cards, {score} = score */
+  shareTriageText: {
+    kh: 'ខ្ញុំ​បាន​ឆ្លង {n} សន្លឹក​ក្នុង Prayat វិនិច្ឆ័យ​រហ័ស! ពិន្ទុ {score} — អ្នក​ឈ្នះ​ខ្ញុំ​បាន​ទេ?',
+    en: 'I survived {n} cards in Prayat Speed Triage! Score: {score} — can you beat me?',
   },
-  introYouAdvise: {
-    kh: 'អ្នក​និយាយ​បាន​តែ​ជាមួយ​មីង​ប៉ុណ្ណោះ។ ជ្រើស​ពាក្យ​របស់​អ្នក​ឲ្យ​ប្រុង​ប្រយ័ត្ន។',
-    en: 'You can only talk to Auntie. Choose your words carefully.',
+  surfaceSms: { kh: 'សារ SMS', en: 'SMS messages' },
+  surfaceTelegram: { kh: 'សារ Telegram', en: 'Telegram messages' },
+  surfaceFacebook: { kh: 'សារ Facebook', en: 'Facebook messages' },
+  surfaceUrlBar: { kh: 'តំណ​គេហទំព័រ', en: 'Website URLs' },
+  surfaceQr: { kh: 'កូដ QR', en: 'QR codes' },
+  surfaceReceipt: { kh: 'វិក្កយបត្រ​ទូទាត់', en: 'Payment receipts' },
+
+  /* ---- speed triage: answer states ---- */
+  correct: { kh: 'ត្រឹមត្រូវ', en: 'Correct' },
+  wrong: { kh: 'ខុស', en: 'Wrong' },
+  points: { kh: 'ពិន្ទុ', en: 'points' },
+  /* {n} = streak length */
+  streakX: { kh: 'ជាប់​គ្នា ×{n}', en: 'Streak ×{n}' },
+  /* {n} = lives left */
+  livesRemaining: { kh: 'ជីវិត​នៅ​សល់: {n}', en: 'Lives remaining: {n}' },
+  theAnswerWas: { kh: 'ចម្លើយ​គឺ', en: 'The answer was' },
+  whyScam: { kh: 'ហេតុ​អ្វី​វា​ជា​ការ​បោក', en: "Why it's a scam" },
+  whyReal: { kh: 'ហេតុ​អ្វី​វា​ពិត', en: "Why it's real" },
+  /* {n} = streak length */
+  streakMilestone: { kh: 'ជាប់​គ្នា {n} ដង!', en: '{n} streak!' },
+  /* {m} = multiplier */
+  multiplierFromNow: { kh: 'ពិន្ទុ ×{m} ចាប់​ពី​ពេល​នេះ', en: 'Score ×{m} from now' },
+
+  /* ---- speed triage: countdown ---- */
+  getReady: { kh: 'ត្រៀម​ខ្លួន', en: 'Get ready' },
+  go: { kh: 'ទៅ!', en: 'GO!' },
+
+  /* ---- speed triage: how to play ---- */
+  howToPlay: { kh: 'របៀប​លេង', en: 'How to play' },
+  /* {n} = step number */
+  stepN: { kh: 'ជំហាន​ទី {n}', en: 'Step {n}' },
+  triageStep1: {
+    kh: 'សារ​ពិត​មួយ​លេច​ឡើង​លើ​អេក្រង់ — SMS, Telegram, Facebook, តំណ​គេហទំព័រ, វិក្កយបត្រ Wing ឬ​កូដ QR',
+    en: 'A real message appears on screen — SMS, Telegram, Facebook, a website URL, a Wing receipt, or a QR code',
   },
-  introSheIsConvinced: {
-    kh: 'ហើយ​មីង​ជឿ​គាត់​ខ្លះ​ហើយ។',
-    en: 'And she already half believes him.',
+  triageStep2: {
+    kh: 'អ្នក​មាន​ពេល {seconds} វិនាទី​ដើម្បី​សម្រេច​ចិត្ត',
+    en: 'You have {seconds} seconds to decide',
   },
-  introBegin: { kh: 'ចាប់ផ្ដើម', en: 'Begin' },
-  waitingForAuntie: { kh: 'រង់ចាំ​មីង…', en: 'Waiting for Auntie…' },
+  triageStep3: { kh: 'ចុច​ចម្លើយ​របស់​អ្នក', en: 'Tap your answer' },
+  triageStep4: {
+    kh: 'មើល​ការ​ពន្យល់ ({explain} វិនាទី) រួច​សន្លឹក​បន្ទាប់​នឹង​លេច​ឡើង',
+    en: 'See the explanation ({explain} sec), then the next card appears',
+  },
+  triageStep5: {
+    kh: 'ខុស {mistakes} ដង = ចប់​ហ្គេម។ វាយ​កំណត់ត្រា​ខ្ពស់​បំផុត​របស់​អ្នក!',
+    en: '{mistakes} wrong answers = game over. Beat your high score!',
+  },
+  /* {n} wrong out of {max} */
+  wrongCount: { kh: 'ខុស {n} / {max}', en: '{n} / {max} wrong' },
+  gotItLetsPlay: { kh: 'យល់​ហើយ — លេង​តោះ', en: "Got it — let's play" },
 
   /* ---- speed triage ---- */
   verdictReal: { kh: 'ពិត', en: 'REAL' },
@@ -112,8 +243,8 @@ const strings = {
   levelProtector: { kh: 'អ្នក​ថែរក្សា', en: 'Protector' },
 
   /* ---- debrief ---- */
-  debriefWinTitle: { kh: 'មីង​មិន​បាន​បង់​លុយ​ទេ', en: 'She did not pay' },
-  debriefLoseTitle: { kh: 'មីង​បាន​បង់​លុយ​ហើយ', en: 'She paid' },
+  debriefWinTitle: { kh: 'ពូ​មិន​បាន​បង់​លុយ​ទេ', en: 'He did not pay' },
+  debriefLoseTitle: { kh: 'ពូ​បាន​បង់​លុយ​ហើយ', en: 'He paid' },
   whatScamHeading: { kh: 'នេះ​ជា​ការ​បោក​បញ្ឆោត​ប្រភេទ​ណា', en: 'What this scam was' },
   redFlagsHeading: { kh: 'សញ្ញា​គ្រោះថ្នាក់​ទាំង​បី', en: 'The three red flags' },
   ruleHeading: { kh: 'ច្បាប់​តែ​មួយ​ត្រូវ​ចាំ', en: 'The one rule to remember' },
