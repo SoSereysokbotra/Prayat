@@ -27,6 +27,8 @@ export default function Debrief() {
   const language = useGameStore((s) => s.language)
   const sessionId = useGameStore((s) => s.sessionId)
   const addScore = useGameStore((s) => s.addScore)
+  const activeScamType = useGameStore((s) => s.activeScamType)
+  const recordGuardianResult = useGameStore((s) => s.recordGuardianResult)
 
   const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
   const [summary, setSummary] = useState<SessionSummary | null>(null)
@@ -48,6 +50,7 @@ export default function Debrief() {
         if (!banked.current) {
           banked.current = true
           addScore(result.score)
+          if (activeScamType) recordGuardianResult(activeScamType, result.score, result.maxScore)
         }
       })
       .catch(() => alive && setStatus('error'))
@@ -55,7 +58,7 @@ export default function Debrief() {
     return () => {
       alive = false
     }
-  }, [sessionId, addScore])
+  }, [sessionId, addScore, activeScamType, recordGuardianResult])
 
   const share = useCallback(async () => {
     if (!summary) return
