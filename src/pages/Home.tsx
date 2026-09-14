@@ -37,7 +37,7 @@ export default function Home() {
   const kh = isKhmer ? 'leading-kh' : ''
 
   return (
-    <main className="mx-auto flex min-h-screen w-full max-w-screen-sm flex-col px-screen-x py-section">
+    <main className="screen-in mx-auto flex min-h-dvh w-full max-w-screen-sm flex-col px-screen-x py-section">
       <header className="flex items-start justify-between gap-stack">
         <div className="min-w-0">
           <h1 className="text-display font-bold tracking-tight">Prayat</h1>
@@ -57,26 +57,36 @@ export default function Home() {
 
         {status === 'ready' && (
           <>
+            {/* Guardian is the product. It gets the card that looks like it. */}
             <ModeCard
+              emphasis="primary"
               to="/guardian"
               icon={ShieldCheck}
               title={t('guardianMode')}
               blurb={t('guardianModeBlurb')}
-              meta={stageCount === null ? '' : `${stageCount} ${t('stages')} · 10 ${t('minutes')}`}
+              teaches={t('guardianTeaches')}
+              cadence={
+                stageCount === null
+                  ? t('weekly')
+                  : `${stageCount} ${t('stages')} · 10 ${t('minutes')} · ${t('weekly')}`
+              }
             />
+
+            <p className={`mt-stack text-small text-muted ${kh}`}>{t('keepSharp')}</p>
+
             <ModeCard
               to="/triage"
               icon={Zap}
               title={t('speedTriage')}
               blurb={t('speedTriageBlurb')}
-              meta={`2 ${t('minutes')}`}
+              cadence={`2 ${t('minutes')} · ${t('daily')}`}
             />
             <ModeCard
               to="/investigation"
               icon={Search}
               title={t('investigation')}
               blurb={t('investigationBlurb')}
-              meta={`7 ${t('minutes')}`}
+              cadence={`3 ${t('minutes')} · ${t('weekly')}`}
             />
           </>
         )}
@@ -84,7 +94,7 @@ export default function Home() {
 
       {placeholders && (
         <p className="mt-section rounded-card border border-caution bg-surface p-stack text-small text-muted">
-          Placeholder content in use — the scenario is still being written.
+          Placeholder content in use — the scenarios are still being written.
           Run <code>npm run validate:content</code> to see what is left.
         </p>
       )}

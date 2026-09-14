@@ -39,6 +39,14 @@ const strings = {
     en: 'Find every red flag before the timer ends',
   },
   comingSoon: { kh: 'នឹង​មាន​ក្នុង​ពេល​ឆាប់ៗ', en: 'Coming soon' },
+  startHere: { kh: 'ចាប់ផ្ដើម​ទីនេះ', en: 'Start here' },
+  keepSharp: { kh: 'រក្សា​ការ​ប្រុង​ប្រយ័ត្ន​ឲ្យ​មុត​ស្រួច', en: 'Keep your instincts sharp' },
+  daily: { kh: 'រៀងរាល់​ថ្ងៃ', en: 'daily' },
+  weekly: { kh: 'រៀងរាល់​សប្ដាហ៍', en: 'weekly' },
+  guardianTeaches: {
+    kh: 'បង្រៀន​ការ​គិត​ក្រោម​សម្ពាធ — និង​ការ​រក្សា​ជំហរ​ពេល​មនុស្ស​ជាទី​ស្រឡាញ់​ជំទាស់',
+    en: 'Builds reasoning under pressure — and holding your ground when someone you love argues back',
+  },
   stages: { kh: 'ដំណាក់កាល', en: 'stages' },
   minutes: { kh: 'នាទី', en: 'min' },
   comingSoonBody: {
@@ -48,10 +56,24 @@ const strings = {
 
   /* ---- guardian ---- */
   threatZoneLabel: {
-    kh: 'អ្នក​បោក​បញ្ឆោត ↔ មីង (អ្នក​មើល​បាន​តែ​ប៉ុណ្ណោះ)',
-    en: 'Scammer ↔ Auntie (you can only watch)',
+    kh: 'អ្នក​បោក​បញ្ឆោត កំពុង​សរសេរ​ទៅ​មីង',
+    en: 'The scammer is writing to Auntie',
   },
-  yourChatLabel: { kh: 'អ្នក ↔ មីង', en: 'You ↔ Auntie' },
+  watchOnly: { kh: 'មើល​បាន​តែ​ប៉ុណ្ណោះ', en: 'watch only' },
+  yourChatLabel: { kh: 'អ្នក និង មីង', en: 'You and Auntie' },
+  introWatchOnly: {
+    kh: 'អ្នក​មើល​ឃើញ​អ្វី​ដែល​អ្នក​បោក​បញ្ឆោត​សរសេរ​ទៅ​មីង ប៉ុន្តែ​អ្នក​មិន​អាច​ឆ្លើយ​ទៅ​គាត់​បាន​ទេ។',
+    en: 'You can see what the scammer writes to Auntie. You cannot reply to him.',
+  },
+  introYouAdvise: {
+    kh: 'អ្នក​និយាយ​បាន​តែ​ជាមួយ​មីង​ប៉ុណ្ណោះ។ ជ្រើស​ពាក្យ​របស់​អ្នក​ឲ្យ​ប្រុង​ប្រយ័ត្ន។',
+    en: 'You can only talk to Auntie. Choose your words carefully.',
+  },
+  introSheIsConvinced: {
+    kh: 'ហើយ​មីង​ជឿ​គាត់​ខ្លះ​ហើយ។',
+    en: 'And she already half believes him.',
+  },
+  introBegin: { kh: 'ចាប់ផ្ដើម', en: 'Begin' },
   waitingForAuntie: { kh: 'រង់ចាំ​មីង…', en: 'Waiting for Auntie…' },
 
   /* ---- speed triage ---- */
@@ -77,6 +99,10 @@ const strings = {
   level: { kh: 'កម្រិត', en: 'Level' },
   pointsToNext: { kh: 'ពិន្ទុ​ទៀត​ដល់​កម្រិត​បន្ទាប់', en: 'points to the next level' },
   topLevel: { kh: 'កម្រិត​ខ្ពស់​បំផុត', en: 'Top level reached' },
+  noPointsYet: {
+    kh: 'លេង​មួយ​ជុំ ដើម្បី​ចាប់ផ្ដើម​ប្រមូល​ពិន្ទុ​ការពារ​របស់​អ្នក',
+    en: 'Play a round to start building your resistance score',
+  },
 
   /* ---- levels ---- */
   levelAware: { kh: 'ដឹង​ខ្លួន', en: 'Aware' },
