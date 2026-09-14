@@ -26,7 +26,9 @@ export default function LanguageToggle() {
               active ? 'bg-primary text-primary-text' : 'text-muted'
             }`}
           >
-            {code === 'kh' ? 'ខ្មែរ' : 'EN'}
+            <span className={code === 'kh' ? 'font-kh' : undefined}>
+              {code === 'kh' ? 'ខ្មែរ' : 'EN'}
+            </span>
           </button>
         )
       })}
