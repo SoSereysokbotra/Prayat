@@ -4,7 +4,7 @@ import { useAuthStore } from '../store/authStore'
 /**
  * The route guard.
  *
- * Anything wrapped in this sends a signed-out visitor to /signin first, and
+ * Anything wrapped in this sends a signed-out visitor to /welcome first, and
  * remembers where they were going so they land there afterwards rather than
  * being dumped on the home screen.
  *
@@ -21,7 +21,7 @@ export default function RequireAuth({ children }: { children: React.ReactNode })
   if (!ready) return null
 
   if (!session) {
-    return <Navigate to="/signin" replace state={{ from: location.pathname + location.search }} />
+    return <Navigate to="/welcome" replace state={{ from: location.pathname + location.search }} />
   }
 
   return <>{children}</>

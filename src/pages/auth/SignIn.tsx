@@ -60,6 +60,7 @@ export default function SignIn() {
 
   return (
     <AuthShell
+      back="/welcome"
       title={t('signInTitle')}
       subtitle={t('signInSubtitle')}
       footer={
