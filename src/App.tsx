@@ -12,6 +12,8 @@ import SignUp from './pages/auth/SignUp'
 import VerifyEmail from './pages/auth/VerifyEmail'
 import ForgotPassword from './pages/auth/ForgotPassword'
 import ResetPassword from './pages/auth/ResetPassword'
+import RequireAuth from './components/RequireAuth'
+import RedirectIfSignedIn from './components/RedirectIfSignedIn'
 import { useDocumentLanguage } from './hooks/useDocumentLanguage'
 
 /**
@@ -46,20 +48,92 @@ export default function App() {
       )}
 
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/coming-soon/:mode" element={<ComingSoon />} />
+        {/* ---- public: the auth screens ----
+            Already signed in, these bounce home. Without that, pressing back
+            after signing in lands on the sign-in form again, which reads as
+            though the sign-in did not work.
 
-        {/* Auth — UI only, no backend behind it yet. See src/api/auth.ts. */}
-        <Route path="/signin" element={<SignIn />} />
-        <Route path="/signup" element={<SignUp />} />
+            Password reset is deliberately NOT bounced: someone signed in on
+            this device still has to be able to follow a reset link. */}
+        <Route
+          path="/signin"
+          element={
+            <RedirectIfSignedIn>
+              <SignIn />
+            </RedirectIfSignedIn>
+          }
+        />
+        <Route
+          path="/signup"
+          element={
+            <RedirectIfSignedIn>
+              <SignUp />
+            </RedirectIfSignedIn>
+          }
+        />
         <Route path="/verify" element={<VerifyEmail />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
         <Route path="/reset-password" element={<ResetPassword />} />
-        <Route path="/guardian" element={<Guardian />} />
-        <Route path="/triage" element={<Triage />} />
-        <Route path="/investigation" element={<Investigation />} />
-        <Route path="/consequence" element={<Consequence />} />
-        <Route path="/debrief" element={<Debrief />} />
+
+        {/* ---- protected: everything else ----
+            A signed-out visitor opening any of these URLs directly lands on
+            sign-in first, and is returned here afterwards. */}
+        <Route
+          path="/"
+          element={
+            <RequireAuth>
+              <Home />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/coming-soon/:mode"
+          element={
+            <RequireAuth>
+              <ComingSoon />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/guardian"
+          element={
+            <RequireAuth>
+              <Guardian />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/triage"
+          element={
+            <RequireAuth>
+              <Triage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/investigation"
+          element={
+            <RequireAuth>
+              <Investigation />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/consequence"
+          element={
+            <RequireAuth>
+              <Consequence />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/debrief"
+          element={
+            <RequireAuth>
+              <Debrief />
+            </RequireAuth>
+          }
+        />
 
         {DevComponents && (
           <Route
