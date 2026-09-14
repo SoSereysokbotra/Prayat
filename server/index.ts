@@ -14,6 +14,7 @@ import { scenariosRouter } from './routes/scenarios'
 import { sessionsRouter } from './routes/sessions'
 import { triageRouter } from './routes/triage'
 import { investigationRouter } from './routes/investigation'
+import { bootcampRouter } from './routes/bootcamp'
 import { docsRouter } from './routes/docs'
 import { fail, NOT_FOUND } from './lib/http'
 
@@ -26,7 +27,7 @@ app.use(express.json())
    on every boot means a wiped disk costs nothing but session history. */
 const loaded = seedContent()
 console.log(
-  `[prayat] seeded ${loaded.scenarios} scenario(s), ${loaded.decks} deck(s), ${loaded.investigations} investigation(s)`,
+  `[prayat] seeded ${loaded.scenarios} scenario(s), ${loaded.decks} deck(s), ${loaded.investigations} investigation(s), ${loaded.bootcamp} bootcamp module(s)`,
 )
 
 /* ---- API ---------------------------------------------------------------- */
@@ -37,6 +38,7 @@ api.use('/scenarios', scenariosRouter)
 api.use('/sessions', sessionsRouter)
 api.use('/triage', triageRouter)
 api.use('/investigations', investigationRouter)
+api.use('/bootcamp', bootcampRouter)
 api.use('/docs', docsRouter)
 
 // An unknown /api/* path must not fall through to the SPA catch-all, or a typo

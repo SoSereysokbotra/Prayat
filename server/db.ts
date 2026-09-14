@@ -12,7 +12,30 @@
 import Database from 'better-sqlite3'
 import { readdirSync, readFileSync, existsSync } from 'node:fs'
 import path from 'node:path'
-import type { InvestigationFull, ScenarioFull, TriageDeck } from '../shared/types'
+import type {
+  BouncerRoundFull,
+  InvestigationFull,
+  Localized,
+  ScenarioFull,
+  TriageDeck,
+  UrlCardFull,
+} from '../shared/types'
+
+export interface BouncerModule {
+  id: 'vip-club'
+  title: Localized
+  blurb: Localized
+  analogy: Localized
+  rounds: BouncerRoundFull[]
+}
+
+export interface UrlModule {
+  id: 'url-sorter'
+  title: Localized
+  blurb: Localized
+  analogy: Localized
+  cards: UrlCardFull[]
+}
 
 const DB_PATH = process.env.DATABASE_PATH ?? path.resolve(process.cwd(), 'prayat.db')
 const CONTENT_DIR = path.resolve(process.cwd(), 'content')
@@ -37,6 +60,11 @@ db.exec(`
   );
 
   CREATE TABLE IF NOT EXISTS investigations (
+    id       TEXT PRIMARY KEY,
+    payload  TEXT NOT NULL
+  );
+
+  CREATE TABLE IF NOT EXISTS bootcamp_modules (
     id       TEXT PRIMARY KEY,
     payload  TEXT NOT NULL
   );
@@ -121,6 +149,11 @@ const upsertDeck = db.prepare(`
   ON CONFLICT(id) DO UPDATE SET payload = excluded.payload
 `)
 
+const upsertBootcamp = db.prepare(`
+  INSERT INTO bootcamp_modules (id, payload) VALUES (?, ?)
+  ON CONFLICT(id) DO UPDATE SET payload = excluded.payload
+`)
+
 const upsertInvestigation = db.prepare(`
   INSERT INTO investigations (id, payload) VALUES (?, ?)
   ON CONFLICT(id) DO UPDATE SET payload = excluded.payload
@@ -138,6 +171,7 @@ export interface SeedCounts {
   scenarios: number
   decks: number
   investigations: number
+  bootcamp: number
 }
 
 export function seedContent(): SeedCounts {
@@ -171,6 +205,14 @@ export function seedContent(): SeedCounts {
       }
       upsertInvestigation.run(data.id, JSON.stringify(data))
     }
+
+    for (const { name, data } of readJsonDir<{ id?: string }>('bootcamp')) {
+      if (!data.id) {
+        console.warn(`[prayat] skipping bootcamp/${name}: no id`)
+        continue
+      }
+      upsertBootcamp.run(data.id, JSON.stringify(data))
+    }
   })
 
   seed()
@@ -186,6 +228,7 @@ export function counts(): SeedCounts {
     scenarios: one('SELECT COUNT(*) AS n FROM scenarios'),
     decks: one('SELECT COUNT(*) AS n FROM triage_decks'),
     investigations: one('SELECT COUNT(*) AS n FROM investigations'),
+    bootcamp: one('SELECT COUNT(*) AS n FROM bootcamp_modules'),
   }
 }
 
@@ -215,3 +258,6 @@ export const listDecks = () => allPayloads<TriageDeck>('triage_decks')
 
 export const getInvestigation = (id: string) => payloadOf<InvestigationFull>('investigations', id)
 export const listInvestigations = () => allPayloads<InvestigationFull>('investigations')
+
+export const getBouncerModule = () => payloadOf<BouncerModule>('bootcamp_modules', 'vip-club')
+export const getUrlModule = () => payloadOf<UrlModule>('bootcamp_modules', 'url-sorter')
