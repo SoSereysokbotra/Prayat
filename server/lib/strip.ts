@@ -11,4 +11,6 @@ export {
   toScenarioMeta,
   toScenarioSummary,
   containsAnswers,
+  stripTriageCard,
+  stripInvestigation,
 } from '../../shared/strip'

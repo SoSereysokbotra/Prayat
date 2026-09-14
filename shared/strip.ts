@@ -71,3 +71,49 @@ export function toScenarioSummary(scenario: ScenarioFull): ScenarioSummary {
 export function containsAnswers(payload: unknown): boolean {
   return /"(isCorrect|reply|note)"\s*:/.test(JSON.stringify(payload))
 }
+
+/* ==========================================================================
+   Speed Triage and The Investigation
+   --------------------------------------------------------------------------
+   Same rule as Guardian: the browser learns nothing it has not earned.
+
+   A Triage card ships without isScam and without its explanation — knowing
+   the explanation would give away the verdict, so both leave together.
+
+   An Investigation ships its conversation but not its flags. The player is
+   told HOW MANY red flags there are, because the design calls for "find every
+   red flag" and a hunt with no known end is a different, worse game. Which
+   elements they are is decided by the server, one tap at a time.
+   ========================================================================== */
+
+import type {
+  Investigation,
+  InvestigationFull,
+  TriageCard,
+  TriageCardFull,
+} from './types'
+
+export function stripTriageCard(card: TriageCardFull): TriageCard {
+  // Explicit construction, not rest-spread: a field added to TriageCardFull
+  // later must be exposed deliberately rather than leaking by default.
+  return {
+    id: card.id,
+    surface: card.surface,
+    category: card.category,
+    sender: card.sender,
+    body: card.body,
+    ...(card.meta !== undefined ? { meta: card.meta } : {}),
+  }
+}
+
+export function stripInvestigation(investigation: InvestigationFull): Investigation {
+  return {
+    id: investigation.id,
+    title: investigation.title,
+    category: investigation.category,
+    durationSeconds: investigation.durationSeconds,
+    elements: investigation.elements,
+    rule: investigation.rule,
+    flagCount: investigation.flags.length,
+  }
+}

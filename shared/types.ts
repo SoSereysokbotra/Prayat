@@ -169,3 +169,198 @@ export const POINTS_PER_CORRECT = 100
 export const MAX_SCORE = STAGE_COUNT * POINTS_PER_CORRECT // 300
 
 export const OPTION_IDS: readonly OptionId[] = ['a', 'b', 'c', 'd'] as const
+
+/* ==========================================================================
+   Scam categories
+   --------------------------------------------------------------------------
+   The four buckets from the game design doc. Every scorable item in every
+   mode belongs to exactly one, which is what makes a per-category breakdown
+   possible without a second scoring system.
+   ========================================================================== */
+
+export type ScamCategory = 'authority' | 'opportunity' | 'trust' | 'technical'
+
+export const SCAM_CATEGORIES: readonly ScamCategory[] = [
+  'authority',
+  'opportunity',
+  'trust',
+  'technical',
+] as const
+
+/** Which category a Guardian scenario's scamType belongs to. */
+export const CATEGORY_OF_SCAM_TYPE: Record<ScamType, ScamCategory> = {
+  government: 'authority',
+  job: 'opportunity',
+  crypto: 'opportunity',
+  romance: 'trust',
+  malware: 'technical',
+}
+
+/* ==========================================================================
+   Resistance Points — one currency across all three modes
+   --------------------------------------------------------------------------
+   Guardian decision      100
+   Triage card             10 x streak multiplier, applied per card
+   Investigation flag      25
+
+   The 0-1000 per-category score from the design doc is DERIVED from these —
+   points earned in a category over points available in it — not a second
+   currency. One definition, in server/lib/scoring.ts.
+   ========================================================================== */
+
+export const POINTS_TRIAGE_CARD = 10
+export const POINTS_INVESTIGATION_FLAG = 25
+
+/** Streak multiplier applied at the moment a card is answered, never retroactively. */
+export const STREAK_TIERS = [
+  { at: 10, multiplier: 2 },
+  { at: 5, multiplier: 1.5 },
+] as const
+
+export type GameMode = 'guardian' | 'triage' | 'investigation'
+
+export interface CategoryScore {
+  category: ScamCategory
+  earned: number
+  available: number
+  /** 0-1000, the design doc's scale. Derived, never stored. */
+  rating: number
+}
+
+/* ==========================================================================
+   Speed Triage
+   ========================================================================== */
+
+/**
+ * The chrome a card is dressed in. The card is rendered as HTML, not shipped
+ * as an image: an image cannot answer the KH/EN toggle, cannot be edited
+ * without re-exporting an asset, and fifty PNGs would eat the offline cache.
+ */
+export type CardSurface = 'sms' | 'telegram' | 'facebook' | 'url-bar' | 'qr' | 'receipt'
+
+export interface TriageCardFull {
+  id: string
+  surface: CardSurface
+  category: ScamCategory
+  /** Phone number, page name, sender — whatever the surface puts in its header. */
+  sender: Localized
+  body: Localized
+  /** Surface-specific extra: a URL, an amount, a transaction id. */
+  meta?: Localized
+  isScam: boolean // NEVER sent to the client
+  /** Two sentences at most: name the red flag, then the rule it teaches. */
+  explanation: Localized // NEVER sent before the player answers
+}
+
+export type TriageCard = Omit<TriageCardFull, 'isScam' | 'explanation'>
+
+export interface TriageDeck {
+  id: string
+  title: Localized
+  cards: TriageCardFull[]
+}
+
+export type TriageVerdict = 'real' | 'scam'
+
+export interface TriageAnswerResult {
+  isCorrect: boolean
+  /** What it actually was — disclosed only now. */
+  wasScam: boolean
+  explanation: Localized
+  pointsAwarded: number
+  multiplier: number
+  streak: number
+  mistakes: number
+  /** null when the run is over. */
+  nextCard: TriageCard | null
+  done: boolean
+}
+
+export interface TriageSummary {
+  sessionId: string
+  score: number
+  cardsAnswered: number
+  correct: number
+  mistakes: number
+  bestStreak: number
+  level: Level
+}
+
+/** Three mistakes end a run. A timeout is a mistake, not merely a broken streak. */
+export const TRIAGE_MAX_MISTAKES = 3
+export const TRIAGE_SECONDS_PER_CARD = 5
+
+/* ==========================================================================
+   The Investigation
+   ========================================================================== */
+
+/**
+ * Tappable units are discrete elements, never free text. Khmer is written
+ * without spaces between words, so a word-level tap target is not merely hard
+ * to hit — it is not well defined.
+ */
+export type ElementKind =
+  | 'message'
+  | 'link'
+  | 'qr'
+  | 'phone'
+  | 'amount'
+  | 'sender'
+  | 'file'
+  | 'timestamp'
+
+export interface InvestigationElement {
+  id: string
+  kind: ElementKind
+  /** 'them' renders left, 'you' renders right — same as the chat. */
+  from: 'them' | 'you'
+  text: Localized
+}
+
+export interface InvestigationFlagFull {
+  elementId: string
+  explanation: Localized
+}
+
+export interface InvestigationFull {
+  id: string
+  title: Localized
+  category: ScamCategory
+  durationSeconds: number
+  elements: InvestigationElement[]
+  flags: InvestigationFlagFull[] // NEVER sent to the client
+  rule: Localized
+}
+
+/** What the browser receives: the conversation, and nothing about which parts matter. */
+export type Investigation = Omit<InvestigationFull, 'flags'> & { flagCount: number }
+
+export interface TapResult {
+  hit: boolean
+  elementId: string
+  /** Present only on a hit. */
+  explanation: Localized | null
+  found: number
+  flagCount: number
+  /** Seconds added to the clock for a wrong tap. Negative time, positive number. */
+  penaltySeconds: number
+  done: boolean
+}
+
+export interface InvestigationSummary {
+  sessionId: string
+  investigationId: string
+  found: number
+  flagCount: number
+  score: number
+  missed: InvestigationFlagFull[]
+  rule: Localized
+  level: Level
+  /** True when every flag was found before the clock ran out. */
+  complete: boolean
+}
+
+/** A wrong tap costs time, not the run. Unlimited taps would let a player
+ *  brute-force every element and make the mode meaningless. */
+export const INVESTIGATION_WRONG_TAP_PENALTY_SECONDS = 10
+export const INVESTIGATION_DEFAULT_SECONDS = 180
