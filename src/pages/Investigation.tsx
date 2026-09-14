@@ -260,7 +260,7 @@ export default function Investigation() {
   const low = remaining < 30000
 
   return (
-    <main className="mx-auto flex h-dvh w-full max-w-screen-sm flex-col px-screen-x py-stack">
+    <main className="screen-in mx-auto flex h-dvh w-full max-w-screen-sm flex-col px-screen-x py-stack">
       {/* ---- status ---- */}
       <header className="flex shrink-0 items-center justify-between gap-stack">
         <Link to="/" aria-label={t('back')} className="tap-target flex items-center text-muted">
@@ -283,7 +283,7 @@ export default function Investigation() {
           </span>
         </div>
 
-        <LanguageToggle />
+        <LanguageToggle compact />
       </header>
 
       <p className={`shrink-0 py-stack text-center text-small text-muted ${kh}`}>

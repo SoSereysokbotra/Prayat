@@ -219,7 +219,7 @@ export default function Triage() {
   const livesLeft = TRIAGE_MAX_MISTAKES - mistakes
 
   return (
-    <main className="mx-auto flex h-dvh w-full max-w-screen-sm flex-col px-screen-x py-stack">
+    <main className="screen-in mx-auto flex h-dvh w-full max-w-screen-sm flex-col px-screen-x py-stack">
       {/* ---- status ---- */}
       <header className="flex shrink-0 items-center justify-between gap-stack">
         <Link to="/" aria-label={t('back')} className="tap-target flex items-center text-muted">
@@ -243,7 +243,7 @@ export default function Triage() {
           <span className="text-small font-semibold tabular-nums">{score}</span>
         </div>
 
-        <LanguageToggle />
+        <LanguageToggle compact />
       </header>
 
       {/* ---- the clock ---- */}
