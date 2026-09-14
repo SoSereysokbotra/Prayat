@@ -31,13 +31,21 @@ export default function ZoneHeader({
 
   return (
     <div
-      className={`flex shrink-0 items-center gap-stack border-b border-border px-screen-x py-stack
+      className={`flex shrink-0 items-center gap-stack border-b border-border px-stack py-stack
                   ${tone === 'threat' ? 'bg-zone-threat' : 'bg-surface'}`}
     >
-      {Icon && <Icon aria-hidden className="h-icon w-icon shrink-0 text-muted" />}
+      {Icon && (
+        <span
+          aria-hidden
+          className={`flex h-avatar w-avatar shrink-0 items-center justify-center rounded-full
+                      ${tone === 'threat' ? 'bg-danger text-primary-text' : 'bg-primary text-primary-text'}`}
+        >
+          <Icon className="h-icon w-icon" />
+        </span>
+      )}
 
       <span
-        className={`min-w-0 flex-1 truncate text-small font-semibold text-muted ${
+        className={`min-w-0 flex-1 truncate text-small font-bold ${
           isKhmer ? 'leading-kh' : ''
         }`}
       >

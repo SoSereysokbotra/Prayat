@@ -46,9 +46,9 @@ export default function OptionButton({
     >
       <span
         aria-hidden
-        className={`flex shrink-0 items-center justify-center rounded-button px-stack text-small
-                    font-semibold ${
-                      selected ? 'bg-primary text-primary-text' : 'bg-surface-alt text-muted'
+        className={`flex h-avatar w-avatar shrink-0 items-center justify-center rounded-full text-small
+                    font-bold ${
+                      selected ? 'bg-primary text-primary-text' : 'bg-primary/15 text-primary'
                     }`}
       >
         {id.toUpperCase()}
