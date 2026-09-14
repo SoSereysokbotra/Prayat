@@ -12,17 +12,21 @@
     "typecheck": "tsc --noEmit",
     "validate:content": "node scripts/validate-content.mjs",
     "validate:content:strict": "node scripts/validate-content.mjs --strict",
-    "test:strip": "tsx scripts/test-strip.ts"
+    "test:strip": "tsx scripts/test-strip.ts",
+    "test:api": "node scripts/test-api.mjs"
   },
   "dependencies": {
+    "better-sqlite3": "^13.0.3",
     "express": "^4.21.2",
     "lucide-react": "^0.468.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.28.0",
+    "zod": "^4.6.5",
     "zustand": "^5.0.2"
   },
   "devDependencies": {
+    "@types/better-sqlite3": "^9.6.0",
     "@types/express": "^4.17.21",
     "@types/node": "^22.10.2",
     "@types/react": "^18.3.17",

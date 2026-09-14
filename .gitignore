@@ -9,3 +9,4 @@ dist-server
 *.sqlite
 *.sqlite3
 prayat.db
+prayat.db*
