@@ -1,0 +1,68 @@
+{
+  "id": "url-sorter",
+  "title": { "kh": "", "en": "The URL Sorter" },
+  "blurb": { "kh": "", "en": "" },
+  "analogy": { "kh": "", "en": "" },
+  "cards": [
+    {
+      "id": "u01",
+      "url": "facebook.com",
+      "isSafe": true,
+      "explanation": { "kh": "", "en": "" }
+    },
+    {
+      "id": "u02",
+      "url": "faceb00k.com",
+      "isSafe": false,
+      "explanation": { "kh": "", "en": "" }
+    },
+    {
+      "id": "u03",
+      "url": "accounts.google.com",
+      "isSafe": true,
+      "explanation": { "kh": "", "en": "" }
+    },
+    {
+      "id": "u04",
+      "url": "google.com.verify-login.net",
+      "isSafe": false,
+      "explanation": { "kh": "", "en": "" }
+    },
+    {
+      "id": "u05",
+      "url": "REPLACE-verified-bank-domain.com.kh",
+      "isSafe": true,
+      "explanation": { "kh": "", "en": "" }
+    },
+    {
+      "id": "u06",
+      "url": "REPLACE-verified-bank-security-update-kh.com",
+      "isSafe": false,
+      "explanation": { "kh": "", "en": "" }
+    },
+    {
+      "id": "u07",
+      "url": "facebook.com.security-check.info",
+      "isSafe": false,
+      "explanation": { "kh": "", "en": "" }
+    },
+    {
+      "id": "u08",
+      "url": "rnicrosoft.com",
+      "isSafe": false,
+      "explanation": { "kh": "", "en": "" }
+    },
+    {
+      "id": "u09",
+      "url": "REPLACE-verified-wallet-domain.com.kh",
+      "isSafe": true,
+      "explanation": { "kh": "", "en": "" }
+    },
+    {
+      "id": "u10",
+      "url": "REPLACE-verified-wallet-domain-login.net",
+      "isSafe": false,
+      "explanation": { "kh": "", "en": "" }
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "id": "vip-club",
+  "title": { "kh": "", "en": "The VIP Club" },
+  "blurb": { "kh": "", "en": "" },
+  "analogy": { "kh": "", "en": "" },
+  "rounds": [
+    {
+      "id": 1,
+      "visitor": { "kh": "", "en": "" },
+      "claim": { "kh": "", "en": "" },
+      "twoFactorOn": false,
+      "correctAction": "admit",
+      "unwinnable": false,
+      "outcome": { "kh": "", "en": "" },
+      "lesson": { "kh": "", "en": "" }
+    },
+    {
+      "id": 2,
+      "visitor": { "kh": "", "en": "" },
+      "claim": { "kh": "", "en": "" },
+      "twoFactorOn": false,
+      "correctAction": "refuse",
+      "unwinnable": true,
+      "outcome": { "kh": "", "en": "" },
+      "lesson": { "kh": "", "en": "" }
+    },
+    {
+      "id": 3,
+      "visitor": { "kh": "", "en": "" },
+      "claim": { "kh": "", "en": "" },
+      "twoFactorOn": true,
+      "correctAction": "demandCode",
+      "unwinnable": false,
+      "outcome": { "kh": "", "en": "" },
+      "lesson": { "kh": "", "en": "" }
+    }
+  ]
+}
