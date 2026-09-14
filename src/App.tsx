@@ -1,5 +1,6 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
+import ComingSoon from './pages/ComingSoon'
 import ThemeToggle from './components/ThemeToggle'
 import { useDocumentLanguage } from './hooks/useDocumentLanguage'
 
@@ -19,8 +20,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
 
-        {/* Phase 3.2 */}
-        <Route path="/coming-soon/:mode" element={<Navigate to="/" replace />} />
+        <Route path="/coming-soon/:mode" element={<ComingSoon />} />
 
         {/* Phase 3.4 */}
         <Route path="/guardian" element={<Navigate to="/" replace />} />
