@@ -1,8 +1,10 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { ArrowLeft } from 'lucide-react'
+import { ArrowLeft, Eye, MessageCircle } from 'lucide-react'
 import ChatBubble from '../components/ChatBubble'
 import ChatWindow from '../components/ChatWindow'
+import GuardianIntro from '../components/GuardianIntro'
+import ZoneHeader from '../components/ZoneHeader'
 import LanguageToggle from '../components/LanguageToggle'
 import OptionButton from '../components/OptionButton'
 import ScreenState from '../components/ScreenState'
@@ -40,6 +42,9 @@ export default function Guardian() {
   const language = useGameStore((s) => s.language)
   const setSessionId = useGameStore((s) => s.setSessionId)
 
+  // Shown once per visit. A player who already knows the rule can pass it in
+  // one tap; a first-timer learns why the top pane has no reply box.
+  const [introSeen, setIntroSeen] = useState(false)
   const [phase, setPhase] = useState<Phase>('loading')
   const [scammerMessages, setScammerMessages] = useState<{ key: string; text: Localized }[]>([])
   const [thread, setThread] = useState<PlayerMessage[]>([])
@@ -173,6 +178,8 @@ export default function Guardian() {
     [navigate, options, playStage, stageId],
   )
 
+  if (!introSeen) return <GuardianIntro onStart={() => setIntroSeen(true)} />
+
   if (phase === 'loading') {
     return (
       <main className="flex h-dvh flex-col px-screen-x py-section">
@@ -201,7 +208,7 @@ export default function Guardian() {
           <ArrowLeft aria-hidden className="h-icon w-icon" />
           <span className={kh}>{t('back')}</span>
         </Link>
-        <LanguageToggle />
+        <LanguageToggle compact />
       </header>
 
       {/* The three zones size themselves against THIS box, not the whole
@@ -210,14 +217,12 @@ export default function Guardian() {
       <div className="flex min-h-0 flex-1 flex-col">
       {/* ---- zone 1: the threat. Read-only. ---- */}
       <div className="flex min-h-0 shrink-0 grow-0 basis-zone-threat flex-col border-b border-border">
-        <p className={`shrink-0 bg-zone-threat px-screen-x pt-stack text-small text-muted ${kh}`}>
-          {t('threatZoneLabel')}
-        </p>
+        <ZoneHeader label={t('threatZoneLabel')} icon={Eye} tone="threat" readOnly />
         <ChatWindow
           label={t('threatZoneLabel')}
           tone="threat"
           dependency={`${scammerMessages.length}:${scammerTyping}`}
-          className="min-h-0 flex-1"
+          className="chat-anchor scroll-fade min-h-0 flex-1"
         >
           {scammerMessages.map((m) => (
             <ChatBubble key={m.key} variant="scammer">
@@ -229,18 +234,21 @@ export default function Guardian() {
       </div>
 
       {/* ---- zone 2: you and Auntie ---- */}
-      <ChatWindow
-        label={t('yourChatLabel')}
-        dependency={`${thread.length}:${auntieTyping}`}
-        className="min-h-0 shrink-0 grow-0 basis-zone-chat border-b border-border"
-      >
-        {thread.map((m) => (
-          <ChatBubble key={m.key} variant={m.from}>
-            {pick(m.text)}
-          </ChatBubble>
-        ))}
-        {auntieTyping && <TypingIndicator />}
-      </ChatWindow>
+      <div className="flex min-h-0 shrink-0 grow-0 basis-zone-chat flex-col border-b border-border">
+        <ZoneHeader label={t('yourChatLabel')} icon={MessageCircle} />
+        <ChatWindow
+          label={t('yourChatLabel')}
+          dependency={`${thread.length}:${auntieTyping}`}
+          className="chat-anchor scroll-fade min-h-0 flex-1"
+        >
+          {thread.map((m) => (
+            <ChatBubble key={m.key} variant={m.from}>
+              {pick(m.text)}
+            </ChatBubble>
+          ))}
+          {auntieTyping && <TypingIndicator />}
+        </ChatWindow>
+      </div>
 
       {/* ---- zone 3: the four replies ---- */}
       <div className="min-h-0 shrink-0 grow-0 basis-zone-options overflow-y-auto overscroll-contain px-screen-x py-stack">
