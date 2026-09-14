@@ -54,6 +54,24 @@ const strings = {
   yourChatLabel: { kh: 'អ្នក ↔ មីង', en: 'You ↔ Auntie' },
   waitingForAuntie: { kh: 'រង់ចាំ​មីង…', en: 'Waiting for Auntie…' },
 
+  /* ---- speed triage ---- */
+  verdictReal: { kh: 'ពិត', en: 'REAL' },
+  verdictScam: { kh: 'បោក', en: 'SCAM' },
+  itWasReal: { kh: 'នេះ​ជា​សារ​ពិត', en: 'That one was real' },
+  itWasScam: { kh: 'នេះ​ជា​ការ​បោក', en: 'That one was a scam' },
+  runOver: { kh: 'ចប់​ជុំ​ហើយ', en: 'Run over' },
+  pointsEarned: { kh: 'ពិន្ទុ​ដែល​ទទួល​បាន', en: 'Points earned' },
+
+  /* ---- investigation ---- */
+  flagsFound: { kh: 'រក​ឃើញ', en: 'found' },
+  timeLeft: { kh: 'ពេល​នៅ​សល់', en: 'Time left' },
+  tapSuspicious: { kh: 'ចុច​លើ​អ្វី​ដែល​គួរ​ឲ្យ​សង្ស័យ', en: 'Tap anything suspicious' },
+  notTheIssue: { kh: 'នេះ​មិន​មែន​ជា​បញ្ហា​ទេ', en: 'Not the issue' },
+  penaltyTenSeconds: { kh: '-១០ វិនាទី', en: '-10 seconds' },
+  timeUp: { kh: 'អស់​ពេល​ហើយ', en: "Time's up" },
+  youFoundAll: { kh: 'អ្នក​រក​ឃើញ​ទាំងអស់', en: 'You found them all' },
+  missedFlags: { kh: 'អ្វី​ដែល​អ្នក​មិន​បាន​កត់​សម្គាល់', en: 'What you missed' },
+
   /* ---- score ---- */
   yourScore: { kh: 'ពិន្ទុ​ការពារ​របស់​អ្នក', en: 'Your resistance score' },
   level: { kh: 'កម្រិត', en: 'Level' },
