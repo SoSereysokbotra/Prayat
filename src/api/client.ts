@@ -291,3 +291,94 @@ export async function finishInvestigation(sessionId: string): Promise<Investigat
     missed: result.missed.map((m) => ({ ...m, explanation: fill(m.explanation, 'message') })),
   }
 }
+
+/* ==========================================================================
+   Level 0 — Cyber Bootcamp
+   ========================================================================== */
+
+import type {
+  BootcampModuleSummary,
+  BouncerRound,
+  DoorAction,
+  DoorResult,
+  UrlCard,
+  UrlSortResult,
+  UrlVerdict,
+} from '../../shared/types'
+
+export function listBootcampModules(): Promise<BootcampModuleSummary[]> {
+  return request<BootcampModuleSummary[]>('/bootcamp/modules').then((mods) =>
+    mods.map((m) => ({
+      ...m,
+      title: fill(m.title, 'short'),
+      blurb: fill(m.blurb, 'message'),
+      analogy: fill(m.analogy, 'message'),
+    })),
+  )
+}
+
+/* ---- Module 1: the VIP Club ---- */
+
+export interface DoorRun {
+  sessionId: string
+  roundCount: number
+  round: BouncerRound
+}
+
+function fillRound(round: BouncerRound): BouncerRound {
+  return {
+    ...round,
+    visitor: fill(round.visitor, 'short'),
+    claim: fill(round.claim, 'message'),
+  }
+}
+
+export async function startVipClub(): Promise<DoorRun> {
+  const run = await request<DoorRun>('/bootcamp/vip-club/sessions', {
+    method: 'POST',
+    body: JSON.stringify({}),
+  })
+  return { ...run, round: fillRound(run.round) }
+}
+
+export async function takeDoorAction(sessionId: string, action: DoorAction): Promise<DoorResult> {
+  const result = await request<DoorResult>(`/bootcamp/vip-club/sessions/${sessionId}/actions`, {
+    method: 'POST',
+    body: JSON.stringify({ action }),
+  })
+  return {
+    ...result,
+    outcome: fill(result.outcome, 'message'),
+    lesson: fill(result.lesson, 'rule'),
+    nextRound: result.nextRound ? fillRound(result.nextRound) : null,
+  }
+}
+
+/* ---- Module 2: the URL Sorter ---- */
+
+export interface UrlRun {
+  sessionId: string
+  cardCount: number
+  card: UrlCard
+}
+
+export function startUrlSorter(): Promise<UrlRun> {
+  // A URL is never backfilled with placeholder text — a fake URL taught as
+  // real is the one mistake this module must not make.
+  return request<UrlRun>('/bootcamp/url-sorter/sessions', {
+    method: 'POST',
+    body: JSON.stringify({}),
+  })
+}
+
+export async function sortUrl(
+  sessionId: string,
+  cardId: string,
+  verdict: UrlVerdict,
+): Promise<UrlSortResult> {
+  const result = await request<UrlSortResult>(
+    `/bootcamp/url-sorter/sessions/${sessionId}/sorts`,
+    { method: 'POST', body: JSON.stringify({ cardId, verdict }) },
+  )
+  return { ...result, explanation: fill(result.explanation, 'message') }
+}
