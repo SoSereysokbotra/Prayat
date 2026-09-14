@@ -6,6 +6,7 @@ import CodeInput from '../../components/auth/CodeInput'
 import SubmitButton from '../../components/auth/SubmitButton'
 import { useT, useIsKhmer } from '../../hooks/useT'
 import { AuthError, resendCode, verifyEmail } from '../../api/auth'
+import { useAuthStore } from '../../store/authStore'
 
 const CODE_LENGTH = 6
 const RESEND_COOLDOWN_SECONDS = 30
@@ -15,6 +16,7 @@ export default function VerifyEmail() {
   const isKhmer = useIsKhmer()
   const navigate = useNavigate()
   const [params] = useSearchParams()
+  const signInAs = useAuthStore((s) => s.signInAs)
   const email = params.get('email') ?? ''
 
   const [code, setCode] = useState('')
@@ -42,7 +44,8 @@ export default function VerifyEmail() {
 
     setBusy(true)
     try {
-      await verifyEmail(email, code)
+      const user = await verifyEmail(email, code)
+      signInAs(user)
       navigate('/', { replace: true })
     } catch (err) {
       setFormError(err instanceof AuthError ? err.message : 'Something went wrong.')

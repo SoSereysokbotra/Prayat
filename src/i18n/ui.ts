@@ -218,6 +218,9 @@ const strings = {
     en: 'You can now sign in with your new password.',
   },
 
+  signOut: { kh: 'ចាក​ចេញ', en: 'Sign out' },
+  playingAsGuest: { kh: 'កំពុង​លេង​ជា​ភ្ញៀវ — ពិន្ទុ​រក្សា​ទុក​តែ​ក្នុង​ឧបករណ៍​នេះ', en: 'Playing as a guest — score saved on this device only' },
+
   /* ---- language ---- */
   languageName: { kh: 'ខ្មែរ', en: 'English' },
 } as const satisfies Record<string, { kh: string; en: string }>

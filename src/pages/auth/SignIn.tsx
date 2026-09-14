@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { AlertCircle, Lock, Mail } from 'lucide-react'
 import AuthShell from '../../components/auth/AuthShell'
 import SubmitButton from '../../components/auth/SubmitButton'
@@ -7,11 +7,20 @@ import TextField from '../../components/auth/TextField'
 import { useT, useIsKhmer } from '../../hooks/useT'
 import { AuthError, signIn } from '../../api/auth'
 import { isEmail } from '../../lib/validate'
+import { useAuthStore } from '../../store/authStore'
 
 export default function SignIn() {
   const t = useT()
   const isKhmer = useIsKhmer()
   const navigate = useNavigate()
+  const location = useLocation()
+  const signInAs = useAuthStore((s) => s.signInAs)
+  const continueAsGuest = useAuthStore((s) => s.continueAsGuest)
+
+  // Where the guard sent them from. Returning them there rather than to the
+  // home screen is the difference between "sign in and carry on" and "sign in
+  // and start again".
+  const from = (location.state as { from?: string } | null)?.from ?? '/'
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -37,8 +46,9 @@ export default function SignIn() {
 
     setBusy(true)
     try {
-      await signIn(email.trim(), password)
-      navigate('/', { replace: true })
+      const user = await signIn(email.trim(), password)
+      signInAs(user)
+      navigate(from, { replace: true })
     } catch (err) {
       setFormError(err instanceof AuthError ? err.message : 'Something went wrong.')
     } finally {
@@ -66,13 +76,21 @@ export default function SignIn() {
           >
             {t('signUp')}
           </Link>
-          <Link
-            to="/"
-            className={`tap-target flex items-center justify-center rounded-button
+          {/* Guest is a real state, not a bypass. Scam awareness is a
+              public-good product: an account wall in front of it keeps the app
+              off the phones that need it most. A guest plays; their score
+              simply lives on the device. */}
+          <button
+            type="button"
+            onClick={() => {
+              continueAsGuest()
+              navigate(from, { replace: true })
+            }}
+            className={`tap-target flex w-full items-center justify-center rounded-button
                         text-small text-muted ${kh}`}
           >
             {t('continueWithoutAccount')}
-          </Link>
+          </button>
         </div>
       }
     >

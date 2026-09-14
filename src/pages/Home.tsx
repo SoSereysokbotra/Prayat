@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { Search, ShieldCheck, Zap } from 'lucide-react'
 import LanguageToggle from '../components/LanguageToggle'
 import ModeCard from '../components/ModeCard'
+import AccountBadge from '../components/AccountBadge'
 import ScoreDisplay from '../components/ScoreDisplay'
 import ScreenState from '../components/ScreenState'
 import { useT, useIsKhmer } from '../hooks/useT'
@@ -46,7 +47,8 @@ export default function Home() {
         <LanguageToggle />
       </header>
 
-      <div className="mt-section">
+      <div className="mt-section flex flex-col gap-stack">
+        <AccountBadge />
         <ScoreDisplay />
       </div>
 
