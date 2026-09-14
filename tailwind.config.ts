@@ -50,6 +50,7 @@ export default {
         body:    'var(--text-body)',
         small:   'var(--text-small)',
         rule:    'var(--text-rule)',
+        zoom:    'var(--text-zoom)',
       },
       lineHeight: {
         kh: 'var(--leading-kh)',

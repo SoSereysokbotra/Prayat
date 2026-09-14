@@ -11,12 +11,14 @@ import {
   MessageSquare,
   Phone,
   QrCode,
+  Search,
   type LucideIcon,
 } from 'lucide-react'
 import LanguageToggle from '../components/LanguageToggle'
 import ScreenState from '../components/ScreenState'
 import { useT, useIsKhmer } from '../hooks/useT'
 import { useGameStore } from '../store/gameStore'
+import { useHasTool } from '../store/bootcampStore'
 import { finishInvestigation, startInvestigation, tapElement } from '../api/client'
 import {
   INVESTIGATION_WRONG_TAP_PENALTY_SECONDS,
@@ -68,6 +70,12 @@ export default function Investigation() {
   const [summary, setSummary] = useState<InvestigationSummary | null>(null)
   const [remaining, setRemaining] = useState(0)
   const [flash, setFlash] = useState<string | null>(null)
+  // The Toolbelt payoff. Earned by passing the URL Sorter, and it genuinely
+  // changes how this mode plays: a lookalike domain is unreadable at body size
+  // and obvious at zoom size. Tapping the glass is free — it costs no time and
+  // is not a tap on an element, so it never triggers the wrong-tap penalty.
+  const hasMagnifier = useHasTool('magnifying-glass')
+  const [zoomed, setZoomed] = useState(false)
 
   const sessionRef = useRef<string | null>(null)
   const aliveRef = useRef(true)
@@ -286,9 +294,23 @@ export default function Investigation() {
         <LanguageToggle compact />
       </header>
 
-      <p className={`shrink-0 py-stack text-center text-small text-muted ${kh}`}>
-        {t('tapSuspicious')}
-      </p>
+      <div className="flex shrink-0 items-center justify-between gap-stack py-stack">
+        <p className={`min-w-0 flex-1 text-small text-muted ${kh}`}>{t('tapSuspicious')}</p>
+        {hasMagnifier && (
+          <button
+            type="button"
+            onClick={() => setZoomed((z) => !z)}
+            aria-pressed={zoomed}
+            aria-label={t('zoomIn')}
+            className={`tap-target flex shrink-0 items-center gap-stack rounded-button border
+                        px-stack text-small transition-colors duration-option-fade
+                        ${zoomed ? 'border-primary bg-primary text-primary-text' : 'border-border bg-surface text-muted'}`}
+          >
+            <Search aria-hidden className="h-icon w-icon" />
+            <span className={kh}>{t('zoomIn')}</span>
+          </button>
+        )}
+      </div>
 
       {/* ---- the conversation ---- */}
       <div className="flex min-h-0 flex-1 flex-col gap-stack overflow-y-auto overscroll-contain pb-stack">
@@ -323,7 +345,11 @@ export default function Investigation() {
                   aria-hidden
                   className={`h-icon w-icon shrink-0 ${isFound ? 'text-safe' : 'text-muted'}`}
                 />
-                <span className={`min-w-0 flex-1 ${kh}`}>{el.text[language]}</span>
+                <span
+                  className={`min-w-0 flex-1 break-all ${zoomed ? 'text-zoom' : ''} ${kh}`}
+                >
+                  {el.text[language]}
+                </span>
               </button>
 
               {isFound && (

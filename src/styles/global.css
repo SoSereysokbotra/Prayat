@@ -74,6 +74,7 @@
   --text-small:  0.875rem;
   --text-display: 2rem;        /* wordmark — the largest type in the app */
   --text-rule:   1.25rem;      /* the debrief rule — heaviest element */
+  --text-zoom:   1.75rem;      /* magnifying glass — reading a URL glyph by glyph */
   --leading-kh:  2;            /* Khmer diacritics clip at normal line-height */
   --leading-en:  1.5;
 
