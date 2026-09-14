@@ -53,6 +53,7 @@ export default {
         'zone-threat':  'var(--zone-threat-h)',
         'zone-chat':    'var(--zone-chat-h)',
         'zone-options': 'var(--zone-options-h)',
+        'chat-pane':    'var(--size-chat-pane)',
       },
       transitionDuration: {
         'option-fade': 'var(--timing-option-fade)',

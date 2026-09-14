@@ -88,6 +88,13 @@
   --timing-option-fade:     150ms;
   --timing-consequence:     2500ms;
   --timing-route:           200ms;
+  --timing-typing-dot:      1200ms;  /* one bounce cycle of a typing dot */
+  --timing-bubble-in:       220ms;   /* a bubble arriving */
+
+  /* ---- chat sizing ---- */
+  --size-bubble-max: 85%;   /* a bubble never spans the full column */
+  --size-dot:        0.4rem;
+  --size-chat-pane:  12rem;  /* pane height when no parent constrains it */
 }
 
 /* --------------------------------------------------------------------------
@@ -152,5 +159,65 @@
   .tap-target {
     min-height: var(--space-tap);
     min-width: var(--space-tap);
+  }
+
+  /* A chat bubble never spans the full column — the gutter is what makes it
+     read as a conversation rather than a document. */
+  .bubble-max {
+    max-width: var(--size-bubble-max);
+  }
+
+  .bubble-in {
+    animation: bubble-in var(--timing-bubble-in) ease-out;
+  }
+
+  .typing-dot {
+    width: var(--size-dot);
+    height: var(--size-dot);
+    border-radius: var(--radius-bubble);
+    animation: typing-bounce var(--timing-typing-dot) infinite ease-in-out;
+  }
+
+  /* Stagger by thirds of one cycle so the three dots travel as a wave. */
+  .typing-dot:nth-child(2) {
+    animation-delay: calc(var(--timing-typing-dot) / 3);
+  }
+  .typing-dot:nth-child(3) {
+    animation-delay: calc(var(--timing-typing-dot) / 3 * 2);
+  }
+}
+
+@keyframes bubble-in {
+  from {
+    opacity: 0;
+    transform: translateY(var(--space-stack));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes typing-bounce {
+  0%,
+  60%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(calc(var(--space-stack) * -0.4));
+  }
+}
+
+/* Anyone who has asked the OS to reduce motion gets the content, not the show. */
+@media (prefers-reduced-motion: reduce) {
+  .bubble-in,
+  .typing-dot {
+    animation: none;
+  }
+  .typing-dot {
+    opacity: 0.6;
   }
 }
