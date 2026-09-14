@@ -46,6 +46,14 @@ const strings = {
     en: 'This mode is still being built. For now, try Guardian Mode.',
   },
 
+  /* ---- guardian ---- */
+  threatZoneLabel: {
+    kh: 'អ្នក​បោក​បញ្ឆោត ↔ មីង (អ្នក​មើល​បាន​តែ​ប៉ុណ្ណោះ)',
+    en: 'Scammer ↔ Auntie (you can only watch)',
+  },
+  yourChatLabel: { kh: 'អ្នក ↔ មីង', en: 'You ↔ Auntie' },
+  waitingForAuntie: { kh: 'រង់ចាំ​មីង…', en: 'Waiting for Auntie…' },
+
   /* ---- score ---- */
   yourScore: { kh: 'ពិន្ទុ​ការពារ​របស់​អ្នក', en: 'Your resistance score' },
   level: { kh: 'កម្រិត', en: 'Level' },
