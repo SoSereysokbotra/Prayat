@@ -1,0 +1,24 @@
+# Render deployment — one Node web service serving both the API and the SPA.
+#
+# Create the service from this file (Blueprint), or configure by hand with the
+# same build and start commands.
+
+services:
+  - type: web
+    name: prayat
+    runtime: node
+    plan: free
+    region: singapore          # closest region to Cambodia
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      # Render assigns PORT; server/index.ts reads it. Never hardcode 3001 here.
+      - key: DATABASE_PATH
+        # The free tier has no persistent disk: this lives on the ephemeral
+        # filesystem and is wiped on every deploy. That is fine — content is
+        # re-seeded from git on boot, and only session history is lost.
+        value: /tmp/prayat.db

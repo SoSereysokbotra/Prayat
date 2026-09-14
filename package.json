@@ -13,7 +13,8 @@
     "validate:content": "node scripts/validate-content.mjs",
     "validate:content:strict": "node scripts/validate-content.mjs --strict",
     "test:strip": "tsx scripts/test-strip.ts",
-    "test:api": "node scripts/test-api.mjs"
+    "test:api": "node scripts/test-api.mjs",
+    "preflight": "node scripts/preflight.mjs"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.3",
@@ -43,5 +44,8 @@
     "typescript": "^5.7.2",
     "vite": "^6.0.3",
     "vite-plugin-pwa": "^1.3.0"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
