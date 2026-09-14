@@ -1,6 +1,7 @@
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import ComingSoon from './pages/ComingSoon'
+import DevComponents from './pages/DevComponents'
 import ThemeToggle from './components/ThemeToggle'
 import { useDocumentLanguage } from './hooks/useDocumentLanguage'
 
@@ -28,6 +29,9 @@ export default function App() {
         {/* Phase 3.5 / 3.6 */}
         <Route path="/consequence" element={<Navigate to="/" replace />} />
         <Route path="/debrief" element={<Navigate to="/" replace />} />
+
+        {/* DEV ONLY — removed in Phase 7 with ThemeToggle */}
+        <Route path="/dev/components" element={<DevComponents />} />
 
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
