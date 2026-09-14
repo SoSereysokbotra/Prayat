@@ -12,6 +12,7 @@ import { seedContent } from './db'
 import { healthRouter } from './routes/health'
 import { scenariosRouter } from './routes/scenarios'
 import { sessionsRouter } from './routes/sessions'
+import { docsRouter } from './routes/docs'
 import { fail, NOT_FOUND } from './lib/http'
 
 const app = express()
@@ -30,6 +31,7 @@ const api = express.Router()
 api.use('/health', healthRouter)
 api.use('/scenarios', scenariosRouter)
 api.use('/sessions', sessionsRouter)
+api.use('/docs', docsRouter)
 
 // An unknown /api/* path must not fall through to the SPA catch-all, or a typo
 // in a URL returns an HTML page with status 200.

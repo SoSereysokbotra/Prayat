@@ -1,0 +1,326 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Prayat API",
+    "version": "1.0.0",
+    "description": "Khmer-first scam simulation.\n\n**The server owns the answer key.** No response tells you which option is correct until after you have committed to one. Play a whole scenario from this page and watch: `isCorrect` never appears in a payload before you submit a decision.\n\nNo authentication — this is a prototype and it is meant to be poked at from your own phone.\n\n### Play a scenario from here\n1. `GET /scenarios` — copy the `id`\n2. `POST /sessions` — copy the `sessionId`\n3. `POST /sessions/{sessionId}/decisions` — three times, `stageId` 1 then 2 then 3\n4. `GET /sessions/{sessionId}/debrief`\n\nTry answering the same stage twice, or skipping stage 2. Both return 409."
+  },
+  "servers": [{ "url": "/api", "description": "this deployment" }],
+  "tags": [
+    { "name": "health", "description": "Is the service awake" },
+    { "name": "scenarios", "description": "The catalogue. Never contains answers." },
+    { "name": "sessions", "description": "One playthrough" }
+  ],
+  "paths": {
+    "/health": {
+      "get": {
+        "tags": ["health"],
+        "summary": "Service health",
+        "description": "Hit this before presenting — the free hosting tier sleeps after inactivity.",
+        "responses": {
+          "200": {
+            "description": "Awake",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Health" },
+                "example": { "status": "ok", "uptime": 1423.5, "scenariosLoaded": 1 }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scenarios": {
+      "get": {
+        "tags": ["scenarios"],
+        "summary": "List scenarios",
+        "description": "No stages, no answers — just enough to start a session.",
+        "responses": {
+          "200": {
+            "description": "The catalogue",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": { "$ref": "#/components/schemas/ScenarioSummary" }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/scenarios/{id}": {
+      "get": {
+        "tags": ["scenarios"],
+        "summary": "Scenario metadata and stage 1",
+        "description": "Stage 1 only, with answers stripped. Stages 2 and 3 are never sent until earned, so reading the network tab gives away nothing.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string" },
+            "example": "shop-payment-scam-001"
+          }
+        ],
+        "responses": {
+          "200": { "description": "Metadata plus stage 1" },
+          "404": {
+            "description": "No such scenario",
+            "content": {
+              "application/json": { "schema": { "$ref": "#/components/schemas/Error" } }
+            }
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": ["sessions"],
+        "summary": "Start a playthrough",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/CreateSession" },
+              "example": { "scenarioId": "shop-payment-scam-001", "language": "kh" }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Session created, stage 1 returned with answers stripped",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/CreateSessionResponse" }
+              }
+            }
+          },
+          "400": { "description": "Missing or invalid body" },
+          "404": { "description": "No such scenario" }
+        }
+      }
+    },
+    "/sessions/{sessionId}/decisions": {
+      "post": {
+        "tags": ["sessions"],
+        "summary": "Answer the current stage",
+        "description": "The core endpoint. The server decides whether you were right — the browser was never told.\n\nStages must be answered in order, once each. Both violations return 409, and `UNIQUE(session_id, stage_id)` in the database catches anything that races past the check.",
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": { "$ref": "#/components/schemas/SubmitDecision" },
+              "example": { "stageId": 1, "optionId": "c" }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Decision recorded",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/DecisionResult" }
+              }
+            }
+          },
+          "400": { "description": "Missing or invalid body" },
+          "404": { "description": "Unknown session, stage or option" },
+          "409": {
+            "description": "Stage already answered, out of order, or the session is finished",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/Error" },
+                "example": {
+                  "error": "stage_out_of_order",
+                  "message": "expected stage 2, received 3"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sessions/{sessionId}/debrief": {
+      "get": {
+        "tags": ["sessions"],
+        "summary": "The debrief",
+        "description": "Available only once the scenario is finished. Carries the score, the three red flags, and the one rule.",
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Full session summary",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/SessionSummary" }
+              }
+            }
+          },
+          "404": { "description": "Unknown session" },
+          "409": { "description": "The scenario is not finished yet" }
+        }
+      }
+    },
+    "/sessions/{sessionId}": {
+      "get": {
+        "tags": ["sessions"],
+        "summary": "The stored record",
+        "description": "Every decision with its timestamp. This is the endpoint for anyone asking whether the app actually stores anything.",
+        "parameters": [
+          {
+            "name": "sessionId",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "string", "format": "uuid" }
+          }
+        ],
+        "responses": {
+          "200": { "description": "The session record" },
+          "404": { "description": "Unknown session" }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Localized": {
+        "type": "object",
+        "description": "Khmer is the source; English is a translation of it.",
+        "properties": {
+          "kh": { "type": "string" },
+          "en": { "type": "string" }
+        },
+        "required": ["kh", "en"]
+      },
+      "Health": {
+        "type": "object",
+        "properties": {
+          "status": { "type": "string", "enum": ["ok"] },
+          "uptime": { "type": "number", "description": "seconds since boot" },
+          "scenariosLoaded": { "type": "integer" }
+        }
+      },
+      "ScenarioSummary": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "$ref": "#/components/schemas/Localized" },
+          "scamType": {
+            "type": "string",
+            "enum": ["government", "job", "crypto", "romance", "malware"]
+          },
+          "stageCount": { "type": "integer" }
+        }
+      },
+      "Option": {
+        "type": "object",
+        "description": "What the browser receives. Note what is absent: no isCorrect, no reply, no note.",
+        "properties": {
+          "id": { "type": "string", "enum": ["a", "b", "c", "d"] },
+          "text": { "$ref": "#/components/schemas/Localized" }
+        }
+      },
+      "Stage": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "integer", "example": 1 },
+          "scammerMessages": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Localized" }
+          },
+          "relativeMessage": { "$ref": "#/components/schemas/Localized" },
+          "options": {
+            "type": "array",
+            "items": { "$ref": "#/components/schemas/Option" },
+            "minItems": 4,
+            "maxItems": 4
+          }
+        }
+      },
+      "CreateSession": {
+        "type": "object",
+        "required": ["scenarioId", "language"],
+        "properties": {
+          "scenarioId": { "type": "string" },
+          "language": { "type": "string", "enum": ["kh", "en"] }
+        }
+      },
+      "CreateSessionResponse": {
+        "type": "object",
+        "properties": {
+          "sessionId": { "type": "string", "format": "uuid" },
+          "scenario": { "type": "object" },
+          "stage": { "$ref": "#/components/schemas/Stage" }
+        }
+      },
+      "SubmitDecision": {
+        "type": "object",
+        "required": ["stageId", "optionId"],
+        "properties": {
+          "stageId": { "type": "integer", "minimum": 1 },
+          "optionId": { "type": "string", "enum": ["a", "b", "c", "d"] }
+        }
+      },
+      "DecisionResult": {
+        "type": "object",
+        "properties": {
+          "isCorrect": {
+            "type": "boolean",
+            "description": "The first time the answer is ever disclosed — after you committed."
+          },
+          "relativeReply": { "$ref": "#/components/schemas/Localized" },
+          "nextStage": {
+            "oneOf": [
+              { "$ref": "#/components/schemas/Stage" },
+              { "type": "null" }
+            ],
+            "description": "null once the scenario is over"
+          },
+          "done": { "type": "boolean" }
+        }
+      },
+      "SessionSummary": {
+        "type": "object",
+        "properties": {
+          "sessionId": { "type": "string" },
+          "scenarioId": { "type": "string" },
+          "decisions": { "type": "array", "items": { "type": "object" } },
+          "score": { "type": "integer", "example": 300 },
+          "maxScore": { "type": "integer", "example": 300 },
+          "level": {
+            "type": "string",
+            "enum": ["Aware", "Alert", "Defender", "Guardian", "Protector"]
+          },
+          "won": {
+            "type": "boolean",
+            "description": "True when the FINAL decision was correct. Stumbling early and recovering still counts as a win — the last word before the money moves is the one that matters."
+          },
+          "debrief": { "type": "object" }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": { "type": "string", "example": "stage_already_answered" },
+          "message": { "type": "string" }
+        }
+      }
+    }
+  }
+}
