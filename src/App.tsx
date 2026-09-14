@@ -3,10 +3,17 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import Home from './pages/Home'
 import ComingSoon from './pages/ComingSoon'
 import Guardian from './pages/Guardian'
+import ScenarioSelect from './pages/ScenarioSelect'
+import ScenarioIntro from './pages/ScenarioIntro'
+import Progress from './pages/Progress'
+import TriageHowTo from './pages/TriageHowTo'
+import TriagePacks from './pages/TriagePacks'
+import TriageCountdown from './pages/TriageCountdown'
 import Consequence from './pages/Consequence'
 import Debrief from './pages/Debrief'
 import Triage from './pages/Triage'
 import Investigation from './pages/Investigation'
+import Welcome from './pages/Welcome'
 import SignIn from './pages/auth/SignIn'
 import SignUp from './pages/auth/SignUp'
 import VerifyEmail from './pages/auth/VerifyEmail'
@@ -59,6 +66,14 @@ export default function App() {
 
             Password reset is deliberately NOT bounced: someone signed in on
             this device still has to be able to follow a reset link. */}
+        <Route
+          path="/welcome"
+          element={
+            <RedirectIfSignedIn>
+              <Welcome />
+            </RedirectIfSignedIn>
+          }
+        />
         <Route
           path="/signin"
           element={
@@ -122,6 +137,16 @@ export default function App() {
           }
         />
         <Route
+          path="/progress"
+          element={
+            <RequireAuth>
+              <RequireBootcamp>
+                <Progress />
+              </RequireBootcamp>
+            </RequireAuth>
+          }
+        />
+        <Route
           path="/coming-soon/:mode"
           element={
             <RequireAuth>
@@ -136,13 +161,63 @@ export default function App() {
           element={
             <RequireAuth>
               <RequireBootcamp>
+                <ScenarioSelect />
+              </RequireBootcamp>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/guardian/:scenarioId"
+          element={
+            <RequireAuth>
+              <RequireBootcamp>
+                <ScenarioIntro />
+              </RequireBootcamp>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/guardian/:scenarioId/play"
+          element={
+            <RequireAuth>
+              <RequireBootcamp>
                 <Guardian />
               </RequireBootcamp>
             </RequireAuth>
           }
         />
         <Route
+          path="/triage/how-to-play"
+          element={
+            <RequireAuth>
+              <RequireBootcamp>
+                <TriageHowTo />
+              </RequireBootcamp>
+            </RequireAuth>
+          }
+        />
+        <Route
           path="/triage"
+          element={
+            <RequireAuth>
+              <RequireBootcamp>
+                <TriagePacks />
+              </RequireBootcamp>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/triage/countdown/:deckId"
+          element={
+            <RequireAuth>
+              <RequireBootcamp>
+                <TriageCountdown />
+              </RequireBootcamp>
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/triage/play/:deckId"
           element={
             <RequireAuth>
               <RequireBootcamp>
