@@ -184,3 +184,110 @@ export async function getDebrief(sessionId: string): Promise<SessionSummary> {
     },
   }
 }
+
+/* ==========================================================================
+   Speed Triage
+   ========================================================================== */
+
+import type {
+  Investigation,
+  InvestigationSummary,
+  TapResult,
+  TriageAnswerResult,
+  TriageCard,
+  TriageSummary,
+  TriageVerdict,
+} from '../../shared/types'
+
+function fillCard(card: TriageCard): TriageCard {
+  return {
+    ...card,
+    sender: fill(card.sender, 'short'),
+    body: fill(card.body, 'message'),
+    ...(card.meta !== undefined ? { meta: fill(card.meta, 'short') } : {}),
+  }
+}
+
+export interface TriageRun {
+  sessionId: string
+  deckId: string
+  cardCount: number
+  maxMistakes: number
+  card: TriageCard
+}
+
+export async function startTriage(language: LanguageCode): Promise<TriageRun> {
+  const run = await request<TriageRun>('/triage/sessions', {
+    method: 'POST',
+    body: JSON.stringify({ language }),
+  })
+  return { ...run, card: fillCard(run.card) }
+}
+
+export async function answerCard(
+  sessionId: string,
+  cardId: string,
+  verdict: TriageVerdict | 'timeout',
+): Promise<TriageAnswerResult> {
+  const result = await request<TriageAnswerResult>(`/triage/sessions/${sessionId}/answers`, {
+    method: 'POST',
+    body: JSON.stringify({ cardId, verdict }),
+  })
+  return {
+    ...result,
+    explanation: fill(result.explanation, 'message'),
+    nextCard: result.nextCard ? fillCard(result.nextCard) : null,
+  }
+}
+
+export function getTriageSummary(sessionId: string): Promise<TriageSummary> {
+  return request<TriageSummary>(`/triage/sessions/${sessionId}`)
+}
+
+/* ==========================================================================
+   The Investigation
+   ========================================================================== */
+
+export interface InvestigationRun {
+  sessionId: string
+  investigation: Investigation
+}
+
+export async function startInvestigation(language: LanguageCode): Promise<InvestigationRun> {
+  const run = await request<InvestigationRun>('/investigations/sessions', {
+    method: 'POST',
+    body: JSON.stringify({ language }),
+  })
+  return {
+    ...run,
+    investigation: {
+      ...run.investigation,
+      title: fill(run.investigation.title, 'short'),
+      rule: fill(run.investigation.rule, 'rule'),
+      elements: run.investigation.elements.map((e) => ({ ...e, text: fill(e.text, 'message') })),
+    },
+  }
+}
+
+export async function tapElement(sessionId: string, elementId: string): Promise<TapResult> {
+  const result = await request<TapResult>(`/investigations/sessions/${sessionId}/taps`, {
+    method: 'POST',
+    body: JSON.stringify({ elementId }),
+  })
+  return {
+    ...result,
+    explanation: result.explanation ? fill(result.explanation, 'message') : null,
+  }
+}
+
+export async function finishInvestigation(sessionId: string): Promise<InvestigationSummary> {
+  const result = await request<InvestigationSummary>(
+    `/investigations/sessions/${sessionId}/finish`,
+    { method: 'POST' },
+  )
+  return {
+    ...result,
+    rule: fill(result.rule, 'rule'),
+    missed: result.missed.map((m) => ({ ...m, explanation: fill(m.explanation, 'message') })),
+  }
+}
