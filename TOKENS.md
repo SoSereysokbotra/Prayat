@@ -37,7 +37,7 @@ working — `bg-surface/50` resolves correctly. Never wrap them in `rgb()` in th
 | Token | Controls |
 |---|---|
 | `--color-bubble-scammer` | Scammer messages, both typing indicators in the threat zone |
-| `--color-bubble-auntie` | Auntie's messages, her typing indicator |
+| `--color-bubble-relative` | The relative's (Uncle Chan's) messages, his typing indicator |
 | `--color-bubble-player` | The player's own messages |
 | `--color-zone-threat` | Background of the read-only threat zone, and the Consequence screen |
 
@@ -90,8 +90,8 @@ working — `bg-surface/50` resolves correctly. Never wrap them in `rgb()` in th
 
 | Token | Controls |
 |---|---|
-| `--zone-threat-h` | Scammer ↔ Auntie, read-only |
-| `--zone-chat-h` | You ↔ Auntie |
+| `--zone-threat-h` | Scammer ↔ Uncle, read-only |
+| `--zone-chat-h` | You ↔ Uncle |
 | `--zone-options-h` | The four replies |
 | `--size-bubble-max` | How wide a bubble may get. The gutter is what makes it read as a conversation |
 | `--size-chat-pane` | Pane height when no parent constrains it (dev gallery) |

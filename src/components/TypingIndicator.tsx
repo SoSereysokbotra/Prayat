@@ -8,12 +8,12 @@
  * How long it holds is --timing-typing-min, read in TS via motionToken().
  * The dot animation itself is pure CSS in global.css.
  */
-export default function TypingIndicator({ variant = 'auntie' }: { variant?: 'auntie' | 'scammer' }) {
+export default function TypingIndicator({ variant = 'relative' }: { variant?: 'relative' | 'scammer' }) {
   return (
     <div className="flex justify-start" role="status" aria-label="typing">
       <div
         className={`bubble-in flex items-center gap-stack rounded-bubble px-stack py-stack ${
-          variant === 'scammer' ? 'bg-bubble-scammer' : 'bg-bubble-auntie'
+          variant === 'scammer' ? 'bg-bubble-scammer' : 'bg-bubble-relative'
         }`}
       >
         <span aria-hidden className="typing-dot bg-muted" />

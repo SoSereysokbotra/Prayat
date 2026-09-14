@@ -56,7 +56,7 @@ export default function TriageCardView({ card }: { card: TriageCard }) {
             <span className="min-w-0 flex-1 truncate text-small font-semibold">{sender}</span>
           </div>
           <div className="flex-1 p-stack">
-            <p className={`rounded-bubble bg-bubble-auntie p-stack text-body ${kh}`}>{body}</p>
+            <p className={`rounded-bubble bg-bubble-relative p-stack text-body ${kh}`}>{body}</p>
             {meta && (
               <p className={`mt-stack flex items-center gap-stack break-all rounded-button
                              border border-border bg-surface p-stack text-small text-muted ${kh}`}>

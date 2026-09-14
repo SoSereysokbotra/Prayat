@@ -21,8 +21,8 @@ import { OPTION_IDS } from '../../shared/types'
 
 /* Deliberately long — this is roughly the worst case an option will ever hold. */
 const LONG_KH =
-  'ចាំ​បង​ទៅ​ហាង​បន្ទាប់​ពី​ចប់​ការងារ រួច​យើង​មើល​រឿង​នេះ​ជាមួយ​គ្នា កុំ​ទាន់​ធ្វើ​អ្វី​ទាំងអស់​សិន​ណា​មីង។'
-const MEDIUM_KH = 'មីង​កុំ​ទាន់​បង់​លុយ​សិន។ ខ្ញុំ​នឹង​ពិនិត្យ​មើល​ជូន។'
+  'ចាំ​បង​ទៅ​ហាង​បន្ទាប់​ពី​ចប់​ការងារ រួច​យើង​មើល​រឿង​នេះ​ជាមួយ​គ្នា កុំ​ទាន់​ធ្វើ​អ្វី​ទាំងអស់​សិន​ណា​ពូ។'
+const MEDIUM_KH = 'ពូ​កុំ​ទាន់​បង់​លុយ​សិន។ ខ្ញុំ​នឹង​ពិនិត្យ​មើល​ជូន។'
 const SHORT_KH = 'អូខេ បង។'
 
 export default function DevComponents() {
@@ -40,7 +40,7 @@ export default function DevComponents() {
         <h2 className="mb-stack text-small text-muted">Bubble variants</h2>
         <div className="flex flex-col gap-stack rounded-card border border-border p-stack">
           <ChatBubble variant="scammer">{MEDIUM_KH}</ChatBubble>
-          <ChatBubble variant="auntie">{LONG_KH}</ChatBubble>
+          <ChatBubble variant="relative">{LONG_KH}</ChatBubble>
           <ChatBubble variant="player">{SHORT_KH}</ChatBubble>
           <TypingIndicator />
           <TypingIndicator variant="scammer" />
@@ -58,7 +58,7 @@ export default function DevComponents() {
           className="h-chat-pane rounded-card border border-border"
         >
           {Array.from({ length: messages }, (_, i) => (
-            <ChatBubble key={i} variant={i % 2 ? 'auntie' : 'scammer'}>
+            <ChatBubble key={i} variant={i % 2 ? 'relative' : 'scammer'}>
               {i + 1}. {MEDIUM_KH}
             </ChatBubble>
           ))}

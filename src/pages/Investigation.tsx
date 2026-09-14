@@ -337,7 +337,7 @@ export default function Investigation() {
                                   ? 'border-danger bg-surface'
                                   : mine
                                     ? 'border-border bg-bubble-player'
-                                    : 'border-border bg-bubble-auntie'
+                                    : 'border-border bg-bubble-relative'
                             }
                             ${isMissed && !isFlashing ? 'opacity-50' : ''}`}
               >

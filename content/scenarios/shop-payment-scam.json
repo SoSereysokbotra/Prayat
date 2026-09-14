@@ -3,9 +3,9 @@
   "title": { "kh": "", "en": "" },
   "scamType": "government",
   "relative": {
-    "name": { "kh": "", "en": "Auntie Sothea" },
+    "name": { "kh": "ពូ ចាន់", "en": "Uncle Chan" },
     "age": 54,
-    "avatar": "auntie-sothea"
+    "avatar": "uncle-chan"
   },
   "stages": [
     {

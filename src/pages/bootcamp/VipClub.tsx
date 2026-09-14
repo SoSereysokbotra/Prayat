@@ -200,7 +200,7 @@ export default function VipClub() {
           <p className={`text-small text-muted ${kh}`}>{round.visitor[language]}</p>
         </div>
 
-        <p className={`rounded-bubble bg-bubble-auntie p-stack text-body ${kh}`}>
+        <p className={`rounded-bubble bg-bubble-relative p-stack text-body ${kh}`}>
           {round.claim[language]}
         </p>
 

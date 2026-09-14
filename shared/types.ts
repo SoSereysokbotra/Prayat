@@ -31,7 +31,7 @@ export interface ScenarioFull {
   title: Localized
   scamType: ScamType
   relative: {
-    name: Localized // "Auntie Sothea"
+    name: Localized // "Uncle Chan"
     age: number // 54
     avatar: string
   }
