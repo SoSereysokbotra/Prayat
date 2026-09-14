@@ -15,7 +15,8 @@
     "test:strip": "tsx scripts/test-strip.ts",
     "test:api": "node scripts/test-api.mjs",
     "preflight": "node scripts/preflight.mjs",
-    "test:modes": "node scripts/test-modes.mjs"
+    "test:modes": "node scripts/test-modes.mjs",
+    "test:guard": "node scripts/test-auth-guard.mjs"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.3",
