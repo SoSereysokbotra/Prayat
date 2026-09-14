@@ -39,6 +39,8 @@ const strings = {
     en: 'Find every red flag before the timer ends',
   },
   comingSoon: { kh: 'នឹង​មាន​ក្នុង​ពេល​ឆាប់ៗ', en: 'Coming soon' },
+  stages: { kh: 'ដំណាក់កាល', en: 'stages' },
+  minutes: { kh: 'នាទី', en: 'min' },
   comingSoonBody: {
     kh: 'របៀប​នេះ​កំពុង​ត្រូវ​បាន​រៀបចំ។ ឥឡូវ​នេះ សូម​សាកល្បង​របៀប​អាណាព្យាបាល។',
     en: 'This mode is still being built. For now, try Guardian Mode.',
