@@ -208,6 +208,16 @@ function fillCard(card: TriageCard): TriageCard {
   }
 }
 
+export interface TriageDeckSummary {
+  id: string
+  title: Localized
+  cardCount: number
+}
+
+export function listTriageDecks(): Promise<TriageDeckSummary[]> {
+  return request<TriageDeckSummary[]>('/triage/decks')
+}
+
 export interface TriageRun {
   sessionId: string
   deckId: string
@@ -216,10 +226,10 @@ export interface TriageRun {
   card: TriageCard
 }
 
-export async function startTriage(language: LanguageCode): Promise<TriageRun> {
+export async function startTriage(language: LanguageCode, deckId?: string): Promise<TriageRun> {
   const run = await request<TriageRun>('/triage/sessions', {
     method: 'POST',
-    body: JSON.stringify({ language }),
+    body: JSON.stringify(deckId ? { language, deckId } : { language }),
   })
   return { ...run, card: fillCard(run.card) }
 }
