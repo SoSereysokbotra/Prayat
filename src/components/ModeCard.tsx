@@ -13,6 +13,12 @@ interface ModeCardProps {
   cadence: string
   /** What the mode builds. Shown on the primary card only. */
   teaches?: string
+  /**
+   * Mode artwork, shown as a round crop in place of the icon tile. The
+   * artwork is decorative — `icon` is still required as the fallback and for
+   * anywhere the card renders without images.
+   */
+  image?: string
   emphasis?: ModeEmphasis
   locked?: boolean
 }
@@ -36,6 +42,7 @@ export default function ModeCard({
   blurb,
   cadence,
   teaches,
+  image,
   emphasis = 'supporting',
   locked = false,
 }: ModeCardProps) {
@@ -52,19 +59,33 @@ export default function ModeCard({
                     transition-colors duration-option-fade
                     ${locked ? 'bg-surface-alt/50' : 'bg-surface hover:bg-surface-alt'}`}
       >
-        <span
-          aria-hidden
-          className={`flex shrink-0 items-center justify-center rounded-button p-stack
-                      ${locked ? 'bg-surface-alt text-muted' : 'bg-surface-alt text-text'}`}
-        >
-          <Icon className="h-icon w-icon" />
-        </span>
+        {image ? (
+          <img
+            src={image}
+            alt=""
+            aria-hidden
+            className={`h-illustration-sm w-illustration-sm shrink-0 rounded-full object-cover
+                        ${locked ? 'opacity-50 grayscale' : ''}`}
+          />
+        ) : (
+          <span
+            aria-hidden
+            className={`flex shrink-0 items-center justify-center rounded-button p-stack
+                        ${locked ? 'bg-surface-alt text-muted' : 'bg-surface-alt text-text'}`}
+          >
+            <Icon className="h-icon w-icon" />
+          </span>
+        )}
 
         <span className="min-w-0 flex-1">
-          <span className={`block truncate text-body font-semibold ${locked ? 'text-muted' : ''} ${kh}`}>
+          <span className={`block text-body font-semibold ${locked ? 'text-muted' : ''} ${kh}`}>
             {title}
           </span>
-          <span className={`block truncate text-small text-muted ${kh}`}>
+          {/* The hook line — what you actually do in this mode. */}
+          <span className={`block text-small ${locked ? 'text-muted' : 'text-text'} ${kh}`}>
+            {blurb}
+          </span>
+          <span className={`mt-stack block truncate text-small text-muted ${kh}`}>
             {locked ? t('comingSoon') : cadence}
           </span>
         </span>
@@ -85,13 +106,22 @@ export default function ModeCard({
       className="block rounded-card border border-primary bg-surface p-section
                  transition-colors duration-option-fade hover:bg-surface-alt"
     >
-      <div className="flex items-start gap-stack">
-        <span
-          aria-hidden
-          className="flex shrink-0 items-center justify-center rounded-button bg-primary p-stack text-primary-text"
-        >
-          <Icon className="h-icon w-icon" />
-        </span>
+      <div className="flex items-center gap-stack">
+        {image ? (
+          <img
+            src={image}
+            alt=""
+            aria-hidden
+            className="h-illustration w-illustration shrink-0 rounded-full object-cover"
+          />
+        ) : (
+          <span
+            aria-hidden
+            className="flex shrink-0 items-center justify-center rounded-button bg-primary p-stack text-primary-text"
+          >
+            <Icon className="h-icon w-icon" />
+          </span>
+        )}
 
         <div className="min-w-0 flex-1">
           <p className={`text-small font-semibold text-primary ${kh}`}>{t('startHere')}</p>
