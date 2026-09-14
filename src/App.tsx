@@ -5,6 +5,8 @@ import ComingSoon from './pages/ComingSoon'
 import Guardian from './pages/Guardian'
 import Consequence from './pages/Consequence'
 import Debrief from './pages/Debrief'
+import Triage from './pages/Triage'
+import Investigation from './pages/Investigation'
 import { useDocumentLanguage } from './hooks/useDocumentLanguage'
 
 /**
@@ -42,6 +44,8 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/coming-soon/:mode" element={<ComingSoon />} />
         <Route path="/guardian" element={<Guardian />} />
+        <Route path="/triage" element={<Triage />} />
+        <Route path="/investigation" element={<Investigation />} />
         <Route path="/consequence" element={<Consequence />} />
         <Route path="/debrief" element={<Debrief />} />
 

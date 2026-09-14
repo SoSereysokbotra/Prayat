@@ -65,16 +65,14 @@ export default function Home() {
               meta={stageCount === null ? '' : `${stageCount} ${t('stages')} · 10 ${t('minutes')}`}
             />
             <ModeCard
-              locked
-              to="/coming-soon/speed-triage"
+              to="/triage"
               icon={Zap}
               title={t('speedTriage')}
               blurb={t('speedTriageBlurb')}
               meta={`2 ${t('minutes')}`}
             />
             <ModeCard
-              locked
-              to="/coming-soon/investigation"
+              to="/investigation"
               icon={Search}
               title={t('investigation')}
               blurb={t('investigationBlurb')}
