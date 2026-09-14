@@ -1,0 +1,135 @@
+{
+  "id": "shop-payment-scam-001",
+  "title": { "kh": "", "en": "" },
+  "scamType": "government",
+  "relative": {
+    "name": { "kh": "", "en": "Auntie Sothea" },
+    "age": 54,
+    "avatar": "auntie-sothea"
+  },
+  "stages": [
+    {
+      "id": 1,
+      "scammerMessages": [
+        { "kh": "", "en": "" },
+        { "kh": "", "en": "" }
+      ],
+      "relativeMessage": { "kh": "", "en": "" },
+      "options": [
+        {
+          "id": "a",
+          "text": { "kh": "", "en": "" },
+          "isCorrect": false,
+          "reply": { "kh": "", "en": "" },
+          "note": { "kh": "", "en": "" }
+        },
+        {
+          "id": "b",
+          "text": { "kh": "", "en": "" },
+          "isCorrect": false,
+          "reply": { "kh": "", "en": "" },
+          "note": { "kh": "", "en": "" }
+        },
+        {
+          "id": "c",
+          "text": { "kh": "", "en": "" },
+          "isCorrect": true,
+          "reply": { "kh": "", "en": "" }
+        },
+        {
+          "id": "d",
+          "text": { "kh": "", "en": "" },
+          "isCorrect": false,
+          "reply": { "kh": "", "en": "" },
+          "note": { "kh": "", "en": "" }
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "scammerMessages": [
+        { "kh": "", "en": "" }
+      ],
+      "relativeMessage": { "kh": "", "en": "" },
+      "options": [
+        {
+          "id": "a",
+          "text": { "kh": "", "en": "" },
+          "isCorrect": false,
+          "reply": { "kh": "", "en": "" },
+          "note": { "kh": "", "en": "" }
+        },
+        {
+          "id": "b",
+          "text": { "kh": "", "en": "" },
+          "isCorrect": true,
+          "reply": { "kh": "", "en": "" }
+        },
+        {
+          "id": "c",
+          "text": { "kh": "", "en": "" },
+          "isCorrect": false,
+          "reply": { "kh": "", "en": "" },
+          "note": { "kh": "", "en": "" }
+        },
+        {
+          "id": "d",
+          "text": { "kh": "", "en": "" },
+          "isCorrect": false,
+          "reply": { "kh": "", "en": "" },
+          "note": { "kh": "", "en": "" }
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "scammerMessages": [
+        { "kh": "", "en": "" },
+        { "kh": "", "en": "" }
+      ],
+      "relativeMessage": { "kh": "", "en": "" },
+      "options": [
+        {
+          "id": "a",
+          "text": { "kh": "", "en": "" },
+          "isCorrect": false,
+          "reply": { "kh": "", "en": "" },
+          "note": { "kh": "", "en": "" }
+        },
+        {
+          "id": "b",
+          "text": { "kh": "", "en": "" },
+          "isCorrect": false,
+          "reply": { "kh": "", "en": "" },
+          "note": { "kh": "", "en": "" }
+        },
+        {
+          "id": "c",
+          "text": { "kh": "", "en": "" },
+          "isCorrect": true,
+          "reply": { "kh": "", "en": "" }
+        },
+        {
+          "id": "d",
+          "text": { "kh": "", "en": "" },
+          "isCorrect": false,
+          "reply": { "kh": "", "en": "" },
+          "note": { "kh": "", "en": "" }
+        }
+      ]
+    }
+  ],
+  "debrief": {
+    "scamName": { "kh": "", "en": "" },
+    "redFlags": [
+      { "kh": "", "en": "" },
+      { "kh": "", "en": "" },
+      { "kh": "", "en": "" }
+    ],
+    "rule": { "kh": "", "en": "" },
+    "realLifeAction": { "kh": "", "en": "" },
+    "outcomeWin": { "kh": "", "en": "" },
+    "outcomeLose": { "kh": "", "en": "" },
+    "consequence": { "kh": "", "en": "" }
+  }
+}
