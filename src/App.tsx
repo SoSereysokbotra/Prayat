@@ -7,6 +7,11 @@ import Consequence from './pages/Consequence'
 import Debrief from './pages/Debrief'
 import Triage from './pages/Triage'
 import Investigation from './pages/Investigation'
+import SignIn from './pages/auth/SignIn'
+import SignUp from './pages/auth/SignUp'
+import VerifyEmail from './pages/auth/VerifyEmail'
+import ForgotPassword from './pages/auth/ForgotPassword'
+import ResetPassword from './pages/auth/ResetPassword'
 import { useDocumentLanguage } from './hooks/useDocumentLanguage'
 
 /**
@@ -43,6 +48,13 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/coming-soon/:mode" element={<ComingSoon />} />
+
+        {/* Auth — UI only, no backend behind it yet. See src/api/auth.ts. */}
+        <Route path="/signin" element={<SignIn />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/verify" element={<VerifyEmail />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
         <Route path="/guardian" element={<Guardian />} />
         <Route path="/triage" element={<Triage />} />
         <Route path="/investigation" element={<Investigation />} />

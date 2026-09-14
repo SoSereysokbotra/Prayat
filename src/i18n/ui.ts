@@ -138,6 +138,86 @@ const strings = {
     en: 'Could not connect. Check your internet and try again.',
   },
 
+  /* ---- auth ---- */
+  signIn: { kh: 'ចូល​គណនី', en: 'Sign in' },
+  signingIn: { kh: 'កំពុង​ចូល…', en: 'Signing in…' },
+  signUp: { kh: 'បង្កើត​គណនី', en: 'Create account' },
+  signingUp: { kh: 'កំពុង​បង្កើត…', en: 'Creating…' },
+  signInTitle: { kh: 'សូម​ស្វាគមន៍​ត្រឡប់​មក​វិញ', en: 'Welcome back' },
+  signInSubtitle: {
+    kh: 'ចូល​គណនី ដើម្បី​រក្សា​ពិន្ទុ​ការពារ​របស់​អ្នក',
+    en: 'Sign in to keep your resistance score',
+  },
+  signUpTitle: { kh: 'បង្កើត​គណនី​របស់​អ្នក', en: 'Create your account' },
+  signUpSubtitle: {
+    kh: 'រក្សា​វឌ្ឍនភាព​របស់​អ្នក និង​ចែក​រំលែក​ជាមួយ​គ្រួសារ',
+    en: 'Keep your progress and share it with your family',
+  },
+
+  emailLabel: { kh: 'អ៊ីមែល', en: 'Email' },
+  emailPlaceholder: { kh: 'you@example.com', en: 'you@example.com' },
+  passwordLabel: { kh: 'ពាក្យ​សម្ងាត់', en: 'Password' },
+  newPasswordLabel: { kh: 'ពាក្យ​សម្ងាត់​ថ្មី', en: 'New password' },
+  confirmPasswordLabel: { kh: 'បញ្ជាក់​ពាក្យ​សម្ងាត់​ថ្មី', en: 'Confirm new password' },
+  showPassword: { kh: 'បង្ហាញ​ពាក្យ​សម្ងាត់', en: 'Show password' },
+  passwordHint: {
+    kh: 'យ៉ាង​ហោច​ណាស់ ៨ តួ​អក្សរ',
+    en: 'At least 8 characters',
+  },
+
+  errEmailRequired: { kh: 'សូម​បញ្ចូល​អ៊ីមែល​របស់​អ្នក', en: 'Enter your email' },
+  errEmailInvalid: { kh: 'អ៊ីមែល​នេះ​មើល​ទៅ​មិន​ត្រឹមត្រូវ​ទេ', en: 'That does not look like an email' },
+  errPasswordRequired: { kh: 'សូម​បញ្ចូល​ពាក្យ​សម្ងាត់', en: 'Enter your password' },
+  errPasswordShort: { kh: 'ពាក្យ​សម្ងាត់​ខ្លី​ពេក', en: 'That password is too short' },
+  errPasswordMismatch: { kh: 'ពាក្យ​សម្ងាត់​ទាំង​ពីរ​មិន​ដូច​គ្នា​ទេ', en: 'The two passwords do not match' },
+  errCodeIncomplete: { kh: 'សូម​បញ្ចូល​លេខ​ទាំង ៦ តួ', en: 'Enter all six digits' },
+
+  forgotPassword: { kh: 'ភ្លេច​ពាក្យ​សម្ងាត់?', en: 'Forgot password?' },
+  noAccountYet: { kh: 'មិន​ទាន់​មាន​គណនី?', en: 'No account yet?' },
+  alreadyHaveAccount: { kh: 'មាន​គណនី​រួច​ហើយ?', en: 'Already have an account?' },
+  continueWithoutAccount: { kh: 'បន្ត​ដោយ​មិន​ចាំបាច់​មាន​គណនី', en: 'Continue without an account' },
+
+  verifyTitle: { kh: 'ពិនិត្យ​អ៊ីមែល​របស់​អ្នក', en: 'Check your email' },
+  verifySubtitle: {
+    kh: 'យើង​បាន​ផ្ញើ​លេខ ៦ តួ​ទៅ',
+    en: 'We sent a six-digit code to',
+  },
+  verifyCodeLabel: { kh: 'លេខ​បញ្ជាក់', en: 'Verification code' },
+  verifyAction: { kh: 'បញ្ជាក់​អ៊ីមែល', en: 'Verify email' },
+  verifying: { kh: 'កំពុង​បញ្ជាក់…', en: 'Verifying…' },
+  didNotGetCode: { kh: 'មិន​បាន​ទទួល​លេខ​ទេ?', en: "Didn't get the code?" },
+  resendCode: { kh: 'ផ្ញើ​ម្ដង​ទៀត', en: 'Send it again' },
+  codeResent: { kh: 'បាន​ផ្ញើ​ម្ដង​ទៀត​ហើយ', en: 'Sent again' },
+  resendIn: { kh: 'ផ្ញើ​ម្ដង​ទៀត​ក្នុង', en: 'Resend in' },
+  seconds: { kh: 'វិនាទី', en: 'seconds' },
+
+  forgotTitle: { kh: 'កំណត់​ពាក្យ​សម្ងាត់​ឡើង​វិញ', en: 'Reset your password' },
+  forgotSubtitle: {
+    kh: 'បញ្ចូល​អ៊ីមែល​របស់​អ្នក រួច​យើង​នឹង​ផ្ញើ​តំណ​សម្រាប់​កំណត់​ឡើង​វិញ',
+    en: 'Enter your email and we will send you a reset link',
+  },
+  sendResetLink: { kh: 'ផ្ញើ​តំណ​កំណត់​ឡើង​វិញ', en: 'Send reset link' },
+  sending: { kh: 'កំពុង​ផ្ញើ…', en: 'Sending…' },
+  resetLinkSentTitle: { kh: 'សូម​ពិនិត្យ​អ៊ីមែល​របស់​អ្នក', en: 'Check your email' },
+  resetLinkSentBody: {
+    kh: 'ប្រសិន​បើ​អ៊ីមែល​នោះ​មាន​គណនី យើង​បាន​ផ្ញើ​តំណ​កំណត់​ពាក្យ​សម្ងាត់​ឡើង​វិញ​ទៅ​វា​ហើយ។',
+    en: 'If that address has an account, we have sent it a password reset link.',
+  },
+  backToSignIn: { kh: 'ត្រឡប់​ទៅ​ការ​ចូល​គណនី', en: 'Back to sign in' },
+
+  resetTitle: { kh: 'ជ្រើស​ពាក្យ​សម្ងាត់​ថ្មី', en: 'Choose a new password' },
+  resetSubtitle: {
+    kh: 'ជ្រើស​ពាក្យ​សម្ងាត់​ដែល​អ្នក​មិន​ប្រើ​នៅ​កន្លែង​ផ្សេង',
+    en: 'Pick one you do not use anywhere else',
+  },
+  resetAction: { kh: 'រក្សា​ទុក​ពាក្យ​សម្ងាត់​ថ្មី', en: 'Save new password' },
+  resetting: { kh: 'កំពុង​រក្សា​ទុក…', en: 'Saving…' },
+  resetDoneTitle: { kh: 'ពាក្យ​សម្ងាត់​ត្រូវ​បាន​ប្ដូរ​ហើយ', en: 'Password changed' },
+  resetDoneBody: {
+    kh: 'ឥឡូវ​អ្នក​អាច​ចូល​គណនី​ដោយ​ប្រើ​ពាក្យ​សម្ងាត់​ថ្មី​របស់​អ្នក។',
+    en: 'You can now sign in with your new password.',
+  },
+
   /* ---- language ---- */
   languageName: { kh: 'ខ្មែរ', en: 'English' },
 } as const satisfies Record<string, { kh: string; en: string }>
