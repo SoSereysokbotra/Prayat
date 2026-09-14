@@ -11,7 +11,8 @@
     "lint:tokens": "node scripts/lint-tokens.mjs",
     "typecheck": "tsc --noEmit",
     "validate:content": "node scripts/validate-content.mjs",
-    "validate:content:strict": "node scripts/validate-content.mjs --strict"
+    "validate:content:strict": "node scripts/validate-content.mjs --strict",
+    "test:strip": "tsx scripts/test-strip.ts"
   },
   "dependencies": {
     "express": "^4.21.2",
