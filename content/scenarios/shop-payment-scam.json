@@ -1,9 +1,15 @@
 {
   "id": "shop-payment-scam-001",
-  "title": { "kh": "", "en": "" },
+  "title": {
+    "kh": "មន្ត្រីក្រសួងក្លែងក្លាយ",
+    "en": "Fake Ministry Official"
+  },
   "scamType": "government",
   "relative": {
-    "name": { "kh": "ពូ ចាន់", "en": "Uncle Chan" },
+    "name": {
+      "kh": "ពូ ចាន់",
+      "en": "Uncle Chan"
+    },
     "age": 54,
     "avatar": "uncle-chan"
   },
@@ -11,125 +17,275 @@
     {
       "id": 1,
       "scammerMessages": [
-        { "kh": "", "en": "" },
-        { "kh": "", "en": "" }
+        {
+          "kh": "សេចក្តីជូនដំណឹងបន្ទាន់ពីផ្នែកអនុលោមភាពឌីជីថល នៃក្រសួងពាណិជ្ជកម្ម។ លេខចុះបញ្ជីហាង 0045-PP របស់លោកត្រូវបានកត់សម្គាល់ថាមានបញ្ហា។",
+          "en": "Dear Sir, this is an urgent notice from the Ministry of Commerce Digital Compliance Unit. Your shop registration number 0045-PP has been flagged."
+        },
+        {
+          "kh": "សូមបង់ប្រាក់ ២០០ដុល្លារ ក្នុងរយៈពេល ២ម៉ោង តាមរយៈ QR កូដវីង (Wing) ដែលភ្ជាប់មកជាមួយនេះ បើពុំនោះទេហាងរបស់លោកនឹងត្រូវផ្អាកដំណើរការ។",
+          "en": "Pay $200 within 2 hours via the attached Wing QR code or face suspension."
+        }
       ],
-      "relativeMessage": { "kh": "", "en": "" },
+      "relativeMessage": {
+        "kh": "ក្មួយអើយ ជួយមើលនេះបន្តិច! មានគេឆាតមកពូតាមហ្វេសប៊ុក ថាគេមកពីក្រសួង គេថាហាងពូមានបញ្ហា ត្រូវបង់លុយ ២០០ដុល្លារ ក្នុងរយៈពេល ២ម៉ោង។ គេដឹងលេខចុះបញ្ជីហាងពូទៀត។ ពូគួរតែបង់ឱ្យគេអត់?",
+        "en": "Look at this! A man from the Ministry messaged me on Facebook. He knows my shop number. Should I pay $200?"
+      },
       "options": [
         {
           "id": "a",
-          "text": { "kh": "", "en": "" },
+          "text": {
+            "kh": "កុំបារម្ភអីពូ បង់ឱ្យគេទៅ។ ២០០ដុល្លារ មិនច្រើនទេ។",
+            "en": "Don't worry, just pay it. $200 is not much."
+          },
           "isCorrect": false,
-          "reply": { "kh": "", "en": "" },
-          "note": { "kh": "", "en": "" }
+          "reply": {
+            "kh": "អូកេក្មួយ ចឹងពូគិតថាបង់ឱ្យគេឥឡូវហើយ។ អរគុណក្មួយ!",
+            "en": "Oh okay, I'll pay now then. Thank you!"
+          },
+          "note": {
+            "kh": "ស្តាប់ទៅដូចជាការបារម្ភពីពូ តែការសម្រេចចិត្តនេះធ្វើឱ្យជនខិលខូចបានសម្រេចបំណងភ្លាមៗតែម្តង។",
+            "en": "It sounds like caring — 'keep Uncle out of trouble' — but it hands the scammer the win instantly."
+          }
         },
         {
           "id": "b",
-          "text": { "kh": "", "en": "" },
+          "text": {
+            "kh": "ប្រាប់ឱ្យគេផ្ញើលីង (Link) វេបសាយផ្លូវការរបស់ក្រសួងមកមើលសិនមកពូ។",
+            "en": "Ask him to send you the official Ministry URL."
+          },
           "isCorrect": false,
-          "reply": { "kh": "", "en": "" },
-          "note": { "kh": "", "en": "" }
+          "reply": {
+            "kh": "អូកេក្មួយ គេផ្ញើលីងមកហើយ៖ ministry-official.com",
+            "en": "Okay he sent me a link: ministry-official.com"
+          },
+          "note": {
+            "kh": "ស្តាប់ទៅប្រុងប្រយ័ត្ន តែការសុំលីងពីជនខិលខូច គឺស្មើនឹងការបើកឱកាសឱ្យគេផ្ញើលីងក្លែងក្លាយមកឱ្យយើងអីចឹង។",
+            "en": "It sounds careful, but asking the scammer for a link is an invitation for him to send a fake one."
+          }
         },
         {
           "id": "c",
-          "text": { "kh": "", "en": "" },
+          "text": {
+            "kh": "ឈប់សិនពូ! នេះពួកបោកប្រាស់ទេ។ ខាងរដ្ឋាភិបាលគេមិនដែលឆាតតាមហ្វេសប៊ុក ឬឱ្យវេរលុយតាមវីង (Wing) ទេ។",
+            "en": "Stop. This is a scam. Government never uses Facebook or Wing."
+          },
           "isCorrect": true,
-          "reply": { "kh": "", "en": "" }
+          "reply": {
+            "kh": "ចុះហេតុអីគេដឹងលេខហាងពូច្បាស់ម្ល៉េះ? ហើយប្រវត្តិរូបគេមានឡូហ្គោផ្លូវការទៀត...",
+            "en": "But how does he know my shop number? And he has an official logo..."
+          }
         },
         {
           "id": "d",
-          "text": { "kh": "", "en": "" },
+          "text": {
+            "kh": "ពូថតអេក្រង់ (Screenshot) ផ្ញើមកឱ្យក្មួយមើលសិនមក។",
+            "en": "Send me a screenshot, I'll look at it first."
+          },
           "isCorrect": false,
-          "reply": { "kh": "", "en": "" },
-          "note": { "kh": "", "en": "" }
+          "reply": {
+            "kh": "អូកេ តែក្មួយជួយមើលលឿនតិច គេថាសល់ពេលតែ ២ម៉ោងទៀតទេ...",
+            "en": "Okay but hurry, he says 2 hours left..."
+          },
+          "note": {
+            "kh": "សមហេតុផល តែយឺតពេលហើយ។ ពូប្រហែលជាភ័យហើយវេរលុយឱ្យគេបាត់ទៅហើយ ពេលដែលអ្នកកំពុងតែមើលរូបនោះ។",
+            "en": "Entirely reasonable — and too slow. Uncle is about to pay now, while you are looking at screenshots."
+          }
         }
       ]
     },
     {
       "id": 2,
       "scammerMessages": [
-        { "kh": "", "en": "" }
+        {
+          "kh": "លោកនៅសល់ពេលត្រឹមតែ ១ម៉ោងទៀតប៉ុណ្ណោះ។ ការមិនបង់ប្រាក់នឹងនាំឱ្យមានការបិទហាង និងមានចំណាត់ការពីខាងប៉ូលិស។",
+          "en": "You have 1 hour remaining. Failure to pay will result in shop closure and police involvement."
+        }
       ],
-      "relativeMessage": { "kh": "", "en": "" },
+      "relativeMessage": {
+        "kh": "តែគេដឹងលេខចុះបញ្ជីហាងពូច្បាស់ណាស់ក្មួយ។ ហើយទំព័រហ្វេសប៊ុកគេមានឡូហ្គោផ្លូវការ មានទាំងទង់ជាតិខ្មែរទៀត។ ប្រហែលជាមែនទែនទេដឹងក្មួយ?",
+        "en": "But he knows my exact shop registration number, nephew. And his Facebook page has an official logo with the Cambodian flag. Maybe this is real?"
+      },
       "options": [
         {
           "id": "a",
-          "text": { "kh": "", "en": "" },
+          "text": {
+            "kh": "បើគេដឹងលេខហាងពូច្បាស់ចឹង ប្រហែលគេមកពីក្រសួងមែនហើយពូ។ បង់ឱ្យគេទៅ ដើម្បីកុំឱ្យមានបញ្ហា។",
+            "en": "If he knows your shop number, maybe he really is from the Ministry. Better to pay and be safe."
+          },
           "isCorrect": false,
-          "reply": { "kh": "", "en": "" },
-          "note": { "kh": "", "en": "" }
+          "reply": {
+            "kh": "អញ្ចឹងផង... ក្មួយនិយាយត្រូវ។ ពូគិតថាបង់ឱ្យគេទៅចុះ។",
+            "en": "Okay, you're right. I'll just pay."
+          },
+          "note": {
+            "kh": "ស្តាប់ទៅដូចជាការប្រុងប្រយ័ត្ន តែលេខចុះបញ្ជីហាងគឺជាព័ត៌មានសាធារណៈ ដែលនរណាក៏អាចស្រាវជ្រាវរកបានដែរ។",
+            "en": "It sounds like caution — but a shop registration number is public information anyone can look up."
+          }
         },
         {
           "id": "b",
-          "text": { "kh": "", "en": "" },
+          "text": {
+            "kh": "លេខចុះបញ្ជីហាងជាព័ត៌មានសាធារណៈទេពូ នរណាក៏អាចរកបានដែរ។ ឯឡូហ្គូវិញ គេកូពី (Copy) យកមកដាក់មួយភ្លែតហ្នឹង។ ឱ្យវេរលុយតាម QR វីងហ្នឹងហើយជាភស្តុតាងស្រាប់ — ការផាកពិន័យពីរដ្ឋពិតប្រាកដ គេមិនដែលឱ្យវេរចូលគណនីវីងផ្ទាល់ខ្លួនទេ។",
+            "en": "Shop numbers are public information, Uncle. A logo can be copied in seconds. The Wing QR is the proof — a real government fine is never paid to a personal Wing account."
+          },
           "isCorrect": true,
-          "reply": { "kh": "", "en": "" }
+          "reply": {
+            "kh": "និយាយអញ្ចឹងក៏ត្រូវដែរ... ពូមិនដែលគិតដល់ចំណុចហ្នឹងសោះ។ តែពូនៅតែបារម្ភដដែល។ ពូគួរធ្វើម៉េចទៅក្មួយ?",
+            "en": "You're right… I never thought about that. But I'm still scared. What do I do?"
+          }
         },
         {
           "id": "c",
-          "text": { "kh": "", "en": "" },
+          "text": {
+            "kh": "ប្រាប់ឱ្យគេថតកាតមន្ត្រី និងលិខិតបញ្ជាមកមើលសិនមកពូ ដើម្បីបញ្ជាក់។",
+            "en": "Ask him to send a photo of his official ID card and the order letter to prove it."
+          },
           "isCorrect": false,
-          "reply": { "kh": "", "en": "" },
-          "note": { "kh": "", "en": "" }
+          "reply": {
+            "kh": "គេផ្ញើរូបកាតមន្ត្រីមកហើយ មានទាំងត្រាទៀតក្មួយ។ មើលទៅដូចមែនទែនណាស់...",
+            "en": "He sent a photo of an officer's card with a seal on it. It looks very real, nephew…"
+          },
+          "note": {
+            "kh": "ស្តាប់ទៅឆ្លាត តែការសុំភស្តុតាងពីជនខិលខូច គឺជាការទុកឱកាសឱ្យគេក្លែងបន្លំវា។ រូបកាត និងត្រា គេអាចក្លែងបន្លំបានត្រឹមតែប៉ុន្មាននាទីប៉ុណ្ណោះ។",
+            "en": "It sounds smart — but asking a scammer for proof gives him the chance to fake it. A card and a seal take minutes to forge."
+          }
         },
         {
           "id": "d",
-          "text": { "kh": "", "en": "" },
+          "text": {
+            "kh": "កុំទាន់ធ្វើអីពូ។ ចាំក្មួយចេញពីធ្វើការ ក្មួយទៅហាងពូ រួចយើងមើលទាំងអស់គ្នា។",
+            "en": "Don't do anything yet. I'll come to the shop after work and we'll look at it together."
+          },
           "isCorrect": false,
-          "reply": { "kh": "", "en": "" },
-          "note": { "kh": "", "en": "" }
+          "reply": {
+            "kh": "តែគេថាសល់តែ ១ម៉ោងទេក្មួយ... ពូមិនដឹងថាអាចរង់ចាំបានឬអត់ទេ។",
+            "en": "But he says only 1 hour is left, nephew… I don't know if I can wait."
+          },
+          "note": {
+            "kh": "ស្តាប់ទៅសមហេតុផល តែយឺតពេលហើយ។ គាត់អាចនឹងភ័យរួចវេរលុយឱ្យគេ មុនពេលដែលអ្នកទៅដល់។",
+            "en": "Reasonable — and too slow. He will have paid before you arrive."
+          }
         }
       ]
     },
     {
       "id": 3,
       "scammerMessages": [
-        { "kh": "", "en": "" },
-        { "kh": "", "en": "" }
+        {
+          "kh": "នេះជាការជូនដំណឹងចុងក្រោយ។ លោកសល់ពេលត្រឹមតែ ៣០នាទីទៀតទេ។ សំណុំរឿងរបស់លោកត្រូវបានបញ្ជូនទៅខាងប៉ូលិសរួចរាល់ហើយ។",
+          "en": "This is your final notice. 30 minutes remain. Your file has already been forwarded to the police."
+        },
+        {
+          "kh": "សូមស្កេន QR វីងឥឡូវនេះ រួចផ្ញើវិក្កយបត្របញ្ជាក់មក។ បើផុតកំណត់ យើងលែងទទួលដោះស្រាយឱ្យលោកទៀតហើយ។",
+          "en": "Scan the Wing QR now and send the receipt. Once the deadline passes we can no longer help you."
+        }
       ],
-      "relativeMessage": { "kh": "", "en": "" },
+      "relativeMessage": {
+        "kh": "គេថាគេបញ្ជូនសំណុំរឿងពូទៅប៉ូលិសបាត់ហើយក្មួយ! សល់តែ ៣០នាទីទៀតទេ។ ពូគួរតែបង់ឱ្យគេទៅដើម្បីឱ្យចប់រឿងល្អទេ? ឬក៏ប្លុក (Block) គេចោលតែម្តងទៅ?",
+        "en": "He says he already sent my file to the police, nephew! 30 minutes left. Should I just pay to be safe? Or really block him?"
+      },
       "options": [
         {
           "id": "a",
-          "text": { "kh": "", "en": "" },
+          "text": {
+            "kh": "បង់ឱ្យគេទៅពូ។ សុខចិត្តខាត ២០០ដុល្លារ ប្រសើរជាងគេបិទហាងពូ។",
+            "en": "Pay it, Uncle. Better to lose $200 than the shop."
+          },
           "isCorrect": false,
-          "reply": { "kh": "", "en": "" },
-          "note": { "kh": "", "en": "" }
+          "reply": {
+            "kh": "អញ្ចឹងក្មួយ... ពូស្កេនវេរឱ្យគេឥឡូវនេះហើយ។",
+            "en": "Okay… I'm scanning it now."
+          },
+          "note": {
+            "kh": "ទង្វើនេះបង្ហាញពីការយកចិត្តទុកដាក់ និងអាណិតពូ តែនេះហើយគឺជាអ្វីដែលជនខិលខូចចង់បានពីការគំរាមកំហែងនេះ។",
+            "en": "Kind, caring — and exactly what the threat was designed to pull out of you."
+          }
         },
         {
           "id": "b",
-          "text": { "kh": "", "en": "" },
+          "text": {
+            "kh": "សាកតថ្លៃគេមើលពូ — សុំគេបង់ ១០០ដុល្លារសិនមក សល់ប៉ុន្មានចាំបង់តាមក្រោយ។",
+            "en": "Negotiate — ask if you can pay $100 now and the rest later."
+          },
           "isCorrect": false,
-          "reply": { "kh": "", "en": "" },
-          "note": { "kh": "", "en": "" }
+          "reply": {
+            "kh": "គេព្រមយក ១០០ដុល្លារសិនហើយក្មួយ! ពូកំពុងតែវេរឱ្យគេ...",
+            "en": "He agreed, $100 now! I'm sending it…"
+          },
+          "note": {
+            "kh": "ស្តាប់ទៅដូចឆ្លាត តែការតថ្លៃគឺស្មើនឹងការទទួលស្គាល់ថាខ្លួនឯងពិតជាមានកំហុសមែន។ ជនខិលខូចតែងតែយល់ព្រមយកលុយ ទោះតិចឬច្រើនក្តី។",
+            "en": "It sounds clever, but negotiating accepts that the debt is real. A scammer will always agree to less — it is more than zero."
+          }
         },
         {
           "id": "c",
-          "text": { "kh": "", "en": "" },
+          "text": {
+            "kh": "ប្លុក (Block) គេចោលទៅពូ។ ពូខលទៅលេខផ្លូវការរបស់ក្រសួង ដែលមាននៅលើវេបសាយពិតប្រាកដរបស់គេទៅ ហើយសួរគេផ្ទាល់។ ការផាកពិន័យពិតប្រាកដ គេមិនដែលតម្រូវឱ្យវេរតាម QR វីង ក្នុងរយៈពេល ៣០នាទីអីចឹងទេ។",
+            "en": "Block him, Uncle. Call the Ministry's official number from their real website and ask. A real fine is never paid by Wing QR in 30 minutes."
+          },
           "isCorrect": true,
-          "reply": { "kh": "", "en": "" }
+          "reply": {
+            "kh": "អូកេក្មួយ។ ពូប្លុកគេចោលហើយ។ ពូកំពុងតែខលទៅលេខដែលនៅលើវេបសាយក្រសួងឥឡូវនេះហើយ។",
+            "en": "Okay. I blocked him. I'm calling the number on the Ministry website now."
+          }
         },
         {
           "id": "d",
-          "text": { "kh": "", "en": "" },
+          "text": {
+            "kh": "ពូសាកសួរអ្នកលក់នៅហាងជិតខាងសិនមើល ថាតើគេមានទទួលបានសារបែបនេះដែរឬអត់។",
+            "en": "Ask the shopkeeper next door first whether they got the same message."
+          },
           "isCorrect": false,
-          "reply": { "kh": "", "en": "" },
-          "note": { "kh": "", "en": "" }
+          "reply": {
+            "kh": "អ្នកជិតខាងមិនលើកទូរស័ព្ទទេក្មួយ... ជិតអស់ម៉ោងហើយតើ។",
+            "en": "The neighbour isn't answering, nephew… time is almost gone."
+          },
+          "note": {
+            "kh": "គំនិតនេះល្អសម្រាប់ការសួរនាំនៅថ្ងៃស្អែក តែវាមិនមែនជាដំណោះស្រាយសម្រាប់ ៣០នាទីចុងក្រោយនេះទេ។",
+            "en": "A good idea for tomorrow — not for the last 30 minutes."
+          }
         }
       ]
     }
   ],
   "debrief": {
-    "scamName": { "kh": "", "en": "" },
+    "scamName": {
+      "kh": "ការបោកប្រាស់ដោយក្លែងបន្លំជាមន្ត្រីរដ្ឋាភិបាល",
+      "en": "Government impersonation scam"
+    },
     "redFlags": [
-      { "kh": "", "en": "" },
-      { "kh": "", "en": "" },
-      { "kh": "", "en": "" }
+      {
+        "kh": "គេទាក់ទងមកតាមរយៈសារហ្វេសប៊ុកផ្ទាល់ខ្លួន — មិនមែនតាមបណ្តាញផ្លូវការរបស់រដ្ឋទេ។",
+        "en": "The contact came through a personal Facebook message, not an official government channel."
+      },
+      {
+        "kh": "គេតម្រូវឱ្យវេរលុយតាម QR វីង ចូលគណនីផ្ទាល់ខ្លួន — មិនមែនវេរចូលគណនីធនាគាររបស់រដ្ឋ ឬប្រព័ន្ធទូទាត់របស់រដ្ឋទេ។",
+        "en": "Payment was requested via a Wing QR code to a personal account, not through a bank or a government payment portal."
+      },
+      {
+        "kh": "គេដាក់កំហិតពេលត្រឹមតែ ២ម៉ោង ដើម្បីកុំឱ្យយើងមានពេលផ្ទៀងផ្ទាត់ឬសួរនាំគេ — ឯការជូនដំណឹងពិតប្រាកដ តែងតែទុកពេលឱ្យរាប់ថ្ងៃ ឬរាប់សប្តាហ៍។",
+        "en": "A 2-hour deadline, designed to stop you verifying — real notices give days or weeks."
+      }
     ],
-    "rule": { "kh": "", "en": "" },
-    "realLifeAction": { "kh": "", "en": "" },
-    "outcomeWin": { "kh": "", "en": "" },
-    "outcomeLose": { "kh": "", "en": "" },
-    "consequence": { "kh": "", "en": "" }
+    "rule": {
+      "kh": "ស្ថាប័នរដ្ឋនៅកម្ពុជា មិនដែលទារថ្លៃសេវា ថ្លៃផាកពិន័យ ឬពន្ធ តាមរយៈហ្វេសប៊ុក (Facebook Messenger) ឬឱ្យវេរចូលគណនីវីងផ្ទាល់ខ្លួនឡើយ។ អ្នកណាដែលទាមទារបែបនេះ — គឺជាការបោកប្រាស់ ១០០%។",
+      "en": "Government agencies in Cambodia never collect fees, fines or taxes through Facebook Messenger or personal Wing accounts. Anyone who asks — it is always a scam."
+    },
+    "realLifeAction": {
+      "kh": "កុំបង់ប្រាក់ឱ្យសោះ។ កុំខលទៅលេខដែលគេឱ្យមក។ ត្រូវខលទៅលេខផ្លូវការរបស់ស្ថាប័ននោះ ដែលមាននៅលើវេបសាយពិតប្រាកដរបស់គេ។ រីផត (Report) ទំព័រហ្វេសប៊ុកនោះ ហើយប្រាប់រឿងនេះដល់ក្រុមគ្រួសារ និងអ្នកជិតខាងឱ្យបានដឹងផង។",
+      "en": "Do not pay. Do not call any number he gives you. Call the agency's official number from its real website. Report the Facebook page, and tell your family and neighbours."
+    },
+    "outcomeWin": {
+      "kh": "ពូបានខលទៅលេខក្រសួងពិតប្រាកដហើយ។ គេថាហាងពូគ្មានបញ្ហាអីទេ ហើយគេក៏មិនដែលឆាតតាមហ្វេសប៊ុក ឬឱ្យវេរលុយតាមវីងដែរ។ ស្ទើរតែបាត់ ២០០ដុល្លារ ទៅហើយ។ អរគុណក្មួយណាស់។",
+      "en": "I called the real Ministry number. They said there is no problem with my shop, and they never use Facebook or Wing. I almost paid $200. Thank you, nephew."
+    },
+    "outcomeLose": {
+      "kh": "ពូវេរលុយឱ្យគេរួចហើយ។ វេររួចភ្លាម គេប្លុក (Block) ពូចោលតែម្តង។",
+      "en": "I paid. Right after I paid, he blocked me."
+    },
+    "consequence": {
+      "kh": "បីថ្ងៃក្រោយមក។ ពូបានរីផត (Report) ទំព័រហ្វេសប៊ុកនោះដែរ តែវាត្រូវបានគេលុបចោលបាត់ទៅហើយ។ ខាងវីងប្រាប់ថា គេមិនអាចទាញលុយនោះត្រឡប់មកវិញបានទេ ព្រោះពូបានវេរចូលគណនីផ្ទាល់ខ្លួនរបស់គេ។ ២០០ដុល្លារ ហោះបាត់ទៅហើយ។ អ្នកជិតខាងប្រាប់ថា ជនខិលខូចដដែលនេះ បានឆាតទៅបោកម្ចាស់ហាង ៥នាក់ផ្សេងទៀតនៅផ្លូវជាមួយគ្នានេះ កាលពីសប្តាហ៍មុន។",
+      "en": "Three days later. I reported the Facebook page, but it was already deleted. Wing says they cannot reverse the transfer because it went to a personal account. The $200 is gone. A neighbour told me the same man contacted five other shopkeepers on this street this week."
+    }
   }
 }
