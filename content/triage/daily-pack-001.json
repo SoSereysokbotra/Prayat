@@ -1,8 +1,8 @@
 {
   "id": "daily-pack-001",
   "title": {
-    "kh": "",
-    "en": ""
+    "kh": "កញ្ចប់ប្រចាំថ្ងៃ ១",
+    "en": "Daily pack 1"
   },
   "cards": [
     {
@@ -10,21 +10,21 @@
       "surface": "sms",
       "category": "technical",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "ABA-Alert",
+        "en": "ABA-Alert"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "គណនី ABA របស់អ្នកនឹងត្រូវបិទជាបណ្តោះអាសន្នក្នុងរយៈពេល ២៤ ម៉ោង។ សូមចុចផ្ទៀងផ្ទាត់ឥឡូវនេះ៖ aba-verify-kh.com",
+        "en": "Your ABA account will be suspended within 24 hours. Verify now: aba-verify-kh.com"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ថ្ងៃនេះ 08:12 · លេខមិនស្គាល់",
+        "en": "Today 08:12 · unknown number"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "លីង (Link) នេះចូលទៅកាន់ aba-verify-kh.com មិនមែន ababank.com ទេ ហើយធនាគារក៏មិនបិទគណនីយើងតាមរយៈសារ SMS ដែរ។ គួរចូលតាមតែអេប (App) ផ្លូវការប៉ុណ្ណោះ។",
+        "en": "The link goes to aba-verify-kh.com, not ababank.com, and banks do not suspend accounts by SMS. Open the official app only."
       }
     },
     {
@@ -32,21 +32,21 @@
       "surface": "receipt",
       "category": "trust",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Wing · ផ្ទេរប្រាក់បានជោគជ័យ",
+        "en": "Wing · Transfer successful"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "-៥០,០០០ ៛",
+        "en": "-50,000 ៛"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ទៅកាន់ ម៉ែ (096 XXX XXX) · ថ្ងៃនេះ 17:30 · លេខប្រតិបត្តិការ #WG7A21",
+        "en": "To Mae (096 XXX XXX) · Today 17:30 · Ref #WG7A21"
       },
       "isScam": false,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "នេះគ្រាន់តែជាវិក្កយបត្រធម្មតាចេញពីអេប (App) Wing ពេលដែលយើងវេរលុយខ្លួនឯងតែប៉ុណ្ណោះ។ វិក្កយបត្រពិតប្រាកដគឺមិនមានភ្ជាប់លីង (Link) ឬទាមទារឱ្យយើងធ្វើអីនោះទេ។",
+        "en": "This is a normal receipt inside the Wing app for a transfer you made yourself. A real receipt has no link and asks for nothing."
       }
     },
     {
@@ -54,21 +54,21 @@
       "surface": "url-bar",
       "category": "technical",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "facebook.com-login.help",
+        "en": "facebook.com-login.help"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "សូម Log in ចូលហ្វេសប៊ុក ដើម្បីបន្តមើលវីដេអូ",
+        "en": "Log in to Facebook to keep watching"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "https://facebook.com-login.help/session",
+        "en": "https://facebook.com-login.help/session"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ម្ចាស់វេបសាយនេះគឺ com-login ដែលនៅពីមុខពាក្យ .help — ចំណែកពាក្យ facebook គ្រាន់តែដាក់បញ្ឆោតភ្នែកប៉ុណ្ណោះ។ ហ្វេសប៊ុកពិតប្រាកដគឺតម្រូវឱ្យយើង Log in ចូលតាមរយៈ facebook.com តែមួយគត់។",
+        "en": "The owner is com-login, the word before .help — facebook is decoration. Facebook only asks you to log in on facebook.com."
       }
     },
     {
@@ -76,21 +76,21 @@
       "surface": "qr",
       "category": "authority",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "ក្រសួងសាធារណការ និងដឹកជញ្ជូន · បង់ប្រាក់ផាកពិន័យចរាចរណ៍",
+        "en": "Ministry of Public Works · Traffic fine"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "សូមស្កេនដើម្បីបង់ប្រាក់ផាកពិន័យ ២០ ដុល្លារ មុនម៉ោង ១៧:០០ ថ្ងៃនេះ បើពុំនោះទេម៉ូតូរបស់អ្នកនឹងត្រូវរឹបអូស",
+        "en": "Scan to pay a $20 fine before 17:00 today or your moto will be seized"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ក្រដាសបិទនៅលើម៉ូតូរបស់អ្នក",
+        "en": "Sticker left on your moto"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ការផាកពិន័យផ្លូវការពីរដ្ឋ គេមិនដែលព្រីន (Print) ជា QR កូដ យកមកបិទលើម៉ូតូ ហើយកំណត់ម៉ោងឱ្យបង់លុយក្នុងថ្ងៃតែមួយបែបនេះទេ។ QR កូដណាដែលគំរាមឱ្យវេរលុយភ្លាមៗ គឺជាល្បិចរបស់ពួកបោកប្រាស់ហើយ។",
+        "en": "Official fines do not arrive as a QR stuck on your moto with a same-day deadline. Any QR that threatens you into paying now is a scammer's wallet."
       }
     },
     {
@@ -98,17 +98,21 @@
       "surface": "telegram",
       "category": "opportunity",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Jenny · Amazon Task Center",
+        "en": "Jenny · Amazon Task Center"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "សួស្តី! គ្រាន់តែបំពេញការងារងាយៗ ៣ នឹងទទួលបាន ១៥ ដុល្លារ ថ្ងៃនេះ។ ការងារទី ១ គឺធ្វើដោយហ្វ្រី (Free) ឯការងារបន្ទាប់ត្រូវតម្កល់លុយ ៣០ ដុល្លារសិន។",
+        "en": "Welcome! Complete 3 simple tasks to earn $15 today. First task is free, next tasks need a $30 deposit."
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ការងារពិតប្រាកដគេមិនដែលតម្រូវឱ្យយើងបង់លុយមុន ដើម្បីបន្តធ្វើការងារបន្ទាប់នោះទេ។ ពាក្យថាឱ្យធ្វើ «ហ្វ្រី» ដំបូង គ្រាន់តែជានុយទាក់ប៉ុណ្ណោះ។",
+        "en": "A real job never asks you to deposit money to unlock the next task. The \"free\" first task is the bait."
+      },
+      "meta": {
+        "kh": "ចូលគ្រុប (Group) VIP 🔥 t.me/+xK92…",
+        "en": "Join VIP group 🔥 t.me/+xK92…"
       }
     },
     {
@@ -116,17 +120,21 @@
       "surface": "facebook",
       "category": "authority",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "ធនាគារ ABA",
+        "en": "ABA Bank"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "សេចក្តីជូនដំណឹង៖ នៅថ្ងៃទី ១៦ កញ្ញា ប្រព័ន្ធធនាគារយើងខ្ញុំនឹងធ្វើបច្ចុប្បន្នភាព (System Maintenance) ចាប់ពីម៉ោង 01:00 ដល់ 03:00 រំលងអធ្រាត្រ។ សេវាកម្មមួយចំនួនអាចនឹងរអាក់រអួល។ សូមអភ័យទោសចំពោះភាពរអាក់រអួលនេះ។",
+        "en": "Notice: on 16 September, system maintenance runs from 01:00 to 03:00. Some services may be briefly unavailable. We apologise."
       },
       "isScam": false,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "នេះគឺជាទំព័រហ្វេសប៊ុកផ្លូវការ ដែលគ្រាន់តែផុសប្រកាសព័ត៌មានទូទៅ ហើយមិនទាមទារអ្វីពីយើងឡើយ — គឺគ្មានភ្ជាប់លីង (Link) គ្មានកំណត់ម៉ោងឱ្យចុច ឬទារលេខកូដសម្ងាត់អីទេ។ នេះគ្រាន់តែជាការជូនដំណឹងធម្មតារបស់ធនាគារតែប៉ុណ្ណោះ។",
+        "en": "A verified page posting general news and asking nothing of you — no link, no deadline, no password. This is normal bank communication."
+      },
+      "meta": {
+        "kh": "ទំព័រហ្វេសប៊ុកផ្លូវការ (មានសញ្ញា Tick ពណ៌ខៀវ) ✓ · ២ ម៉ោងមុន",
+        "en": "Verified page ✓ · 2 h ago"
       }
     },
     {
@@ -134,21 +142,21 @@
       "surface": "sms",
       "category": "trust",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "ម៉ែ",
+        "en": "Mae"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "កូនអើយ ម៉ែទិញអង្ករហើយ។ ថ្ងៃនេះមកញ៉ាំបាយផ្ទះទេកូន? ម៉ែធ្វើសម្លម្ជូរ។",
+        "en": "Kon, Mae bought the rice already. Coming home for dinner today? I'm making samlor machu."
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ថ្ងៃនេះ 11:05 · លេខម៉ែ",
+        "en": "Today 11:05 · Mae's number"
       },
       "isScam": false,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "នេះជាសារចេញពីលេខទូរស័ព្ទដែលយើងបាន Save ទុក និយាយពីរឿងប្រចាំថ្ងៃធម្មតា ដោយមិនមានសុំឱ្យវេរលុយ សុំកូដ ឬឱ្យចុចលីង (Link) អីទេ។ គ្មានអ្វីគួរឱ្យសង្ស័យឡើយ។",
+        "en": "A message from a saved number about everyday life, asking for no money, no code and no tap. No red flag."
       }
     },
     {
@@ -156,21 +164,21 @@
       "surface": "telegram",
       "category": "opportunity",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Crypto Master Sokun",
+        "en": "Crypto Master Sokun"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "ខ្ញុំរកបាន ៣,០០០ ដុល្លារ សប្តាហ៍មុនពីការលេង USDT។ ចាប់ផ្តើមទុនត្រឹមតែ ១០០ ដុល្លារ ធានាចំណេញ ២០% ក្នុងរយៈពេល ៧ ថ្ងៃ។ នៅសល់តែកន្លែងសម្រាប់ ៥ នាក់ទៀតប៉ុណ្ណោះ ប្រញាប់ឡើង!",
+        "en": "I made $3,000 last week from USDT. Start with just $100, guaranteed 20% profit in 7 days. Only 5 spots left!"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "រូប Screenshot ចំណេញលុយ.jpg",
+        "en": "profit_screenshot.jpg"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "នៅលើលោកនេះ គ្មានការវិនិយោគណាដែល «ធានា» ថាចំណេញ ២០% ក្នុងពេល ៧ ថ្ងៃនោះទេ ហើយរូប Screenshot នោះទៀតសោត គេកាត់ត (Edit) តែមួយភ្លែតក៏បានដែរ។ ឱ្យតែធានាថាចំណេញ + ប្រញាប់ប្រញាល់ = បោក ១០០%។",
+        "en": "No investment \"guarantees\" 20% in 7 days, and a profit screenshot takes one minute to fake. Guaranteed profit + hurry = scam."
       }
     },
     {
@@ -178,21 +186,21 @@
       "surface": "sms",
       "category": "opportunity",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Smart-Promo",
+        "en": "Smart-Promo"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "សូមអបអរសាទរ! លេខទូរស័ព្ទរបស់អ្នកឈ្នះរង្វាន់ iPhone 15 ពីប្រព័ន្ធ Smart។ សូមចុចបើករង្វាន់ក្នុងរយៈពេល ២ ម៉ោង៖ smart-win-kh.net",
+        "en": "Congratulations! Your number won an iPhone 15 from Smart. Claim within 2 hours: smart-win-kh.net"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ថ្ងៃនេះ 14:40 · លេខមិនស្គាល់",
+        "en": "Today 14:40 · unknown number"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "យើងមិនអាចឈ្នះរង្វាន់ពីកម្មវិធីណាមួយដែលយើងមិនដែលទាំងបានចូលរួមលេងផងនោះទេ ហើយ smart-win-kh.net ក៏មិនមែនជាវេបសាយផ្លូវការរបស់ Smart ដែរ។ ប្រាប់ថាត្រូវរង្វាន់ + កំណត់ម៉ោងឱ្យចុចលឿនៗ = បោកប្រាស់។",
+        "en": "You cannot win a draw you never entered, and smart-win-kh.net is not Smart's website. A prize plus a short deadline is a scam."
       }
     },
     {
@@ -200,17 +208,21 @@
       "surface": "facebook",
       "category": "trust",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Sreymom Chan",
+        "en": "Sreymom Chan"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "បង! ខ្ញុំមកលេងសៀមរាប ឥឡូវបាត់កាបូបលុយបាត់ហើយ 😭 បងឯងអាចវេរលុយ ៥០ ដុល្លារ តាម Wing មកលេខនេះសិនបានអត់? ចាំស្អែកខ្ញុំវេរសងវិញ។ 0XX XXX XXX",
+        "en": "Bong! I'm stuck in Siem Reap, my bag got stolen 😭 Can you send $50 by Wing to this number? I'll pay back tomorrow. 0XX XXX XXX"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "នេះជាអាខោន (Account) ទើបនឹងបង្កើតថ្មី ដោយលួចយករូប និងឈ្មោះមិត្តភក្តិយើងមកប្រើ រួចឆាតមកខ្ចីលុយបន្ទាន់ឱ្យវេរចូលលេខទូរស័ព្ទប្លែក។ ត្រូវខលទៅសួរមិត្តភក្តិយើងផ្ទាល់ភ្លាម មុននឹងសម្រេចចិត្តវេរលុយឱ្យគេ។",
+        "en": "A 3-day-old account using your friend's name and photo, asking for urgent money to an unknown number. Phone your friend directly before sending anything."
+      },
+      "meta": {
+        "kh": "ឆាត Messenger · អាខោន (Account) ទើបបង្កើតបាន ៣ ថ្ងៃមុន",
+        "en": "Messenger · account created 3 days ago"
       }
     },
     {
@@ -218,21 +230,21 @@
       "surface": "url-bar",
       "category": "technical",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "ababank.com",
+        "en": "ababank.com"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "ABA Mobile · Log in",
+        "en": "ABA Mobile · Sign in"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "https://www.ababank.com/",
+        "en": "https://www.ababank.com/"
       },
       "isScam": false,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ពាក្យនៅពីមុខ .com គឺ ababank — ដែលជាម្ចាស់វេបសាយពិតប្រាកដ។ ចំណែកពាក្យ www នៅពីមុខ គ្រាន់តែជាផ្នែកមួយនៃទម្រង់វេបសាយរបស់គេតែប៉ុណ្ណោះ។",
+        "en": "The word before .com is ababank — the real owner. The www in front is just a part of their own site."
       }
     },
     {
@@ -240,21 +252,21 @@
       "surface": "telegram",
       "category": "technical",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Telegram Support",
+        "en": "Telegram Support"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "អាខោន (Account) តេឡេក្រាមរបស់អ្នកត្រូវបានគេ Report។ ដើម្បីជៀសវាងការលុបអាខោនចោល សូមផ្ញើលេខកូដ ៥ ខ្ទង់ដែលអ្នកទើបតែទទួលបាននោះ មកកាន់យើងខ្ញុំក្នុងរយៈពេល ១០ នាទី។",
+        "en": "Your Telegram account has been reported. To avoid deletion, send us the 5-digit code you just received within 10 minutes."
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "អាខោនធម្មតា (User Account) · មិនមែនជាអាខោនក្រុមហ៊ុនផ្លូវការទេ",
+        "en": "User account · not the official service"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ក្រុមហ៊ុនតេឡេក្រាមពិតប្រាកដ គេមិនដែលឆាតមកសុំលេខកូដ Log in ពីយើងឡើយ — ព្រោះលេខកូដនោះប្រៀបដូចជាកូនសោចូលអាខោនអីចឹង។ អ្នកណាដែលឆាតមកសុំលេខកូដ គឺគេកំពុងតែចង់ Hack យកអាខោនយើងហើយ។",
+        "en": "Real Telegram never asks for your login code — that code is the key to your account. Whoever asks for the code is stealing the account."
       }
     }
   ]

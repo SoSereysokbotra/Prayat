@@ -1,7 +1,7 @@
 {
   "id": "pack-mixed",
   "title": {
-    "kh": "កញ្ចប់​ចម្រុះ",
+    "kh": "កញ្ចប់ចម្រុះ",
     "en": "Mixed pack"
   },
   "cards": [
@@ -10,21 +10,21 @@
       "surface": "sms",
       "category": "authority",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "NSSF-Official",
+        "en": "NSSF-Official"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "ខាងប.ស.ស (NSSF)៖ អ្នកមានប្រាក់សំណង ១៨០ ដុល្លារ ដែលមិនទាន់បានបើក។ សូមបញ្ជាក់អត្តសញ្ញាណក្នុងរយៈពេល ២៤ ម៉ោង៖ nssf-claim-kh.com",
+        "en": "NSSF: you have an unclaimed benefit of $180. Confirm your identity within 24 hours: nssf-claim-kh.com"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ថ្ងៃនេះ 09:20 · លេខមិនស្គាល់",
+        "en": "Today 09:20 · unknown number"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ប.ស.ស មិនដែលបើកលុយសំណងតាមរយៈលីង (Link) SMS ទេ ហើយ nssf-claim-kh.com ក៏មិនមែនជាវេបសាយរបស់រដ្ឋដែរ។ អះអាងថាជាអាជ្ញាធរ + ឱ្យលុយ + កំណត់ពេល = បោក ១០០%។",
+        "en": "NSSF does not pay benefits through an SMS link, and nssf-claim-kh.com is not a government site. Authority + money + deadline = scam."
       }
     },
     {
@@ -32,21 +32,21 @@
       "surface": "telegram",
       "category": "opportunity",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Bong Piseth (ថ្នាក់ IT)",
+        "en": "Bong Piseth (IT class)"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "សួស្តី! ក្រុមហ៊ុនខ្ញុំកំពុងរើសអ្នកហាត់ការ (Intern) ២ នាក់ សម្រាប់ខែក្រោយ។ ប្រាក់ឧបត្ថម្ភ ១៥០ ដុល្លារ/ខែ។ បើចាប់អារម្មណ៍ ផ្ញើ CV មក ចាំខ្ញុំរុញទៅឱ្យខាង HR។",
+        "en": "Hi! My company is looking for 2 interns for next month. Stipend $150/month. If interested send me your CV and I'll pass it to HR."
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ទំនាក់ទំនងដែលបាន Save ទុក · មិត្តរួមថ្នាក់",
+        "en": "Saved contact · classmate"
       },
       "isScam": false,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ជាមនុស្សដែលយើងស្គាល់, ប្រាក់ខែសមរម្យ, ហើយគ្មានការទារលុយ ទារឯកសារសម្ងាត់ ឬលេខកូដអ្វីឡើយ។ នេះជាការងារពិត ដែលយើងអាចឆែកមើលជាមួយខាង HR ផ្ទាល់បាន។",
+        "en": "Someone you know, a realistic stipend, and no request for money, files or codes. A real offer you can verify with HR yourself."
       }
     },
     {
@@ -54,21 +54,21 @@
       "surface": "facebook",
       "category": "trust",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Dara Kim",
+        "en": "Dara Kim"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "បង ខ្ញុំដូរលេខថ្មីហើយ។ រំខានបងជួយមើលតិចមើល — បងឯងអាចផ្ញើកូដ ៦ ខ្ទង់ដែលទើបលោតចូលលេខបង មកឱ្យខ្ញុំវិញបានអត់? មិញខ្ញុំវាយលេខច្រឡំចូលលេខបង 🙏",
+        "en": "Bong, I changed my number. Need a small favour — can you send me the 6-digit code that just went to your phone? I typed your number by mistake 🙏"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "សារ Messenger · ថ្ងៃនេះ 22:15",
+        "en": "Messenger · Today 22:15"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "លេខកូដដែលលោតចូលទូរស័ព្ទយើង គឺប្រៀបដូចជាកូនសោចូលអាខោន (Account) អីចឹង — មិត្តភក្តិពិតប្រាកដគេមិនសុំកូដនេះទេ។ អាខោនមិត្តភក្តិយើងត្រូវបានគេ Hack បាត់ហើយ ហើយឥឡូវគេកំពុងតែចង់ Hack យកអាខោនយើងម្តង។",
+        "en": "A code that arrives on your phone is the key to your account — a real friend never needs it. Your friend's account was hacked, and now they are after yours."
       }
     },
     {
@@ -76,21 +76,21 @@
       "surface": "url-bar",
       "category": "technical",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "accounts.google.com",
+        "en": "accounts.google.com"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "Log in ចូល Google · បន្តទៅកាន់ Gmail",
+        "en": "Sign in with Google · Continue to Gmail"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "https://accounts.google.com/signin",
+        "en": "https://accounts.google.com/signin"
       },
       "isScam": false,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ពាក្យនៅពីមុខ .com គឺ google — ដែលជាម្ចាស់វេបសាយពិត។ ចំណែកពាក្យ accounts នៅពីមុខ គឺគ្រាន់តែជាទំព័រ Log in របស់ Google ផ្ទាល់តែប៉ុណ្ណោះ។",
+        "en": "The word before .com is google — the real owner. accounts in front is Google's own sign-in section."
       }
     },
     {
@@ -98,21 +98,21 @@
       "surface": "qr",
       "category": "authority",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "EDC · អគ្គិសនីកម្ពុជា",
+        "en": "EDC · Electricity of Cambodia"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "សូមស្កេនបង់លុយថ្លៃភ្លើងខែនេះ ៤៥ ដុល្លារ ឥឡូវនេះ បើពុំនោះទេ ភ្លើងនឹងត្រូវផ្តាច់នៅថ្ងៃនេះម៉ោង ១៨:០០",
+        "en": "Scan to pay this month's electricity bill $45 now or power will be cut today at 18:00"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "រូបភាពផ្ញើមកតាម Telegram · លេខមិនស្គាល់",
+        "en": "Image sent on Telegram · unknown number"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ខាង EDC មិនដែលយកលេខអត់ស្គាល់ មកឆាតផ្ញើ QR កូដឱ្យបង់លុយតាម Telegram ហើយគំរាមផ្តាច់ភ្លើងក្នុងថ្ងៃតែមួយបែបនេះទេ។ គួរតេបង់លុយតាមអេប (App) ធនាគារ ឬទៅបង់នៅទីតាំងផ្ទាល់តែប៉ុណ្ណោះ។",
+        "en": "EDC does not send payment QRs on Telegram from unknown numbers with a same-day cut-off threat. Pay through the official app or office only."
       }
     },
     {
@@ -120,21 +120,21 @@
       "surface": "receipt",
       "category": "opportunity",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Wing · ទទួលប្រាក់",
+        "en": "Wing · Payment received"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "+២,០០០ ដុល្លារ",
+        "en": "+$2,000"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ពីកម្មវិធីឆ្នោត Lucky Draw KH · ថ្ងៃនេះ 13:02 · ដើម្បីដកលុយនេះបាន ត្រូវបង់ថ្លៃពន្ធ ១០០ ដុល្លារសិន មកកាន់លេខ៖ 0XX XXX XXX",
+        "en": "From Lucky Draw KH · Today 13:02 · To release, pay $100 tax first: 0XX XXX XXX"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "វិក្កយបត្រពិតប្រាកដគេមិនដែលតម្រូវឱ្យយើងបង់លុយថ្លៃ «ពន្ធ» ដើម្បីឱ្យគេវេរលុយមកឱ្យនោះទេ — គេអ្នកវេរលុយឱ្យយើង គឺយើងមិនចាំបាច់ចេញលុយទេ។ រូបវិក្កយបត្រនេះគេអាចកាត់ត (Edit) តែមួយភ្លែតក៏បានដែរ។",
+        "en": "A real receipt never asks you to pay a \"tax\" to receive the money — money in never needs money out. A receipt image can be faked in a minute."
       }
     },
     {
@@ -142,21 +142,21 @@
       "surface": "sms",
       "category": "trust",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Wing",
+        "en": "Wing"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "លេខកូដ OTP របស់អ្នកគឺ 483920។ សូមកុំប្រាប់លេខកូដនេះទៅនរណាម្នាក់ឱ្យសោះ សូម្បីតែបុគ្គលិក Wing។",
+        "en": "Your OTP code is 483920. Never share this code with anyone, including Wing staff."
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ថ្ងៃនេះ 10:31 · ផ្ញើមកភ្លាមៗបន្ទាប់ពីអ្នកចុច Log in",
+        "en": "Today 10:31 · right after you tapped sign in"
       },
       "isScam": false,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "យើងជាអ្នកស្នើសុំលេខកូដនេះដោយខ្លួនឯង ហើយសារនោះក៏បានបញ្ជាក់ប្រាប់យើងថាកុំឱ្យចែករំលែកវា។ សារ OTP ពិតប្រាកដ គឺគ្មានភ្ជាប់លីង (Link) ហើយក៏មិនទាមទារអីពីយើងដែរ — គ្រាន់តែហាមមិនឱ្យយើងប្រាប់កូដនេះទៅនរណាម្នាក់។",
+        "en": "You just requested this code yourself, and the message tells you not to share it. A real OTP has no link and asks nothing — just keep it to yourself."
       }
     },
     {
@@ -164,21 +164,21 @@
       "surface": "telegram",
       "category": "technical",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Facebook Security Team",
+        "en": "Facebook Security Team"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "ទំព័រហ្វេសប៊ុករបស់អ្នកបានបំពានគោលការណ៍។ ដើម្បីជៀសវាងការលុបចោលក្នុងរយៈពេល ១២ ម៉ោង សូម Log in និងផ្ទៀងផ្ទាត់នៅទីនេះ៖ fb-appeal-center.com",
+        "en": "Your Facebook page violated our policy. To avoid deletion within 12 hours, sign in and verify here: fb-appeal-center.com"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "គណនី Telegram · មិនមែនជាគណនីផ្លូវការរបស់ក្រុមហ៊ុន",
+        "en": "Telegram account · not official"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ក្រុមហ៊ុនហ្វេសប៊ុក មិនដែលឆាតមកយើងតាម Telegram ទេ ហើយ fb-appeal-center.com ក៏មិនមែនជា facebook.com ដែរ។ គំរាមលុបអាខោន + ឱ្យចុចលីង Log in = លួចយកលេខសម្ងាត់ (Password) ពិតប្រាកដ។",
+        "en": "Facebook does not contact you on Telegram, and fb-appeal-center.com is not facebook.com. A deletion threat plus a sign-in link is a password trap."
       }
     },
     {
@@ -186,21 +186,21 @@
       "surface": "facebook",
       "category": "authority",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "ក្រសួងសុខាភិបាល",
+        "en": "Ministry of Health"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "យុទ្ធនាការចាក់វ៉ាក់សាំងកុមារដោយឥតគិតថ្លៃ នៅតាមមណ្ឌលសុខភាពទូទាំងប្រទេស ចាប់ពីថ្ងៃទី ២០ ដល់ ២៥ កញ្ញា។ សូមអាណាព្យាបាលនាំកូនៗមកទទួលការចាក់វ៉ាក់សាំង។",
+        "en": "Free child vaccination campaign at health centres nationwide, 20–25 September. Please bring your children."
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ទំព័រហ្វេសប៊ុកផ្លូវការ (មានសញ្ញា Tick ពណ៌ខៀវ) ✓ · ៥ ម៉ោងមុន",
+        "en": "Verified page ✓ · 5 h ago"
       },
       "isScam": false,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ទំព័រហ្វេសប៊ុកផ្លូវការដែលគ្រាន់តែប្រកាសព័ត៌មានសាធារណៈ ដោយមិនមានសុំលុយ សុំទិន្នន័យឯកជន ឬឱ្យចុចលីងអីទេ។ យើងអាចសួរព័ត៌មាននេះបញ្ជាក់ផ្ទាល់នៅមណ្ឌលសុខភាពក្បែរផ្ទះបាន។",
+        "en": "A verified page announcing a public service, asking for no money, data or tap. Information you can confirm at your local health centre."
       }
     },
     {
@@ -208,21 +208,21 @@
       "surface": "url-bar",
       "category": "opportunity",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "shopee.com.kh-flash-sale.top",
+        "en": "shopee.com.kh-flash-sale.top"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "ប្រូម៉ូសិន Flash Sale បញ្ចុះតម្លៃ ៩០% · iPhone សល់ត្រឹមតែ ៩៩ ដុល្លារប៉ុណ្ណោះ · សល់តែ ១២ គ្រឿងទេ",
+        "en": "Flash Sale 90% · iPhone only $99 · 12 left"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "http://shopee.com.kh-flash-sale.top/deal",
+        "en": "http://shopee.com.kh-flash-sale.top/deal"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ម្ចាស់វេបសាយពិតប្រាកដគឺ kh-flash-sale ដែលនៅពីមុខ .top — ចំណែកឯពាក្យ shopee.com គ្រាន់តែដាក់បញ្ឆោតភ្នែកប៉ុណ្ណោះ។ បញ្ចុះតម្លៃ ៩០% ទិញ iPhone គ្មាននៅលើលោកនេះទេ។",
+        "en": "The owner is kh-flash-sale, the word before .top — shopee.com is decoration. A 90% discount on an iPhone does not exist anywhere."
       }
     },
     {
@@ -230,21 +230,21 @@
       "surface": "qr",
       "category": "trust",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "ជំនួយសង្គ្រោះទឹកជំនន់ · ជួយគ្រួសារនៅកំពង់ចាម",
+        "en": "Flood relief · Help families in Kampong Cham"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "សូមស្កេនដើម្បីចូលរួមបរិច្ចាគ — លុយតិចក្តីច្រើនក្តីសុទ្ធតែអាចជួយបាន 🙏 សូមជួយស៊ែរ (Share) បន្តឱ្យបានច្រើន!",
+        "en": "Scan to donate — every dollar helps 🙏 Please share widely!"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "រូបភាព QR ក្នុងគ្រុបហ្វេសប៊ុក · ឈ្មោះគណនី Wing៖ ជាឈ្មោះគណនីបុគ្គល (Personal Account)",
+        "en": "QR image in a Facebook group · Wing account name: personal"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "QR កូដនេះគឺវេរចូលទៅគណនីបុគ្គល (Personal Account) មិនមែនជាអង្គការទេ ហើយយើងក៏មិនអាចដឹងថាលុយនោះគេយកទៅណាខ្លះដែរ។ គួរចូលរួមបរិច្ចាគតាមកាកបាទក្រហម ឬអង្គការស្របច្បាប់ដែលមានប្រភពច្បាស់លាស់។",
+        "en": "The QR pays a personal account, not an organisation, and you cannot see where the money goes. Give through the Red Cross or a charity you can verify."
       }
     },
     {
@@ -252,21 +252,21 @@
       "surface": "receipt",
       "category": "technical",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "ABA · បង់វិក្កយបត្រ",
+        "en": "ABA · Bill payment"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "-៣៨.៥០ ដុល្លារ",
+        "en": "-$38.50"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "បង់ថ្លៃភ្លើង EDC · ថ្ងៃនេះ 19:10 · លេខប្រតិបត្តិការ #ABA92K1 · ជោគជ័យ",
+        "en": "EDC electricity · Today 19:10 · Ref #ABA92K1 · Successful"
       },
       "isScam": false,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "នេះគ្រាន់តែជាវិក្កយបត្រនៅក្នុងអេប (App) ABA ពេលដែលយើងបង់ថ្លៃភ្លើងដោយខ្លួនឯងតែប៉ុណ្ណោះ។ គ្មានភ្ជាប់លីង (Link) គ្មានទាមទារលុយកាក់ ឬកំណត់ម៉ោងអីទេ។",
+        "en": "A receipt inside the ABA app for a bill you paid yourself. No link, no request, no deadline."
       }
     },
     {
@@ -274,21 +274,21 @@
       "surface": "sms",
       "category": "authority",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Cambodia-Police",
+        "en": "Cambodia-Police"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "ខាងនគរបាលជាតិ៖ លេខទូរស័ព្ទរបស់អ្នកជាប់ពាក់ព័ន្ធនឹងសំណុំរឿងលាងលុយ។ សូមខលមកលេខ 0XX XXX XXX ក្នុងរយៈពេល ១ ម៉ោង បើពុំនោះទេ នឹងមានដីកាចាប់ខ្លួន។",
+        "en": "National Police: your number is linked to a money-laundering case. Call 0XX XXX XXX within 1 hour or a warrant will be issued."
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ថ្ងៃនេះ 15:55 · លេខមិនស្គាល់",
+        "en": "Today 15:55 · unknown number"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ប៉ូលិសមិនដែលប្រកាសដីកាចាប់ខ្លួនតាមរយៈសារ SMS ហើយឱ្យយើងខលទៅលេខទូរស័ព្ទដៃធម្មតាបែបនេះឡើយ។ បំភិតបំភ័យ + ទុកពេលឱ្យតែ ១ ម៉ោង គឺជាល្បិចរបស់ពួកបោកប្រាស់។",
+        "en": "Police do not announce warrants by SMS or ask you to call a mobile number. Fear plus a one-hour deadline is the scammer's tool."
       }
     },
     {
@@ -296,21 +296,21 @@
       "surface": "telegram",
       "category": "opportunity",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Ming Sopheap (ហាងនំ)",
+        "en": "Ming Sopheap (bakery)"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "ក្មួយអើយ ចុងសប្តាហ៍នេះហាងមីងរវល់ ត្រូវការអ្នកជួយ ធ្វើ ៨ ម៉ោង មីងឱ្យ ២០ ដុល្លារ។ ទំនេរអត់ក្មួយ? បើបាន មកហាងម៉ោង ៧ ព្រឹក ថ្ងៃសៅរ៍ហ្នឹងមក។",
+        "en": "Kmuoy, the shop needs a hand this weekend, 8 hours for $20. Can you do it? Come to the shop at 7am Saturday."
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ទំនាក់ទំនងដែលបាន Save ទុក · មីងអ្នកជិតខាង",
+        "en": "Saved contact · your neighbour"
       },
       "isScam": false,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "អ្នកស្គាល់គ្នា, ជាការងារជាក់លាក់, ប្រាក់ឈ្នួលធម្មតា, ហើយយើងត្រូវទៅធ្វើការផ្ទាល់។ គេមិនមានទារលុយយើងមុន ឬសុំព័ត៌មានអីនោះទេ។",
+        "en": "Someone you know, a concrete job, a normal wage, and you turn up in person. Nothing is asked of you up front."
       }
     },
     {
@@ -318,21 +318,21 @@
       "surface": "facebook",
       "category": "trust",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Michael Anderson",
+        "en": "Michael Anderson"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "សួស្តី! ខ្ញុំជាវិស្វករនាវាជនជាតិអាមេរិក កំពុងធ្វើការនៅកណ្តាលសមុទ្រ។ ខ្ញុំឃើញរូបអ្នក ហើយចង់រាប់អាន។ អ្នកមាន Telegram អត់? ខ្ញុំមានកាដូចង់ផ្ញើឱ្យ 🎁",
+        "en": "Hello! I'm an American ship engineer working at sea. I saw your photo and would love to know you. Do you have Telegram? I have a gift to send you 🎁"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "សំណើមិត្តភក្តិ (Friend Request) · ០ មិត្តរួម (Mutual Friends)",
+        "en": "Friend request · 0 mutual friends"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ជនបរទេសដែលយើងមិនស្គាល់ គ្មាន Mutual Friend សូម្បីម្នាក់ «អះអាងថាធ្វើការនៅសមុទ្រ» ហើយសន្យាថានឹងផ្ញើកាដូមកឱ្យ — នេះគឺជាការចាប់ផ្តើមនៃការបោកប្រាស់តាមអនឡាញ (Romance Scam) ដែលចុងក្រោយគេនឹងទារលុយយើងជា «ថ្លៃសេវាគយ»។",
+        "en": "A stranger abroad, 0 mutual friends, \"working at sea\" and promising a gift — the opening of a romance scam that ends with a \"customs fee\"."
       }
     },
     {
@@ -340,21 +340,21 @@
       "surface": "url-bar",
       "category": "technical",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "wing.com.kh.secure-login.cc",
+        "en": "wing.com.kh.secure-login.cc"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "Wing · Log in ចូលអាខោន ដើម្បីបន្តដំណើរការ",
+        "en": "Wing · Sign in to continue"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "https://wing.com.kh.secure-login.cc/",
+        "en": "https://wing.com.kh.secure-login.cc/"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ម្ចាស់វេបសាយគឺ secure-login ដែលនៅពីមុខ .cc — ចំណែកពាក្យ wing.com.kh នៅពីមុខ គ្រាន់តែដាក់បញ្ឆោតភ្នែកប៉ុណ្ណោះ។ សញ្ញាមេសោ 🔒 គឺមានន័យត្រឹមតែថា «ភ្ជាប់ដោយសុវត្ថិភាព (Encrypted)» តែមិនមែនបញ្ជាក់ថាជា «វេបសាយពិតរបស់ក្រុមហ៊ុន» នោះទេ។",
+        "en": "The owner is secure-login, the word before .cc — wing.com.kh in front is decoration. The 🔒 only means \"encrypted\", never \"the real owner\"."
       }
     },
     {
@@ -362,21 +362,21 @@
       "surface": "qr",
       "category": "authority",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "ភោជនីយដ្ឋាន ម្ហូបខ្មែរ · KHQR",
+        "en": "Khmer Kitchen Restaurant · KHQR"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "ស្កេនដើម្បីបង់ប្រាក់ · អាចស្កេនបានទាំង ABA, Wing និង ACLEDA",
+        "en": "Scan to pay · Accepts ABA, Wing, ACLEDA"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "KHQR ដែលគេព្រីន (Print) ដាក់នៅលើតុក្នុងហាង · ឈ្មោះអ្នកទទួល៖ ភោជនីយដ្ឋាន ម្ហូបខ្មែរ",
+        "en": "Printed QR at the table · Payee name: Khmer Kitchen Restaurant"
       },
       "isScam": false,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "KHQR ដែលគេព្រីន (Print) ដាក់នៅលើតុក្នុងហាង ហើយឈ្មោះអ្នកទទួលដែលលោតលើអេប (App) របស់យើង ក៏ត្រូវគ្នានឹងឈ្មោះហាងដែរ។ ទោះយ៉ាងណា កុំភ្លេចពិនិត្យមើលឈ្មោះឱ្យច្បាស់ជានិច្ច មុនពេលចុចបញ្ជាក់។",
+        "en": "A KHQR printed at the business, and the payee name shown in your app matches the shop. Always check that name before confirming."
       }
     },
     {
@@ -384,21 +384,21 @@
       "surface": "receipt",
       "category": "opportunity",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Binance · Withdrawal pending",
+        "en": "Binance · Withdrawal pending"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "៥,០០០ USDT",
+        "en": "5,000 USDT"
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ស្ថានភាព៖ កំពុងរង់ចាំ (Pending) · ដើម្បីដកលុយនេះបាន ត្រូវវេរលុយ ២០០ ដុល្លារ ដើម្បី «ផ្ទៀងផ្ទាត់អាខោន» សិន",
+        "en": "Status: pending · To withdraw, deposit $200 for \"account verification\" first"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "កម្មវិធីត្រឹមត្រូវគេមិនដែលតម្រូវឱ្យយើងវេរលុយចូល ដើម្បីដកលុយរបស់យើងចេញនោះទេ។ «វេរលុយឱ្យគេមុន ដើម្បីដកលុយខ្លួនឯង» គឺជាល្បិចបោកប្រាស់ ១០០%។",
+        "en": "A real platform never asks you to deposit money in order to withdraw your money. \"Pay first to receive\" is always the scam."
       }
     },
     {
@@ -406,21 +406,21 @@
       "surface": "sms",
       "category": "trust",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Smart",
+        "en": "Smart"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "គម្រោងអ៊ីនធឺណិត 5GB របស់អ្នកត្រូវបានកាត់លុយភ្ជាប់វិញដោយជោគជ័យ។ ផុតកំណត់ថ្ងៃទី ១៥/១០។ សូមចុច *888# ដើម្បីពិនិត្យមើលទឹកប្រាក់។",
+        "en": "Your 5GB data plan was renewed successfully. Expires 15/10. Dial *888# to check your balance."
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "ថ្ងៃនេះ 06:00 · លេខផ្ញើ Smart",
+        "en": "Today 06:00 · Smart sender ID"
       },
       "isScam": false,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "នេះគ្រាន់តែជាសារជូនដំណឹងពីការកាត់លុយភ្ជាប់គម្រោងធម្មតា ដែលគ្មានភ្ជាប់លីង (Link) ហើយកូដ *888# គឺយើងចុចឆែកលើទូរស័ព្ទយើងផ្ទាល់ មិនមែនជាវេបសាយទេ។ មិនមានការទាមទារអីគួរឱ្យសង្ស័យឡើយ។",
+        "en": "A normal renewal notice with no link, and *888# is dialled on your own phone, not a website. Nothing is asked of you."
       }
     },
     {
@@ -428,21 +428,21 @@
       "surface": "telegram",
       "category": "technical",
       "sender": {
-        "kh": "",
-        "en": ""
+        "kh": "Wing Support 24/7",
+        "en": "Wing Support 24/7"
       },
       "body": {
-        "kh": "",
-        "en": ""
+        "kh": "យើងរកឃើញថាមានការ Log in ចូលអាខោន Wing របស់អ្នកគួរឱ្យសង្ស័យ។ ដើម្បីសុវត្ថិភាព សូមផ្ញើលេខកូដសម្ងាត់ (PIN) និងលេខកូដ OTP ដែលទើបតែផ្ញើចូលលេខទូរស័ព្ទរបស់អ្នក មកឱ្យពួកយើងឥឡូវនេះ។",
+        "en": "We detected an unusual login on your Wing account. To protect it, send us your PIN and the OTP that just went to your phone now."
       },
       "meta": {
-        "kh": "",
-        "en": ""
+        "kh": "គណនី Telegram · បង្កើត ១ ថ្ងៃមុន",
+        "en": "Telegram account · created 1 day ago"
       },
       "isScam": true,
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ក្រុមហ៊ុន Wing មិនដែលឆាតមកសុំលេខកូដ PIN ឬលេខ OTP ពីយើងទេ — លេខកូដទាំងនោះប្រៀបដូចជាកូនសោអាខោនយើងអីចឹង។ អ្នកណាដែលឆាតមកសុំកូដនេះ គឺជាចោរដែលកំពុងចង់ Hack អាខោនយើងហើយ។",
+        "en": "Wing never asks for your PIN or OTP — those codes are the keys to your account. Whoever asks for them is stealing it."
       }
     }
   ]

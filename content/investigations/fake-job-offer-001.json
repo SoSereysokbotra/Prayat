@@ -1,8 +1,8 @@
 {
   "id": "fake-job-offer-001",
   "title": {
-    "kh": "",
-    "en": ""
+    "kh": "ការងារក្រៅម៉ោង ៧០០ ដុល្លារ",
+    "en": "The $700 part-time job"
   },
   "category": "opportunity",
   "durationSeconds": 180,
@@ -12,8 +12,8 @@
       "kind": "sender",
       "from": "them",
       "text": {
-        "kh": "",
-        "en": ""
+        "kh": "HR Sokha · ក្រុមហ៊ុន Global Trade Recruitment (គណនីតេឡេក្រាម · គ្មានវេបសាយក្រុមហ៊ុន)",
+        "en": "HR Sokha · Global Trade Recruitment (Telegram account · no company website)"
       }
     },
     {
@@ -21,8 +21,8 @@
       "kind": "message",
       "from": "them",
       "text": {
-        "kh": "",
-        "en": ""
+        "kh": "សួស្តី! យើងបានឃើញប្រវត្តិរូបរបស់អ្នក។ ក្រុមហ៊ុនយើងកំពុងជ្រើសរើសបុគ្គលិកធ្វើការក្រៅម៉ោងតាមអនឡាញ ដោយគ្រាន់តែប្រើទូរស័ព្ទ ២ ទៅ ៣ ម៉ោងប៉ុណ្ណោះក្នុងមួយថ្ងៃ។",
+        "en": "Hello! We saw your profile. Our company is hiring part-time online staff, working from your phone 2–3 hours a day."
       }
     },
     {
@@ -30,8 +30,8 @@
       "kind": "message",
       "from": "them",
       "text": {
-        "kh": "",
-        "en": ""
+        "kh": "មិនទាមទារបទពិសោធន៍ទេ។ ការងារត្រូវធ្វើ៖ គ្រាន់តែចុច Like និងឱ្យផ្កាយ (វាយតម្លៃ) ផលិតផលនៅលើ Shopee និង Lazada។ បើកលុយឱ្យរាល់ថ្ងៃ។",
+        "en": "No experience needed. Task: like and rate products on Shopee and Lazada. Paid daily."
       }
     },
     {
@@ -39,8 +39,8 @@
       "kind": "amount",
       "from": "them",
       "text": {
-        "kh": "",
-        "en": ""
+        "kh": "ប្រាក់ខែ៖ ៧០០ ទៅ ១,២០០ ដុល្លារ ក្នុងមួយខែ (ធ្វើការតែ ២-៣ ម៉ោង/ថ្ងៃ)",
+        "en": "Salary $700 – $1,200 per month (2–3 hours/day)"
       }
     },
     {
@@ -48,8 +48,8 @@
       "kind": "message",
       "from": "you",
       "text": {
-        "kh": "",
-        "en": ""
+        "kh": "មែនហ្នឹង? ចុះខ្ញុំត្រូវធ្វើអីខ្លះទៅ?",
+        "en": "Really? What do I have to do?"
       }
     },
     {
@@ -57,8 +57,8 @@
       "kind": "file",
       "from": "them",
       "text": {
-        "kh": "",
-        "en": ""
+        "kh": "Application_Form.exe (2.4 MB)",
+        "en": "Application_Form.exe (2.4 MB)"
       }
     },
     {
@@ -66,8 +66,8 @@
       "kind": "message",
       "from": "them",
       "text": {
-        "kh": "",
-        "en": ""
+        "kh": "សូមបំពេញទម្រង់បែបបទនេះ រួចថតរូបអត្តសញ្ញាណប័ណ្ណផ្ញើមក។ ដើម្បីបើកអាខោន (Account) ធ្វើការបាន អ្នកត្រូវវេរលុយកក់បន្តិចបន្តួចសិន ដែលលុយនេះនឹងត្រូវបង្វិលសងទៅអ្នកវិញនៅពេលបើកប្រាក់ខែដំបូង។",
+        "en": "Please fill in the form and send a photo of your ID. To activate your work account you need a small deposit, refunded with your first salary."
       }
     },
     {
@@ -75,8 +75,8 @@
       "kind": "amount",
       "from": "them",
       "text": {
-        "kh": "",
-        "en": ""
+        "kh": "លុយកក់ចុះឈ្មោះ៖ ៥០ ដុល្លារ (វេរតាមវីង)",
+        "en": "Registration deposit: $50 via Wing"
       }
     },
     {
@@ -84,8 +84,8 @@
       "kind": "phone",
       "from": "them",
       "text": {
-        "kh": "",
-        "en": ""
+        "kh": "វេរមកលេខ៖ 0XX XXX XXX (Wing · ឈ្មោះគណនីផ្ទាល់ខ្លួន)",
+        "en": "Send to: 0XX XXX XXX (Wing · personal name)"
       }
     },
     {
@@ -93,8 +93,8 @@
       "kind": "timestamp",
       "from": "them",
       "text": {
-        "kh": "",
-        "en": ""
+        "kh": "ថ្ងៃនេះ 23:47",
+        "en": "Today 23:47"
       }
     }
   ],
@@ -102,34 +102,34 @@
     {
       "elementId": "e01",
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ក្រុមហ៊ុនដែលគ្មានប្រភពច្បាស់លាស់ — គ្មានវេបសាយ គ្មានអាសយដ្ឋាន មានតែគណនីតេឡេក្រាម។ ក្រុមហ៊ុនពិតប្រាកដគេជ្រើសរើសបុគ្គលិកតាមរយៈអ៊ីមែលផ្លូវការ ឬវេបសាយរបស់ក្រុមហ៊ុនផ្ទាល់។",
+        "en": "A company you cannot verify — no website, no address, only a Telegram account. Real companies recruit through a company email or their own site."
       }
     },
     {
       "elementId": "e04",
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ប្រាក់ខែ ៧០០ ដុល្លារ សម្រាប់តែការចុច Like ២ ម៉ោង គឺវាច្រើនជាងប្រាក់ខែធ្វើការពេញម៉ោងនៅស្រុកខ្មែរទៅទៀត។ ឱ្យលុយច្រើន តែការងារស្រួលៗពេក គឺជានុយសម្រាប់បោកប្រាស់ហើយ។",
+        "en": "$700 a month for two hours of tapping Like is more than most full-time salaries in Cambodia. Big money for easy work is the bait."
       }
     },
     {
       "elementId": "e06",
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ឯកសារកន្ទុយ .exe គឺជាកម្មវិធី (Software/Malware) មិនមែនជាទម្រង់បែបបទទេ។ បើអ្នកចុចបើកវា វាអាចនឹងលួចទិន្នន័យគ្រប់យ៉ាងក្នុងទូរស័ព្ទ ឬកុំព្យូទ័ររបស់អ្នកមិនខាន។",
+        "en": "A .exe file is a program, not a form. Open it and it can take everything on your phone or computer."
       }
     },
     {
       "elementId": "e08",
       "explanation": {
-        "kh": "",
-        "en": ""
+        "kh": "ការងារពិតប្រាកដគឺគេអ្នកបើកលុយឱ្យយើង — គេមិនដែលទារលុយពីយើងមុនទេ។ ពាក្យថា «លុយកក់ដែលនឹងបង្វិលសងវិញ» នោះ គឺជាលុយដែលអ្នកនឹងបាត់បង់រហូតហើយ។",
+        "en": "A real job pays you — it never asks you to pay first. A \"deposit refunded later\" is money you will never see again."
       }
     }
   ],
   "rule": {
-    "kh": "",
-    "en": ""
+    "kh": "ធ្វើការងារពិត គឺយើងអ្នកទទួលបានប្រាក់ខែ មិនមែនយើងអ្នកបង់លុយឱ្យគេដើម្បីបានធ្វើការនោះទេ។",
+    "en": "A real job pays you. You never pay to start."
   }
 }
