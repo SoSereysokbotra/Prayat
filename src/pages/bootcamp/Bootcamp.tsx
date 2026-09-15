@@ -1,22 +1,25 @@
-import { useEffect, useState } from 'react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { ArrowLeft, ArrowRight, Clock, Gift } from 'lucide-react'
-import LanguageToggle from '../../components/LanguageToggle'
-import ScreenState from '../../components/ScreenState'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { ArrowRight, Clock, Gift, Lock } from 'lucide-react'
+import TopBar from '../../components/TopBar'
 import { useT, useIsKhmer } from '../../hooks/useT'
 import { useBootcampStore } from '../../store/bootcampStore'
-import { listBootcampModules } from '../../api/client'
-import type { BootcampModuleSummary } from '../../../shared/types'
+import { BOOTCAMP_MODULE_IDS } from '../../../shared/types'
+import type { UIKey } from '../../i18n/ui'
+
+const TOOLS: { name: UIKey; image: string }[] = [
+  { name: 'toolShieldBadge', image: '/bootcamp-tool-shield.jpg' },
+  { name: 'toolAuthenticator', image: '/bootcamp-tool-token.jpg' },
+  { name: 'toolMagnifier', image: '/bootcamp-tool-magnifier.jpg' },
+]
 
 /**
- * Level 0 — Bootcamp Entry Screen.
+ * Level 0 — the entry to the bootcamp.
  *
- * Designed to match the 5-screen flow specification (docs/bootcamp_modify.md):
- *   - Visual hero with Angkor backdrop and glowing 3D Shield Badge emblem
- *   - Clear Level 0 pill and estimated duration
- *   - Tools preview card showing the 3 tools to earn (Shield Badge, Auth Token, Magnifier)
- *   - Direct "BEGIN TRAINING →" CTA to start Module 1
- *   - Direct "Skip (you will not earn the tools)" to enter ScamSim directly
+ * Framed as the start of the game, not a gate before it: a Level 0 badge
+ * opens the sheet, the three tools are shown locked so the player sees
+ * what they are playing for, and Skip is there but says plainly what it
+ * costs. Same banner-and-sheet layout as the welcome walkthrough and the
+ * Triage how-to.
  */
 export default function Bootcamp() {
   const t = useT()
@@ -27,33 +30,13 @@ export default function Bootcamp() {
   const passed = useBootcampStore((s) => s.passed)
   const skip = useBootcampStore((s) => s.skip)
 
-  const [status, setStatus] = useState<'loading' | 'ready' | 'error'>('loading')
-  const [modules, setModules] = useState<BootcampModuleSummary[]>([])
-
   const from = (location.state as { from?: string } | null)?.from ?? '/'
   const kh = isKhmer ? 'leading-kh' : ''
 
-  useEffect(() => {
-    let alive = true
-    listBootcampModules()
-      .then((mods) => {
-        if (!alive) return
-        setModules(mods)
-        setStatus('ready')
-      })
-      .catch(() => alive && setStatus('error'))
-    return () => {
-      alive = false
-    }
-  }, [])
-
+  /** Resume at the first module not yet passed; from the top if all are. */
   const handleBegin = () => {
-    const unpassed = modules.find((m) => !passed.includes(m.id)) ?? modules[0]
-    if (unpassed) {
-      navigate(`/bootcamp/${unpassed.id}`)
-    } else {
-      navigate('/bootcamp/vip-club')
-    }
+    const next = BOOTCAMP_MODULE_IDS.find((id) => !passed.includes(id)) ?? BOOTCAMP_MODULE_IDS[0]
+    navigate(`/bootcamp/${next}`)
   }
 
   const handleSkip = () => {
@@ -61,177 +44,81 @@ export default function Bootcamp() {
     navigate('/')
   }
 
-  if (status !== 'ready') {
-    return (
-      <main className="flex h-dvh flex-col px-screen-x py-section">
-        <ScreenState kind={status === 'error' ? 'error' : 'loading'} onRetry={() => navigate(0)} />
-      </main>
-    )
-  }
-
   return (
-    <main className="screen-in relative mx-auto flex min-h-dvh w-full max-w-screen-sm flex-col bg-bg">
-      {/* ---- Top backdrop & header ---- */}
-      <div
-        className="relative w-full overflow-hidden pb-section pt-section"
-        style={{
-          backgroundImage: "url('/topbar.jpg')",
-          backgroundSize: 'cover',
-          backgroundPosition: '62% 35%',
-          backgroundRepeat: 'no-repeat',
-        }}
-      >
-        {/* Soft mist overlay so content remains readable over background */}
-        <div className="absolute inset-0 bg-bg/25 backdrop-blur-xs" aria-hidden />
+    <main className="screen-in flex min-h-dvh w-full flex-col">
+      <TopBar back={from} />
 
-        <header className="relative flex items-center justify-between gap-stack px-screen-x">
-          <Link
-            to={from}
-            aria-label={t('back')}
-            className="tap-target flex h-10 w-10 shrink-0 items-center justify-center rounded-full
-                       border border-border bg-surface/90 text-text shadow-sm backdrop-blur
-                       transition-colors duration-option-fade hover:bg-surface"
+      <div className="relative -mt-sheet-overlap mx-auto flex w-full max-w-screen-sm flex-1 flex-col gap-section rounded-t-sheet bg-bg px-screen-x pb-section">
+        {/* ---- level badge ---- */}
+        <section className="flex flex-col items-center pt-section text-center">
+          <span
+            className={`rounded-button bg-primary/15 px-stack py-ring text-small font-bold text-primary ${kh}`}
           >
-            <ArrowLeft aria-hidden className="h-icon w-icon" />
-          </Link>
-
-          {/* Logo & Brand title */}
-          <div className="flex items-center gap-stack">
-            <img
-              src="/bootcamp/brand_shield_icon.png"
-              alt=""
-              aria-hidden
-              className="h-8 w-auto shrink-0 object-contain"
-            />
-            <div className="leading-tight">
-              <span className="block text-body font-bold text-hero-text">ScamSim</span>
-              <span className="block text-small font-medium text-hero-muted leading-none">
-                {isKhmer ? t('learnBeforeYouLose') : 'Learn before you lose'}
-              </span>
-            </div>
-          </div>
-
-          <LanguageToggle variant="pill" />
-        </header>
-
-        {/* Hero Badge */}
-        <div className="relative mt-stack flex justify-center">
-          <div className="relative flex items-center justify-center">
-            <img
-              src="/bootcamp/hero_emblem.png"
-              alt="Cyber Bootcamp Badge"
-              className="h-28 w-28 object-contain drop-shadow-md"
-            />
-          </div>
-        </div>
-      </div>
-
-      {/* ---- Main content sheet ---- */}
-      <div className="flex flex-1 flex-col px-screen-x pb-section pt-stack">
-        {/* Level 0 Pill */}
-        <div className="flex justify-center">
-          <span className="inline-flex items-center rounded-full bg-primary/15 px-4 py-1 text-small font-bold text-primary">
             {t('levelZero')}
           </span>
-        </div>
-
-        {/* Title & Subtitle */}
-        <h1 className={`mt-2 text-center text-title font-bold text-text ${kh}`}>
-          {t('bootcampTitle')}
-        </h1>
-        <p className={`mx-auto mt-1 max-w-xs text-center text-body text-muted ${kh}`}>
-          {t('bootcampSubtitle')}
-        </p>
-
-        {/* Duration badge */}
-        <div className={`mt-stack flex items-center justify-center gap-stack text-small font-medium text-muted ${kh}`}>
-          <Clock aria-hidden className="h-icon w-icon text-muted shrink-0" />
-          <span>{t('bootcampMeta')}</span>
-        </div>
-
-        {/* ---- Tools Preview Card ---- */}
-        <section className="mt-section rounded-card border border-border bg-surface p-stack shadow-sm">
-          <div className="grid grid-cols-3 gap-stack text-center">
-            {/* Tool 1 */}
-            <div className="flex flex-col items-center">
-              <div className="flex h-16 w-16 items-center justify-center">
-                <img
-                  src="/bootcamp/tool_shield.png"
-                  alt={t('toolShieldBadge')}
-                  className="h-16 w-16 object-contain"
-                />
-              </div>
-              <p className={`mt-stack text-small font-semibold text-text ${kh}`}>
-                {t('toolShieldBadge')}
-              </p>
-            </div>
-
-            {/* Tool 2 */}
-            <div className="flex flex-col items-center">
-              <div className="flex h-16 w-16 items-center justify-center">
-                <img
-                  src="/bootcamp/tool_token.png"
-                  alt={t('toolAuthenticator')}
-                  className="h-16 w-16 object-contain"
-                />
-              </div>
-              <p className={`mt-stack text-small font-semibold text-text ${kh}`}>
-                {t('toolAuthenticator')}
-              </p>
-            </div>
-
-            {/* Tool 3 */}
-            <div className="flex flex-col items-center">
-              <div className="flex h-16 w-16 items-center justify-center">
-                <img
-                  src="/bootcamp/tool_magnifier.png"
-                  alt={t('toolMagnifier')}
-                  className="h-16 w-16 object-contain"
-                />
-              </div>
-              <p className={`mt-stack text-small font-semibold text-text ${kh}`}>
-                {t('toolMagnifier')}
-              </p>
-            </div>
-          </div>
-
-          <div className="my-stack border-t border-border" />
-
-          {/* Gift banner callout */}
-          <div className="flex items-center gap-stack px-stack py-1">
-            <Gift aria-hidden className="h-icon w-icon shrink-0 text-primary" />
-            <p className={`text-small font-medium text-text ${kh}`}>
-              {t('bootcampEarnNotice')}
-            </p>
-          </div>
+          <h1 className={`mt-stack text-title font-bold ${kh}`}>{t('bootcampTitle')}</h1>
+          <p className={`mt-ring text-body text-muted ${kh}`}>{t('bootcampSubtitle')}</p>
+          <p className={`mt-stack flex items-center gap-ring text-small font-semibold text-muted ${kh}`}>
+            <Clock aria-hidden className="h-icon w-icon" />
+            {t('bootcampMeta')}
+          </p>
         </section>
 
-        {/* ---- Bottom Actions ---- */}
-        <footer className="mt-auto pt-section flex flex-col items-center gap-stack">
+        {/* ---- what you are playing for ---- */}
+        <section className="rounded-card border border-border bg-surface p-stack">
+          <ul className="grid grid-cols-3 gap-stack">
+            {TOOLS.map(({ name, image }) => (
+              <li key={name} className="flex flex-col items-center text-center">
+                <span className="relative">
+                  <img
+                    src={image}
+                    alt=""
+                    aria-hidden
+                    className="h-illustration-sm w-illustration-sm rounded-full border border-border object-cover"
+                  />
+                  <span
+                    aria-hidden
+                    className="absolute bottom-0 right-0 flex items-center justify-center rounded-full border border-surface bg-primary p-ring text-primary-text"
+                  >
+                    <Lock className="h-icon w-icon" />
+                  </span>
+                </span>
+                <p className={`mt-stack text-small font-semibold ${kh}`}>{t(name)}</p>
+              </li>
+            ))}
+          </ul>
+
+          <p className={`mt-stack flex items-center gap-stack border-t border-border pt-stack text-small text-muted ${kh}`}>
+            <span
+              aria-hidden
+              className="flex h-avatar w-avatar shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary"
+            >
+              <Gift className="h-icon w-icon" />
+            </span>
+            {t('bootcampEarnNotice')}
+          </p>
+        </section>
+
+        {/* ---- begin / skip ---- */}
+        <div className="mt-auto flex flex-col items-center gap-stack">
           <button
             type="button"
             onClick={handleBegin}
-            className={`tap-target flex w-full items-center justify-center gap-stack rounded-button
-                        bg-primary px-section py-stack text-body font-bold text-primary-text shadow-md
-                        transition-colors duration-option-fade hover:bg-primary/90 ${kh}`}
+            className={`tap-target flex w-full items-center justify-center gap-stack rounded-button bg-primary
+                        px-section text-body font-bold text-primary-text transition-colors duration-option-fade ${kh}`}
           >
-            <span>{t('beginTraining')}</span>
+            {t('beginTraining')}
             <ArrowRight aria-hidden className="h-icon w-icon" />
           </button>
-
           <button
             type="button"
             onClick={handleSkip}
-            className="group mt-stack w-full py-1 text-center transition-colors"
+            className={`tap-target flex flex-col items-center rounded-button px-section text-small text-muted ${kh}`}
           >
-            <span className={`block text-small font-semibold text-muted group-hover:text-text ${kh}`}>
-              {t('skip')}
-            </span>
-            <span className={`block text-small text-muted/80 ${kh}`}>
-              {t('skipNoTools')}
-            </span>
+            <span className="font-semibold">{t('skip')}</span>
+            <span>{t('skipNoTools')}</span>
           </button>
-        </footer>
+        </div>
       </div>
     </main>
   )

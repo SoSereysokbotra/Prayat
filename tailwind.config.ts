@@ -83,6 +83,8 @@ export default {
         'sheet-overlap': 'var(--size-sheet-overlap)',
         illustration:    'var(--size-illustration)',
         'illustration-sm': 'var(--size-illustration-sm)',
+        packet:          'var(--size-packet)',
+        'module-bar':    'var(--size-module-bar)',
       },
       height: {
         'zone-threat':  'var(--zone-threat-h)',

@@ -147,6 +147,20 @@
   --radius-sheet:      1.5rem;    /* the content sheet curving over the banner */
   --color-hero-text:   15 23 42;
   --color-hero-muted:  51 65 85;
+  /* ---- bootcamp: the coffee shop ---- */
+  --timing-packet-travel:  2600ms;  /* the first postcard crossing the café */
+  --timing-packet-speedup: 250ms;   /* every later postcard is this much quicker */
+  --timing-packet-pause:   900ms;   /* the stranger's reaction, before the next one */
+  --timing-coffee-shop:    60000ms; /* the whole game */
+  --timing-vip-club:       45000ms; /* three rounds at the door */
+  --timing-url-sorter:     90000ms; /* twelve addresses, with room to read each one */
+  --timing-url-fall:       7000ms;  /* one address falling from the top of the sorter to the bottom */
+  --timing-url-next:       450ms;   /* the verdict flash before the next address drops */
+  --size-url-drop:         3rem;    /* how far an address falls while it is on screen */
+  --timing-trophy:         700ms;   /* the trophy landing on the complete screen */
+  --timing-toolbelt-stagger: 350ms; /* each earned tool arriving after the one before */
+  --size-packet:           2.75rem; /* the postcard chip crossing the scene */
+  --size-module-bar:       10rem;   /* the "1 of 3" progress bar in the module header */
   --timing-explain-right:  2000ms;  /* correct: 2s */
   --timing-explain-wrong:  3000ms;  /* wrong or missed: 3s, they need longer */
 }
@@ -311,11 +325,59 @@
     border-radius: var(--radius-card);
     animation: verdict-flash var(--timing-card-flip) ease-out 2;
   }
+  /* Emotion shake: triggered on incorrect choice / action */
+  .shake-error {
+    animation: shake-error var(--timing-buzz-wrong) cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+  @keyframes shake-error {
+    10%, 90% { transform: translate3d(-2px, 0, 0); }
+    20%, 80% { transform: translate3d(4px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-6px, 0, 0); }
+    40%, 60% { transform: translate3d(6px, 0, 0); }
+  }
+
+  /* An address dropping through the sorter: it has until the end of the
+     fall to be sorted. Paired with a JS timeout of the same token. */
+  .url-fall {
+    animation: url-fall var(--timing-url-fall) linear forwards;
+  }
+  @keyframes url-fall {
+    from { transform: translateY(0); }
+    to   { transform: translateY(var(--size-url-drop)); }
+  }
+
+  /* Bootcamp complete: the trophy lands, then the tools arrive one by one,
+     each tick popping in as its card settles. The whole sequence is timed
+     from the two tokens above so the feel can be tuned in one place. */
+  .trophy-in {
+    animation: trophy-in var(--timing-trophy) cubic-bezier(0.34, 1.56, 0.64, 1) both;
+  }
+  .toolbelt-in {
+    animation: bubble-in var(--timing-bubble-in) ease-out both;
+    animation-delay: calc(var(--timing-trophy) + var(--timing-toolbelt-stagger) * var(--toolbelt-i, 0));
+  }
+  .toolbelt-in .toolbelt-tick {
+    animation: count-pop var(--timing-option-fade) ease-out both;
+    animation-delay: calc(var(--timing-trophy) + var(--timing-toolbelt-stagger) * var(--toolbelt-i, 0) + var(--timing-bubble-in));
+  }
+  .toolbelt-after {
+    animation: bubble-in var(--timing-bubble-in) ease-out both;
+    animation-delay: calc(var(--timing-trophy) + var(--timing-toolbelt-stagger) * 3);
+  }
+  @keyframes trophy-in {
+    from { opacity: 0; transform: scale(0.4) translateY(var(--space-section)); }
+    to   { opacity: 1; transform: scale(1) translateY(0); }
+  }
   .verdict-correct { --verdict-color: var(--color-safe); }
   .verdict-wrong   { --verdict-color: var(--color-danger); }
   .verdict-timeout { --verdict-color: var(--color-caution); }
   @media (prefers-reduced-motion: reduce) {
     .refresh-spin,
+    .url-fall,
+    .trophy-in,
+    .toolbelt-in,
+    .toolbelt-in .toolbelt-tick,
+    .toolbelt-after,
     .count-pop,
     .verdict-outline { animation: none; }
   }
