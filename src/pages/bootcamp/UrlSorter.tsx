@@ -1,260 +1,381 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
-import { ArrowLeft, Check, Globe, Search, Trash2, X } from 'lucide-react'
-import LanguageToggle from '../../components/LanguageToggle'
-import ScreenState from '../../components/ScreenState'
+import { useNavigate } from 'react-router-dom'
+import { ArrowDown, ArrowRight, Check, CheckCircle2, Globe, Lightbulb, RotateCcw, Timer, Trash2, X } from 'lucide-react'
+import ModuleHeader from '../../components/ModuleHeader'
 import { useT, useIsKhmer } from '../../hooks/useT'
-import { useGameStore } from '../../store/gameStore'
+import { motionToken } from '../../hooks/useMotionToken'
 import { useBootcampStore } from '../../store/bootcampStore'
-import { sortUrl, startUrlSorter } from '../../api/client'
-import { BOOTCAMP_PASS_RATIO, type Localized, type UrlCard } from '../../../shared/types'
 
 /**
- * Module 2 — The URL Sorter.
+ * Module 3 — The Map. The URL Sorter.
  *
- * Safe or trash, one address at a time.
+ * Twelve addresses drop one at a time. Each has until it reaches the
+ * bottom to be sorted SAFE or TRASH; let it land and it counts as wrong.
+ * Pass = 8 of 12; four wrong resets the sorter. The owner label is set in
+ * bold on every card, so the rule is shown, not just tested.
  *
- * The URL is rendered LARGE and in a monospace-ish tabular face, because the
- * whole skill is reading it character by character: `faceb00k` and `rnicrosoft`
- * only give themselves away when the glyphs are big enough to separate. A
- * realistic tiny address bar would be a better simulation and a worse teacher,
- * and this is the module where teaching wins.
- *
- * The URL itself is never localized and never backfilled with placeholder
- * text. Everything else in the app falls back to sample Khmer when unwritten;
- * a URL must not, because a fake address presented as real is the one mistake
- * this module cannot make.
+ * One rule decides every card: the word just before .com / .org / .kh is
+ * the owner, and everything in front of it is decoration. A wrong tap
+ * flashes that owner so the player sees the rule applied, not just a red
+ * border. Real domains only for the safe cards — the module must never
+ * teach a guessed address as genuine.
  */
 
-type Phase = 'loading' | 'sorting' | 'feedback' | 'done' | 'error'
+interface UrlCard {
+  url: string
+  safe: boolean
+  /** The label just before the registry suffix — what the rule points at. */
+  owner: string
+}
 
-interface Feedback {
-  isCorrect: boolean
-  wasSafe: boolean
-  explanation: Localized
+const CARDS: UrlCard[] = [
+  { url: 'facebook.com', safe: true, owner: 'facebook' },
+  { url: 'faceb00k.com', safe: false, owner: 'faceb00k' },
+  { url: 'www.ababank.com', safe: true, owner: 'ababank' },
+  { url: 'google.com.verify-login.net', safe: false, owner: 'verify-login' },
+  { url: 'accounts.google.com', safe: true, owner: 'google' },
+  { url: 'ababank-kh.com', safe: false, owner: 'ababank-kh' },
+  { url: 'telegram.org', safe: true, owner: 'telegram' },
+  { url: 'rnicrosoft.com', safe: false, owner: 'rnicrosoft' },
+  { url: 'm.facebook.com', safe: true, owner: 'facebook' },
+  { url: 'facebook.com.security-check.info', safe: false, owner: 'security-check' },
+  { url: 'mail.google.com', safe: true, owner: 'google' },
+  { url: 'telegram-login-kh.com', safe: false, owner: 'telegram-login-kh' },
+]
+const PASS_MARK = 8
+const MAX_WRONG = 4
+
+type Verdict = 'safe' | 'trash'
+type Flash = 'correct' | 'wrong' | 'timeout'
+import { triggerCorrectFeedback, triggerWrongFeedback } from '../../lib/feedback'
+
+type Phase = 'ready' | 'playing' | 'passed' | 'failed'
+
+/** Spelled out so Tailwind keeps the classes; built dynamically they vanish. */
+const FLASH_OUTLINE: Record<Flash, string> = {
+  correct: 'verdict-outline verdict-correct border-safe',
+  wrong: 'verdict-outline verdict-wrong border-danger shake-error',
+  timeout: 'verdict-outline verdict-timeout border-caution shake-error',
 }
 
 export default function UrlSorter() {
   const t = useT()
   const isKhmer = useIsKhmer()
   const navigate = useNavigate()
-  const language = useGameStore((s) => s.language)
   const markPassed = useBootcampStore((s) => s.markPassed)
-
-  const [phase, setPhase] = useState<Phase>('loading')
-  const [card, setCard] = useState<UrlCard | null>(null)
-  const [cardCount, setCardCount] = useState(0)
-  const [answered, setAnswered] = useState(0)
-  const [correct, setCorrect] = useState(0)
-  const [feedback, setFeedback] = useState<Feedback | null>(null)
-  const [passed, setPassed] = useState(false)
-
-  const sessionRef = useRef<string | null>(null)
-  const aliveRef = useRef(true)
-  const lockRef = useRef(false)
-
   const kh = isKhmer ? 'leading-kh' : ''
 
+  const [phase, setPhase] = useState<Phase>('ready')
+  const [index, setIndex] = useState(0)
+  const [correct, setCorrect] = useState(0)
+  const [wrong, setWrong] = useState(0)
+  const [flash, setFlash] = useState<Flash | null>(null)
+  const [secondsLeft, setSecondsLeft] = useState(0)
+  const [resetReason, setResetReason] = useState<'wrong' | 'score' | null>(null)
+
+  const timing = useRef({ total: 0, fall: 0, next: 0, tick: 0, buzzRight: 0, buzzWrong: 0 })
+  const runRef = useRef(0)
+  const timerRef = useRef(0)
+  const fallRef = useRef(0)
+  const endsAtRef = useRef(0)
+  const lockRef = useRef(false)
+  const correctRef = useRef(0)
+  const wrongRef = useRef(0)
+
+  const clearTimers = () => {
+    window.clearInterval(timerRef.current)
+    window.clearTimeout(fallRef.current)
+  }
+
   useEffect(() => {
-    aliveRef.current = true
-    startUrlSorter()
-      .then((run) => {
-        if (!aliveRef.current) return
-        sessionRef.current = run.sessionId
-        setCard(run.card)
-        setCardCount(run.cardCount)
-        lockRef.current = false
-        setPhase('sorting')
-      })
-      .catch(() => aliveRef.current && setPhase('error'))
+    timing.current = {
+      total: motionToken('--timing-url-sorter'),
+      fall: motionToken('--timing-url-fall'),
+      next: motionToken('--timing-url-next'),
+      tick: motionToken('--timing-countdown-tick'),
+      buzzRight: motionToken('--timing-buzz-short'),
+      buzzWrong: motionToken('--timing-buzz-wrong'),
+    }
+    setSecondsLeft(Math.ceil(timing.current.total / 1000))
     return () => {
-      aliveRef.current = false
+      runRef.current += 1
+      clearTimers()
     }
   }, [])
 
-  const sort = useCallback(
-    async (verdict: 'safe' | 'trash') => {
-      if (lockRef.current) return
+  const finish = useCallback(
+    (run: number) => {
+      if (run !== runRef.current) return
+      clearTimers()
       lockRef.current = true
-
-      const sessionId = sessionRef.current
-      const current = card
-      if (!sessionId || !current) return
-
-      try {
-        const result = await sortUrl(sessionId, current.id, verdict)
-        if (!aliveRef.current) return
-
-        setFeedback({
-          isCorrect: result.isCorrect,
-          wasSafe: result.wasSafe,
-          explanation: result.explanation,
-        })
-        setAnswered(result.answered)
-        setCorrect(result.correctSoFar)
-
-        if (result.done) {
-          setPassed(result.passed)
-          if (result.passed) markPassed('url-sorter')
-          setPhase('done')
-        } else {
-          setCard(result.nextCard)
-          setPhase('feedback')
-        }
-      } catch {
-        if (!aliveRef.current) return
-        setPhase('error')
+      if (correctRef.current >= PASS_MARK) {
+        markPassed('url-sorter')
+        setPhase('passed')
+      } else {
+        setResetReason(wrongRef.current >= MAX_WRONG ? 'wrong' : 'score')
+        setPhase('failed')
       }
     },
-    [card, markPassed],
+    [markPassed],
   )
 
-  function nextCard() {
-    setFeedback(null)
-    lockRef.current = false
-    setPhase('sorting')
+  /** Drop card `i`; if it is still unsorted when the fall ends, it is a miss. */
+  const drop = useCallback(
+    (run: number, i: number) => {
+      if (run !== runRef.current) return
+      if (i >= CARDS.length) {
+        finish(run)
+        return
+      }
+      setIndex(i)
+      setFlash(null)
+      lockRef.current = false
+      fallRef.current = window.setTimeout(() => settle(run, i, 'timeout'), timing.current.fall)
+    },
+    // settle is defined below and stable per run via refs
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [finish],
+  )
+
+  const settle = useCallback(
+    (run: number, i: number, result: Flash) => {
+      if (run !== runRef.current || lockRef.current) return
+      lockRef.current = true
+      window.clearTimeout(fallRef.current)
+      setFlash(result)
+      if (result === 'correct') {
+        correctRef.current += 1
+        setCorrect(correctRef.current)
+        triggerCorrectFeedback(timing.current.buzzRight)
+      } else {
+        wrongRef.current += 1
+        setWrong(wrongRef.current)
+        triggerWrongFeedback(timing.current.buzzWrong)
+        if (wrongRef.current >= MAX_WRONG) {
+          window.setTimeout(() => finish(run), timing.current.next)
+          return
+        }
+      }
+      window.setTimeout(() => drop(run, i + 1), timing.current.next)
+    },
+    [drop, finish],
+  )
+
+  const start = useCallback(() => {
+    const run = ++runRef.current
+    clearTimers()
+    correctRef.current = 0
+    wrongRef.current = 0
+    setCorrect(0)
+    setWrong(0)
+    setResetReason(null)
+    setPhase('playing')
+    endsAtRef.current = performance.now() + timing.current.total
+    setSecondsLeft(Math.ceil(timing.current.total / 1000))
+    timerRef.current = window.setInterval(() => {
+      const left = Math.max(0, endsAtRef.current - performance.now())
+      setSecondsLeft(Math.ceil(left / 1000))
+      if (left <= 0) finish(run)
+    }, timing.current.tick)
+    drop(run, 0)
+  }, [drop, finish])
+
+  const sort = (verdict: Verdict) => {
+    if (phase !== 'playing' || lockRef.current) return
+    const card = CARDS[index]
+    settle(runRef.current, index, (verdict === 'safe') === card.safe ? 'correct' : 'wrong')
   }
 
-  if (phase === 'loading' || phase === 'error') {
-    return (
-      <main className="flex h-dvh flex-col px-screen-x py-section">
-        <ScreenState kind={phase === 'error' ? 'error' : 'loading'} onRetry={() => navigate(0)} />
-      </main>
-    )
-  }
-
-  /* ---- finished ---- */
-  if (phase === 'done') {
-    return (
-      <main className="screen-in mx-auto flex min-h-dvh w-full max-w-screen-sm flex-col justify-center gap-section px-screen-x py-section text-center">
-        <span
-          aria-hidden
-          className={`mx-auto flex items-center justify-center rounded-card p-section text-primary-text
-                      ${passed ? 'bg-safe' : 'bg-danger'}`}
-        >
-          <Search className="h-icon w-icon" />
-        </span>
-
-        <h1 className={`text-title font-semibold ${kh}`}>
-          {passed ? t('modulePassed') : t('moduleFailed')}
-        </h1>
-
-        <p className="text-title font-semibold tabular-nums">
-          {correct} / {cardCount}
-        </p>
-        <p className={`text-small text-muted ${kh}`}>
-          {t('passMark')} {Math.round(BOOTCAMP_PASS_RATIO * 100)}%
-        </p>
-
-        {passed && (
-          <p className={`flex items-center justify-center gap-stack text-body ${kh}`}>
-            <Search aria-hidden className="h-icon w-icon text-safe" />
-            {t('toolUnlocked')}: <span className="font-semibold">{t('toolMagnifier')}</span>
-          </p>
-        )}
-
-        <div className="flex flex-col gap-stack">
-          {!passed && (
-            <button
-              type="button"
-              onClick={() => navigate(0)}
-              className={`tap-target flex items-center justify-center rounded-button bg-primary
-                          px-section text-primary-text ${kh}`}
-            >
-              {t('tryModuleAgain')}
-            </button>
-          )}
-          <Link
-            to="/bootcamp"
-            className={`tap-target flex items-center justify-center rounded-button
-                        ${passed ? 'bg-primary text-primary-text' : 'border border-border bg-surface'}
-                        px-section ${kh}`}
-          >
-            {t('backToBootcamp')}
-          </Link>
-        </div>
-      </main>
-    )
-  }
-
-  if (!card) return null
+  const totalSeconds = Math.max(1, Math.round(timing.current.total / 1000))
+  const timeFraction = secondsLeft / totalSeconds
+  const card = CARDS[index]
+  const outline = flash ? FLASH_OUTLINE[flash] : 'border-primary'
 
   return (
-    <main className="screen-in mx-auto flex h-dvh w-full max-w-screen-sm flex-col px-screen-x py-section">
-      <header className="flex shrink-0 items-center justify-between gap-stack">
-        <Link to="/bootcamp" className="tap-target flex items-center gap-stack text-small text-muted">
-          <ArrowLeft aria-hidden className="h-icon w-icon" />
-          <span className={kh}>{t('back')}</span>
-        </Link>
-        <span className="text-small text-muted tabular-nums">
-          {answered} / {cardCount}
-        </span>
-        <LanguageToggle compact />
-      </header>
+    <main className="screen-in flex min-h-dvh w-full flex-col">
+      <ModuleHeader index={3} />
 
-      {/* ---- the address ---- */}
-      <section className="flex min-h-0 flex-1 flex-col justify-center gap-section py-section">
-        <div className="flex items-center gap-stack rounded-card border border-input-border bg-input p-stack">
-          <Globe aria-hidden className="h-icon w-icon shrink-0 text-muted" />
-          {/* Large and break-all: the skill is reading it character by
-              character, and a wrapped address is better than a truncated one. */}
-          <span className="min-w-0 flex-1 break-all text-title font-semibold tabular-nums">
-            {card.url}
-          </span>
-        </div>
+      <div className="relative -mt-sheet-overlap mx-auto flex w-full max-w-screen-sm flex-1 flex-col gap-section rounded-t-sheet bg-bg px-screen-x pb-section pt-section">
+        {/* ---- the concept ---- */}
+        <section className="flex items-center gap-stack rounded-card border border-border bg-surface p-stack">
+          <img src="/bootcamp-map.jpg" alt="" aria-hidden className="h-illustration w-illustration shrink-0 rounded-full object-cover" />
+          <div className="min-w-0">
+            <h1 className={`text-title font-bold ${kh}`}>{t('mapTitle')}</h1>
+            <p className={`mt-ring text-small text-muted ${kh}`}>{t('mapConcept')}</p>
+          </div>
+        </section>
 
-        {phase === 'feedback' && feedback && (
-          <div
-            className={`bubble-in flex flex-col gap-stack rounded-card border bg-surface p-stack
-                        ${feedback.isCorrect ? 'border-safe' : 'border-danger'}`}
-          >
-            <p className="flex items-center gap-stack text-small font-semibold">
-              {feedback.isCorrect ? (
-                <Check aria-hidden className="h-icon w-icon text-safe" />
-              ) : (
-                <X aria-hidden className="h-icon w-icon text-danger" />
-              )}
-              <span className={kh}>{feedback.wasSafe ? t('thatOneWasSafe') : t('thatOneWasFake')}</span>
+        {/* ---- the game ---- */}
+        <section className="rounded-card border border-border bg-surface p-stack">
+          <div className="flex items-center justify-between gap-stack">
+            <h2 className={`flex items-center gap-ring text-body font-bold ${kh}`}>
+              <Globe aria-hidden className="h-icon w-icon text-primary" />
+              {t('urlSorter')}
+            </h2>
+            <span className="flex items-center gap-ring text-body font-bold tabular-nums">
+              <Timer aria-hidden className="h-icon w-icon text-primary" />
+              {Math.floor(secondsLeft / 60)}:{String(secondsLeft % 60).padStart(2, '0')}
+            </span>
+          </div>
+          <div role="timer" aria-label={`${secondsLeft}`} className="mt-stack h-timer-bar w-full overflow-hidden rounded-button bg-surface-alt">
+            <div
+              className={`h-full rounded-button ${timeFraction < 0.35 ? 'bg-danger' : 'bg-primary'}`}
+              style={{ width: `${timeFraction * 100}%` }}
+            />
+          </div>
+          <p className={`mt-stack text-small text-muted ${kh}`}>{t('urlSorterHint')}</p>
+
+          {/* the chute: the active address falls through it */}
+          <div className="relative mt-stack flex flex-col items-center gap-stack overflow-hidden rounded-card bg-surface-alt p-stack pb-section">
+            {phase === 'playing' ? (
+              <div
+                key={`${runRef.current}-${index}`}
+                className={`url-fall flex w-full max-w-bubble flex-col items-center gap-ring rounded-card border bg-surface p-stack ${outline}`}
+                aria-live="polite"
+              >
+                <p className="break-all text-center text-body tabular-nums">
+                  <OwnerHighlight url={card.url} owner={card.owner} />
+                </p>
+                {flash && flash !== 'correct' && (
+                  <p className={`text-small text-danger ${kh}`}>
+                    {flash === 'timeout' ? t('urlMissed') : t('ownerIs').replace('{owner}', card.owner)}
+                  </p>
+                )}
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={start}
+                disabled={phase === 'passed'}
+                className={`tap-target flex w-full max-w-bubble items-center justify-center gap-stack rounded-button px-section
+                            text-body font-bold text-primary-text transition-opacity duration-option-fade disabled:opacity-50
+                            ${phase === 'failed' ? 'bg-danger' : 'bg-primary'} ${kh}`}
+              >
+                {phase === 'failed' ? <RotateCcw aria-hidden className="h-icon w-icon" /> : <ArrowRight aria-hidden className="h-icon w-icon" />}
+                {phase === 'failed' ? t('tryModuleAgain') : t('beginTraining')}
+              </button>
+            )}
+            <ArrowDown aria-hidden className="h-icon w-icon text-primary" />
+            <div className="flex w-full gap-stack">
+              <button
+                type="button"
+                onClick={() => sort('safe')}
+                disabled={phase !== 'playing'}
+                className={`tap-target flex flex-1 items-center justify-center gap-ring rounded-button bg-verdict-real
+                            px-section text-body font-bold text-primary-text transition-opacity duration-option-fade disabled:opacity-50 ${kh}`}
+              >
+                <Check aria-hidden className="h-icon w-icon" />
+                {t('sortSafe')}
+              </button>
+              <button
+                type="button"
+                onClick={() => sort('trash')}
+                disabled={phase !== 'playing'}
+                className={`tap-target flex flex-1 items-center justify-center gap-ring rounded-button border border-border bg-surface
+                            px-section text-body font-bold transition-opacity duration-option-fade disabled:opacity-50 ${kh}`}
+              >
+                <Trash2 aria-hidden className="h-icon w-icon" />
+                {t('sortTrash')}
+              </button>
+            </div>
+          </div>
+
+          <p className={`mt-stack flex items-center justify-center gap-section text-small text-muted ${kh}`}>
+            <span>
+              {t('score')}: <span className="font-bold tabular-nums text-text">{correct} / {CARDS.length}</span>
+            </span>
+            {phase === 'playing' && (
+              <span className="flex items-center gap-ring" aria-label={`${wrong} / ${MAX_WRONG}`}>
+                {Array.from({ length: MAX_WRONG }, (_, i) => (
+                  <X key={i} aria-hidden className={`h-icon w-icon ${i < wrong ? 'text-danger' : 'text-border'}`} />
+                ))}
+              </span>
+            )}
+          </p>
+
+          {phase === 'failed' && (
+            <p role="alert" className={`mt-stack rounded-card bg-danger/10 p-stack text-center text-small text-danger ${kh}`}>
+              {resetReason === 'wrong'
+                ? t('urlSorterReset')
+                : t('urlSorterFailedScore')
+                    .replace('{n}', String(correct))
+                    .replace('{total}', String(CARDS.length))
+                    .replace('{pass}', String(PASS_MARK))}
             </p>
-            <p className={`text-body ${kh}`}>{feedback.explanation[language]}</p>
-          </div>
-        )}
-      </section>
+          )}
+        </section>
 
-      {/* ---- sort it ---- */}
-      <section className="shrink-0">
-        {phase === 'feedback' ? (
-          <button
-            type="button"
-            onClick={nextCard}
-            className={`tap-target flex w-full items-center justify-center rounded-button bg-primary
-                        px-section text-primary-text ${kh}`}
-          >
-            {t('nextCard')}
-          </button>
-        ) : (
-          <div className="flex gap-stack">
+        {/* ---- after the game: result, rule, tool — inline ---- */}
+        {phase === 'passed' && (
+          <>
+            <section className="screen-in flex items-center gap-stack rounded-card border border-safe bg-safe/10 p-stack">
+              <CheckCircle2 aria-hidden className="h-icon w-icon shrink-0 text-safe" />
+              <p className={`text-body font-bold text-safe ${kh}`}>
+                {t('urlSorterPassed').replace('{n}', String(correct)).replace('{total}', String(CARDS.length))}
+              </p>
+            </section>
+
+            <section className="screen-in flex items-start gap-stack rounded-card border border-border bg-surface p-stack">
+              <span aria-hidden className="flex h-avatar w-avatar shrink-0 items-center justify-center rounded-full bg-primary/15 text-primary">
+                <Lightbulb className="h-icon w-icon" />
+              </span>
+              <div className="min-w-0">
+                <p className={`text-body font-bold ${kh}`}>{t('ruleToRemember')}</p>
+                <p className={`mt-ring text-rule ${kh}`}>{t('mapRule')}</p>
+                <dl className="mt-stack flex flex-col gap-ring text-small tabular-nums">
+                  <div className="flex flex-wrap items-center gap-ring">
+                    <dt className="font-semibold">ababank.com</dt>
+                    <dd className="flex items-center gap-ring text-muted">
+                      = ababank <Check aria-hidden className="h-icon w-icon text-safe" />
+                    </dd>
+                  </div>
+                  <div className="flex flex-wrap items-center gap-ring">
+                    <dt className="font-semibold">ababank-kh.com</dt>
+                    <dd className="flex items-center gap-ring text-muted">
+                      = ababank-kh <X aria-hidden className="h-icon w-icon text-danger" />
+                    </dd>
+                  </div>
+                </dl>
+              </div>
+            </section>
+
+            <section className="screen-in flex items-center gap-stack rounded-card border border-primary/40 bg-primary/10 p-stack">
+              <img src="/bootcamp-tool-magnifier.jpg" alt="" aria-hidden className="h-avatar w-avatar shrink-0 rounded-full object-cover" />
+              <div className="min-w-0">
+                <p className={`text-body font-semibold text-primary ${kh}`}>{t('magnifierUnlocked')}</p>
+                <p className={`text-small text-muted ${kh}`}>{t('magnifierUse')}</p>
+              </div>
+            </section>
+
             <button
               type="button"
-              onClick={() => sort('safe')}
-              className={`tap-target flex flex-1 items-center justify-center gap-stack rounded-button
-                          bg-verdict-real px-section text-primary-text ${kh}`}
+              onClick={() => navigate('/bootcamp/complete')}
+              className={`tap-target mt-auto flex w-full items-center justify-center gap-stack rounded-button bg-primary
+                          px-section text-body font-bold text-primary-text transition-colors duration-option-fade ${kh}`}
             >
-              <Check aria-hidden className="h-icon w-icon" />
-              {t('sortSafe')}
+              {t('seeYourTools')}
+              <ArrowRight aria-hidden className="h-icon w-icon" />
             </button>
-            <button
-              type="button"
-              onClick={() => sort('trash')}
-              className={`tap-target flex flex-1 items-center justify-center gap-stack rounded-button
-                          bg-verdict-scam px-section text-primary-text ${kh}`}
-            >
-              <Trash2 aria-hidden className="h-icon w-icon" />
-              {t('sortTrash')}
-            </button>
-          </div>
+          </>
         )}
-      </section>
+      </div>
     </main>
+  )
+}
+
+/**
+ * The address with its owner label — the word just before the registry
+ * suffix — set in bold. Showing the rule on every card is what makes the
+ * sorter learnable: the player reads the bold word and decides.
+ */
+function OwnerHighlight({ url, owner }: { url: string; owner: string }) {
+  const at = url.lastIndexOf(owner)
+  if (at < 0) return <>{url}</>
+  return (
+    <>
+      <span className="text-muted">{url.slice(0, at)}</span>
+      <span className="font-bold text-text underline decoration-primary">{owner}</span>
+      <span className="text-muted">{url.slice(at + owner.length)}</span>
+    </>
   )
 }
