@@ -14,6 +14,9 @@ import Debrief from './pages/Debrief'
 import Triage from './pages/Triage'
 import Investigation from './pages/Investigation'
 import Welcome from './pages/Welcome'
+import WelcomeHow from './pages/WelcomeHow'
+import WelcomeWho from './pages/WelcomeWho'
+import WelcomeInstall from './pages/WelcomeInstall'
 import SignIn from './pages/auth/SignIn'
 import SignUp from './pages/auth/SignUp'
 import VerifyEmail from './pages/auth/VerifyEmail'
@@ -71,6 +74,30 @@ export default function App() {
           element={
             <RedirectIfSignedIn>
               <Welcome />
+            </RedirectIfSignedIn>
+          }
+        />
+        <Route
+          path="/welcome/how-it-works"
+          element={
+            <RedirectIfSignedIn>
+              <WelcomeHow />
+            </RedirectIfSignedIn>
+          }
+        />
+        <Route
+          path="/welcome/who-is-it-for"
+          element={
+            <RedirectIfSignedIn>
+              <WelcomeWho />
+            </RedirectIfSignedIn>
+          }
+        />
+        <Route
+          path="/welcome/install"
+          element={
+            <RedirectIfSignedIn>
+              <WelcomeInstall />
             </RedirectIfSignedIn>
           }
         />

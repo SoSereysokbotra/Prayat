@@ -40,6 +40,9 @@ export default {
       maxHeight: {
         'zone-options': 'var(--zone-options-h)',
       },
+      maxWidth: {
+        bubble: 'var(--size-bubble-max)',
+      },
       borderRadius: {
         card:   'var(--radius-card)',
         bubble: 'var(--radius-bubble)',
