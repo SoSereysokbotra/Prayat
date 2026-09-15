@@ -10,9 +10,9 @@ async function fresh() {
   await p.setViewport({ width:375, height:812 })
   // Mark Level 0 complete so this suite tests the AUTH guard in isolation.
   // The bootcamp gate sits inside RequireAuth and would otherwise intercept
-  // every signed-in redirect; scripts/test-bootcamp.mjs covers that gate.
+  // every signed-in redirect.
   await p.goto('http://localhost:3001/signin', { waitUntil:'domcontentloaded' })
-  await p.evaluate(() => localStorage.setItem('prayat.bootcamp', JSON.stringify(['vip-club','url-sorter'])))
+  await p.evaluate(() => localStorage.setItem('prayat.bootcamp', JSON.stringify(['network','vip-club','url-sorter'])))
   return p
 }
 const where = (p) => p.evaluate(()=>location.pathname+location.search)

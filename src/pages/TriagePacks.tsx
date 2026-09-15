@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Link, Navigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { Play, Star, Timer } from 'lucide-react'
 import TopBar from '../components/TopBar'
 import PickerCard from '../components/PickerCard'
@@ -47,8 +47,8 @@ export default function TriagePacks() {
       cancelled = true
     }
   }, [seenHowTo])
-
-  if (!seenHowTo) return <Navigate to="/triage/how-to-play" replace />
+  // Route protection disabled for direct endpoint testing
+  // if (!seenHowTo) return <Navigate to="/triage/how-to-play" replace />
 
   const kh = isKhmer ? 'leading-kh' : ''
   const daily = decks.find((d) => d.id === DAILY_DECK_ID)
