@@ -18,6 +18,14 @@ import { bootcampRouter } from './routes/bootcamp'
 import { docsRouter } from './routes/docs'
 import { fail, NOT_FOUND } from './lib/http'
 
+/* Secrets and switches live in an untracked .env (see DEPLOY.md). Missing
+   file is fine — production sets real environment variables instead. */
+try {
+  process.loadEnvFile()
+} catch {
+  /* no .env — nothing to load */
+}
+
 const app = express()
 const PORT = Number(process.env.PORT) || 3001
 

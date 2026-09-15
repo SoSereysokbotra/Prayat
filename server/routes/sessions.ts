@@ -11,6 +11,7 @@ import { randomUUID } from 'node:crypto'
 import { z } from 'zod'
 import { db, getScenario } from '../db'
 import { stripStage, toScenarioMeta } from '../lib/strip'
+import { dialogueFor } from '../lib/dialogue'
 import { levelFor, scoreFor, wonBy } from '../lib/scoring'
 import { BAD_REQUEST, CONFLICT, NOT_FOUND, fail } from '../lib/http'
 import { MAX_SCORE, type DecisionRecord, type OptionId } from '../../shared/types'
@@ -74,7 +75,7 @@ function toRecords(rows: DecisionRow[]): DecisionRecord[] {
 
 /* ---- POST /api/sessions -------------------------------------------------- */
 
-sessionsRouter.post('/', (req, res) => {
+sessionsRouter.post('/', async (req, res) => {
   const parsed = createSchema.safeParse(req.body)
   if (!parsed.success) {
     return fail(res, BAD_REQUEST, 'invalid_request', 'scenarioId and language are required')
@@ -89,17 +90,20 @@ sessionsRouter.post('/', (req, res) => {
   insertSession.run(id, scenario.id, parsed.data.language, Date.now())
 
   // Stage 1 only, stripped. Later stages are never sent until earned, so a
-  // judge reading the network tab sees no spoilers.
+  // judge reading the network tab sees no spoilers. The wording may be
+  // AI-varied (see lib/dialogue); the options and answers never are.
+  const first = scenario.stages[0]
+  const dialogue = await dialogueFor(scenario, first, parsed.data.language, id)
   return res.status(201).json({
     sessionId: id,
     scenario: toScenarioMeta(scenario),
-    stage: stripStage(scenario.stages[0]),
+    stage: stripStage({ ...first, ...dialogue }),
   })
 })
 
 /* ---- POST /api/sessions/:id/decisions ------------------------------------ */
 
-sessionsRouter.post('/:id/decisions', (req, res) => {
+sessionsRouter.post('/:id/decisions', async (req, res) => {
   const parsed = decisionSchema.safeParse(req.body)
   if (!parsed.success) {
     return fail(res, BAD_REQUEST, 'invalid_request', 'stageId and optionId are required')
@@ -153,10 +157,14 @@ sessionsRouter.post('/:id/decisions', (req, res) => {
     finishSession.run(Date.now(), scoreFor(records), wonBy(records) ? 1 : 0, session.id)
   }
 
+  const nextStage = next
+    ? stripStage({ ...next, ...(await dialogueFor(scenario, next, session.language as 'kh' | 'en', session.id)) })
+    : null
+
   return res.json({
     isCorrect: option.isCorrect,
     relativeReply: option.reply,
-    nextStage: next ? stripStage(next) : null,
+    nextStage,
     done,
   })
 })

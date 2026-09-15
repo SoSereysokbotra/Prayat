@@ -36,6 +36,28 @@ Environment variables:
 | `DATABASE_PATH` | `/tmp/prayat.db` | The free tier has no persistent disk |
 
 **Do not set `PORT`.** Render assigns it and the server reads `process.env.PORT`.
+
+### AI-varied dialogue (optional, off by default)
+
+Guardian's scammer messages and Uncle's lines can be re-worded per session by
+a model, on top of the scripted skeleton — options, answers, red flags and the
+debrief never change. It is **off unless both** of these are set:
+
+| Variable | Value | Notes |
+|---|---|---|
+| `PRAYAT_AI` | `on` | Anything else = scripted text only. Leave unset for the demo. |
+| `DEEPSEEK_API_KEY` | your key | Never commit it. Rotate it if it ever lands in a chat or log. |
+| `DEEPSEEK_MODEL` | `deepseek-v4-pro` (default) or `deepseek-flash` | flash is ~3× faster; let the Khmer reviewer choose. |
+| `PRAYAT_AI_TIMEOUT_MS` | `12000` (default) | Slower than this falls back to the script. |
+
+`GET /api/health` reports `ai.enabled` so you can see which mode a deployment
+is in. Anything the model shows a player is stored in `generated_dialogue`
+for review. To compare models on real Khmer before turning it on:
+
+```bash
+DEEPSEEK_API_KEY=... npx tsx scripts/try-dialogue.ts kh 3
+DEEPSEEK_MODEL=deepseek-flash DEEPSEEK_API_KEY=... npx tsx scripts/try-dialogue.ts kh 3
+```
 Hardcoding 3001 fails in production.
 
 ### The database is meant to be disposable
