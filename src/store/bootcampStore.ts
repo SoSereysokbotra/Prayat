@@ -111,7 +111,14 @@ export function useHasTool(tool: ToolId): boolean {
   )
 }
 
-/** Every tool earned so far, for the Toolbelt display. */
+/**
+ * Every tool earned so far, for the Toolbelt display.
+ *
+ * Selects the stored array and maps outside the selector: a selector that
+ * returns a fresh array each call reads as a change on every render, and
+ * zustand v5 re-renders until React gives up — a blank screen.
+ */
 export function useTools(): ToolId[] {
-  return useBootcampStore((s) => s.passed.map((id) => TOOL_OF_MODULE[id]))
+  const passed = useBootcampStore((s) => s.passed)
+  return passed.map((id) => TOOL_OF_MODULE[id])
 }

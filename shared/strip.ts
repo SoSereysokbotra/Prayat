@@ -117,27 +117,3 @@ export function stripInvestigation(investigation: InvestigationFull): Investigat
     flagCount: investigation.flags.length,
   }
 }
-
-
-/* ==========================================================================
-   Bootcamp
-   --------------------------------------------------------------------------
-   The same rule as everywhere else. A door round ships without its correct
-   action, its outcome or its lesson; a URL card ships without its verdict or
-   its explanation. Both would give the answer away.
-   ========================================================================== */
-
-import type { BouncerRound, BouncerRoundFull, UrlCard, UrlCardFull } from './types'
-
-export function stripBouncerRound(round: BouncerRoundFull): BouncerRound {
-  return {
-    id: round.id,
-    visitor: round.visitor,
-    claim: round.claim,
-    twoFactorOn: round.twoFactorOn,
-  }
-}
-
-export function stripUrlCard(card: UrlCardFull): UrlCard {
-  return { id: card.id, url: card.url }
-}
