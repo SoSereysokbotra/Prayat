@@ -27,7 +27,7 @@ export default function SubmitButton({
       disabled={busy || disabled}
       aria-busy={busy}
       className={`tap-target flex w-full items-center justify-center gap-stack rounded-button
-                  bg-primary px-section text-primary-text transition-opacity duration-option-fade
+                  bg-primary px-section text-body font-bold text-primary-text transition-opacity duration-option-fade
                   disabled:opacity-50 ${isKhmer ? 'leading-kh' : ''}`}
     >
       {busy && <Loader2 aria-hidden className="h-icon w-icon animate-spin" />}

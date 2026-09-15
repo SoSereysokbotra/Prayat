@@ -1,14 +1,17 @@
-import { Link } from 'react-router-dom'
-import { ArrowLeft } from 'lucide-react'
-import LanguageToggle from '../LanguageToggle'
-import { useT, useIsKhmer } from '../../hooks/useT'
+import TopBar from '../TopBar'
+import { useIsKhmer } from '../../hooks/useT'
 
 /**
  * The frame every auth screen sits in.
  *
- * One layout for all five means the wordmark, the back control and the
- * language toggle never move between screens — so a player moving from sign-in
- * to sign-up to verification is not re-learning where things are at every step.
+ * The same banner-and-sheet as the rest of the app, so arriving at sign-in
+ * from the walkthrough does not feel like leaving the product. One layout
+ * for all five screens means the back control and the language toggle never
+ * move — a player going sign-in → sign-up → verification is not re-learning
+ * where things are at every step.
+ *
+ * The form sits in a card; the footer (the other ways in) is pinned to the
+ * bottom so it stays put whether the form is three fields or one.
  */
 export default function AuthShell({
   title,
@@ -24,37 +27,23 @@ export default function AuthShell({
   children: React.ReactNode
   footer?: React.ReactNode
 }) {
-  const t = useT()
   const isKhmer = useIsKhmer()
   const kh = isKhmer ? 'leading-kh' : ''
 
   return (
-    <main className="screen-in mx-auto flex min-h-dvh w-full max-w-screen-sm flex-col px-screen-x py-section">
-      <header className="flex shrink-0 items-center justify-between gap-stack">
-        {back ? (
-          <Link
-            to={back}
-            className="tap-target flex items-center gap-stack rounded-button text-small text-muted"
-          >
-            <ArrowLeft aria-hidden className="h-icon w-icon" />
-            <span className={kh}>{t('back')}</span>
-          </Link>
-        ) : (
-          <span className="text-title font-bold tracking-tight">Prayat</span>
-        )}
-        <LanguageToggle />
-      </header>
+    <main className="screen-in flex min-h-dvh w-full flex-col">
+      <TopBar back={back} />
 
-      <div className="flex flex-1 flex-col justify-center gap-section py-section">
-        <div className="flex flex-col gap-stack">
-          <h1 className={`text-title font-semibold ${kh}`}>{title}</h1>
+      <div className="relative -mt-sheet-overlap mx-auto flex w-full max-w-screen-sm flex-1 flex-col gap-section rounded-t-sheet bg-bg px-screen-x pb-section pt-section">
+        <section>
+          <h1 className={`text-title font-bold ${kh}`}>{title}</h1>
           {subtitle && <p className={`text-body text-muted ${kh}`}>{subtitle}</p>}
-        </div>
+        </section>
 
-        {children}
+        <div className="rounded-card border border-border bg-surface p-stack">{children}</div>
+
+        {footer && <div className="mt-auto shrink-0">{footer}</div>}
       </div>
-
-      {footer && <div className="shrink-0">{footer}</div>}
     </main>
   )
 }
