@@ -404,6 +404,26 @@ const strings = {
     kh: 'ពីរ​មេរៀន​ខ្លី។ មេរៀន​នីមួយៗ​ផ្ដល់​ឧបករណ៍​មួយ​ដែល​អ្នក​នឹង​ប្រើ​ពិត​ប្រាកដ​ក្នុង​ល្បែង។',
     en: 'Two short modules. Each one gives you a tool you will actually use in the game.',
   },
+  bootcampSubtitle: {
+    kh: 'មុនពេលអ្នកទប់ទល់នឹងជនបោកប្រាស់ ត្រូវរៀនពីរបៀបដែលពួកគេជ្រៀតចូលជាមុនសិន។',
+    en: 'Before you fight scammers, learn how they get in.',
+  },
+  bootcampMeta: {
+    kh: 'ហ្គេមខ្នាតតូច ៣ · ~៤ នាទី',
+    en: '3 mini-games · ~4 minutes',
+  },
+  bootcampEarnNotice: {
+    kh: 'បំពេញទាំង ៣ ដើម្បីទទួលបានឧបករណ៍ទាំងនេះសម្រាប់ប្រើក្នុងហ្គេមធំ។',
+    en: 'Complete all 3 to earn these tools for the main game.',
+  },
+  beginTraining: { kh: 'ចាប់ផ្ដើមការហ្វឹកហាត់', en: 'BEGIN TRAINING' },
+  skip: { kh: 'រំលង', en: 'Skip' },
+  skipNoTools: {
+    kh: '(អ្នកនឹងមិនទទួលបានឧបករណ៍ទេ)',
+    en: '(you will not earn the tools)',
+  },
+  toolShieldBadge: { kh: 'ផ្លាកសញ្ញាការពារ', en: 'Shield Badge' },
+  learnBeforeYouLose: { kh: 'រៀន​មុន​ពេល​អ្នក​បាត់បង់', en: 'Learn before you lose' },
   bootcampLocked: {
     kh: 'បញ្ចប់​មេរៀន​ទាំង​ពីរ​សិន ដើម្បី​បើក​ល្បែង​ទាំងអស់',
     en: 'Finish both modules to unlock the game modes',

@@ -20,6 +20,7 @@ import {
 } from '../../shared/types'
 
 const PROGRESS_KEY = 'prayat.bootcamp'
+const SKIPPED_KEY = 'prayat.bootcampSkipped'
 
 function read(): BootcampModuleId[] {
   try {
@@ -43,14 +44,34 @@ function write(passed: BootcampModuleId[]): void {
   }
 }
 
+function readSkipped(): boolean {
+  try {
+    return localStorage.getItem(SKIPPED_KEY) === 'true'
+  } catch {
+    return false
+  }
+}
+
+function writeSkipped(val: boolean): void {
+  try {
+    if (val) localStorage.setItem(SKIPPED_KEY, 'true')
+    else localStorage.removeItem(SKIPPED_KEY)
+  } catch {
+    /* the session still works for this tab */
+  }
+}
+
 interface BootcampState {
   passed: BootcampModuleId[]
+  skipped: boolean
   markPassed: (id: BootcampModuleId) => void
+  skip: () => void
   reset: () => void
 }
 
 export const useBootcampStore = create<BootcampState>((set, get) => ({
   passed: read(),
+  skipped: readSkipped(),
 
   markPassed: (id) => {
     if (get().passed.includes(id)) return
@@ -59,15 +80,29 @@ export const useBootcampStore = create<BootcampState>((set, get) => ({
     set({ passed: next })
   },
 
+  skip: () => {
+    writeSkipped(true)
+    set({ skipped: true })
+  },
+
   reset: () => {
     write([])
-    set({ passed: [] })
+    writeSkipped(false)
+    set({ passed: [], skipped: false })
   },
 }))
 
 /** Every module passed — the gate is open. */
 export function useBootcampComplete(): boolean {
   return useBootcampStore((s) => BOOTCAMP_MODULE_IDS.every((id) => s.passed.includes(id)))
+}
+
+export function useBootcampSkipped(): boolean {
+  return useBootcampStore((s) => s.skipped)
+}
+
+export function useBootcampAccessible(): boolean {
+  return useBootcampStore((s) => s.skipped || BOOTCAMP_MODULE_IDS.every((id) => s.passed.includes(id)))
 }
 
 export function useHasTool(tool: ToolId): boolean {
