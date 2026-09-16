@@ -110,8 +110,9 @@ try {
   const css = readFileSync(join(ROOT, 'src', 'styles', 'global.css'), 'utf8')
   const tw = readFileSync(join(ROOT, 'tailwind.config.ts'), 'utf8')
 
-  // :root only — the .theme-light block redefines the same names.
-  const rootBlock = css.slice(css.indexOf(':root'), css.indexOf('.theme-light'))
+  // Read :root block for mapped color definitions
+  const rootEnd = css.indexOf('@layer base') !== -1 ? css.indexOf('@layer base') : css.length
+  const rootBlock = css.slice(css.indexOf(':root'), rootEnd)
   const defined = [...rootBlock.matchAll(/--color-([a-z0-9-]+)\s*:/g)].map((m) => m[1])
 
   unmapped.push(...defined.filter((name) => !tw.includes(`--color-${name})`)))
