@@ -10,7 +10,7 @@
  */
 
 import { create } from 'zustand'
-import type { LanguageCode, Level, ScamType } from '../../shared/types'
+import type { LanguageCode, Level, Localized, ScamType } from '../../shared/types'
 
 const LANGUAGE_KEY = 'prayat.language'
 const SCORE_KEY = 'prayat.cumulativeScore'
@@ -18,6 +18,7 @@ const COMPLETED_KEY = 'prayat.completedScamTypes'
 const BEST_KEY = 'prayat.bestByScamType'
 const STREAK_KEY = 'prayat.streak'
 const TRIAGE_BEST_KEY = 'prayat.triageBest'
+const INVESTIGATIONS_KEY = 'prayat.investigations'
 
 const SCAM_TYPES: readonly ScamType[] = ['government', 'job', 'crypto', 'romance', 'malware']
 
@@ -60,7 +61,13 @@ export function nextLevelAt(score: number): number | null {
   return null
 }
 
-export interface BestResult {
+export interface InvestigationResult {
+  found: number
+  flagCount: number
+  complete: boolean
+}
+
+interface BestResult {
   earned: number
   available: number
 }
@@ -117,6 +124,13 @@ interface GameState {
   streak: Streak
   /** Best single Speed Triage run on this device. */
   triageBest: number
+  /**
+   * Best result per investigation case, keyed by case id. "Solved" means
+   * every flag found before the clock ran out; accuracy on the case list is
+   * flags found over flags available across every case attempted.
+   */
+  investigationResults: Record<string, InvestigationResult>
+  recordInvestigation: (id: string, found: number, flagCount: number, complete: boolean) => void
   /** Records a run; returns the best BEFORE it, so the screen can say "new record". */
   recordTriageRun: (score: number) => number
   /**
@@ -129,6 +143,9 @@ interface GameState {
   /** Set by Guardian, read by Consequence and Debrief. */
   sessionId: string | null
   setSessionId: (id: string | null) => void
+  /** Who the player was protecting — the consequence screen shows their face. */
+  activeRelative: { name: Localized; avatar: string } | null
+  setActiveRelative: (relative: { name: Localized; avatar: string } | null) => void
   setLanguage: (language: LanguageCode) => void
   toggleLanguage: () => void
   addScore: (points: number) => void
@@ -187,6 +204,8 @@ export const useGameStore = create<GameState>((set, get) => ({
 
   activeScamType: null,
   setActiveScamType: (activeScamType) => set({ activeScamType }),
+  activeRelative: null,
+  setActiveRelative: (activeRelative) => set({ activeRelative }),
 
   streak: readStored<Streak>(STREAK_KEY, { count: 0, last: '' }, (raw) => {
     try {
@@ -198,6 +217,20 @@ export const useGameStore = create<GameState>((set, get) => ({
       return null
     }
   }),
+
+  investigationResults: readStored<Record<string, InvestigationResult>>(INVESTIGATIONS_KEY, {}, (raw) => {
+    const parsed = JSON.parse(raw)
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : null
+  }),
+
+  recordInvestigation: (id, found, flagCount, complete) => {
+    const previous = get().investigationResults[id]
+    // Keep the best attempt: solved beats unsolved, then more flags found.
+    if (previous && (previous.complete && !complete || (previous.complete === complete && previous.found >= found))) return
+    const next = { ...get().investigationResults, [id]: { found, flagCount, complete } }
+    writeStored(INVESTIGATIONS_KEY, JSON.stringify(next))
+    set({ investigationResults: next })
+  },
 
   triageBest: readStored<number>(TRIAGE_BEST_KEY, 0, (raw) => {
     const n = Number(raw)
