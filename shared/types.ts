@@ -335,6 +335,15 @@ export interface InvestigationFull {
 /** What the browser receives: the conversation, and nothing about which parts matter. */
 export type Investigation = Omit<InvestigationFull, 'flags'> & { flagCount: number }
 
+/** One row of GET /api/investigations — enough to draw the case list. */
+export interface InvestigationListItem {
+  id: string
+  title: Localized
+  category: ScamCategory
+  durationSeconds: number
+  flagCount: number
+}
+
 export interface TapResult {
   hit: boolean
   elementId: string

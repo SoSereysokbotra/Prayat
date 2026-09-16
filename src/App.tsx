@@ -13,6 +13,7 @@ import Consequence from './pages/Consequence'
 import Debrief from './pages/Debrief'
 import Triage from './pages/Triage'
 import Investigation from './pages/Investigation'
+import InvestigationSelect from './pages/InvestigationSelect'
 import Welcome from './pages/Welcome'
 import WelcomeHow from './pages/WelcomeHow'
 import WelcomeWho from './pages/WelcomeWho'
@@ -35,7 +36,6 @@ import { useDocumentLanguage } from './hooks/useDocumentLanguage'
 
 const DEV = import.meta.env.DEV
 
-const ThemeToggle = DEV ? lazy(() => import('./components/ThemeToggle')) : null
 const DevComponents = DEV ? lazy(() => import('./pages/DevComponents')) : null
 
 export default function App() {
@@ -43,12 +43,6 @@ export default function App() {
 
   return (
     <BrowserRouter>
-      {ThemeToggle && (
-        <Suspense fallback={null}>
-          <ThemeToggle />
-        </Suspense>
-      )}
-
       <Routes>
         {/* ---- Auth / Onboarding ---- */}
         <Route path="/welcome" element={<Welcome />} />
@@ -79,7 +73,8 @@ export default function App() {
         <Route path="/triage" element={<TriagePacks />} />
         <Route path="/triage/countdown/:deckId" element={<TriageCountdown />} />
         <Route path="/triage/play/:deckId" element={<Triage />} />
-        <Route path="/investigation" element={<Investigation />} />
+        <Route path="/investigation" element={<InvestigationSelect />} />
+        <Route path="/investigation/:investigationId/play" element={<Investigation />} />
         <Route path="/consequence" element={<Consequence />} />
         <Route path="/debrief" element={<Debrief />} />
 

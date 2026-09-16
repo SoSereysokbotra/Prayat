@@ -191,6 +191,7 @@ export async function getDebrief(sessionId: string): Promise<SessionSummary> {
 
 import type {
   Investigation,
+  InvestigationListItem,
   InvestigationSummary,
   TapResult,
   TriageAnswerResult,
@@ -263,10 +264,16 @@ export interface InvestigationRun {
   investigation: Investigation
 }
 
-export async function startInvestigation(language: LanguageCode): Promise<InvestigationRun> {
+export function listInvestigations(): Promise<InvestigationListItem[]> {
+  return request<InvestigationListItem[]>('/investigations').then((items) =>
+    items.map((i) => ({ ...i, title: fill(i.title, 'short') })),
+  )
+}
+
+export async function startInvestigation(language: LanguageCode, investigationId?: string): Promise<InvestigationRun> {
   const run = await request<InvestigationRun>('/investigations/sessions', {
     method: 'POST',
-    body: JSON.stringify({ language }),
+    body: JSON.stringify(investigationId ? { language, investigationId } : { language }),
   })
   return {
     ...run,
