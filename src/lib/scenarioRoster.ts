@@ -40,9 +40,9 @@ export interface RosterEntry {
 export const SCENARIO_ROSTER: readonly RosterEntry[] = [
   {
     scamType: 'government',
-    title: { kh: 'មន្ត្រី​ក្រសួង​ក្លែងក្លាយ', en: 'Fake Ministry Official' },
+    title: { kh: 'ការ​ក្លែងបន្លំ​ជា​មន្ត្រី​ក្រសួង', en: 'Fake Ministry Official' },
     blurb: {
-      kh: 'ជួយ​ពូ​កុំ​ឲ្យ​បង់​ថ្លៃ​សេវា​រដ្ឋាភិបាល​ក្លែងក្លាយ',
+      kh: 'ជួយ​ការពារ​ពូ​កុំ​ឱ្យ​ចាញ់បោក​ការ​ទារ​ថ្លៃ​សេវា​រដ្ឋ​ក្លែងបន្លំ',
       en: 'Stop Uncle from paying a fake government fee',
     },
     difficulty: 2,
@@ -51,20 +51,20 @@ export const SCENARIO_ROSTER: readonly RosterEntry[] = [
     hero: '/scenario-ministry-hero.jpg',
     scammer: { name: { kh: 'ក្រសួង​ពាណិជ្ជកម្ម', en: 'Ministry of Commerce' }, icon: Landmark, verified: true },
     story: {
-      kh: 'ពូ ចាន់ របស់​អ្នក​មាន​ហាង​ជួសជុល​ទូរស័ព្ទ​តូច​មួយ​នៅ​បាត់ដំបង។ គាត់​ទើប​តែ​ទទួល​បាន​សារ Facebook គួរ​ឲ្យ​សង្ស័យ ហើយ​គាត់​ជិត​នឹង​ធ្វើ​កំហុស​ដ៏​ថ្លៃ​មួយ​ហើយ។',
+      kh: 'ពូ ចាន់ ជា​ម្ចាស់​ហាង​ជួសជុល​ទូរស័ព្ទ​ខ្នាត​តូច​មួយ​នៅ​ខេត្ត​បាត់ដំបង។ គាត់​ទើប​តែ​ទទួល​បាន​សារ​គួរ​ឱ្យ​សង្ស័យ​មួយ​តាមរយៈ Facebook ហើយ​កំពុង​ប្រឈម​នឹង​ការ​សម្រេច​ចិត្ត​ខុស​ដែល​អាច​បណ្ដាល​ឱ្យ​ខាតបង់​ប្រាក់កាស​យ៉ាង​ច្រើន។',
       en: 'Your Uncle Chan owns a small phone repair shop in Battambang. He just received a suspicious Facebook message, and he is about to make a very costly mistake.',
     },
     mission: [
-      { kh: 'អាន​អ្វី​ដែល​អ្នក​បោក​បញ្ឆោត​ផ្ញើ​ទៅ​គាត់ — អ្នក​មិន​អាច​ឆ្លើយ​ទៅ​អ្នក​បោក​បាន​ទេ', en: 'Read what the scammer is sending him — you cannot reply to the scammer' },
-      { kh: 'ណែនាំ​ពូ​របស់​អ្នក​ឲ្យ​បាន​ត្រឹមត្រូវ', en: 'Advise your uncle correctly' },
-      { kh: 'បញ្ឈប់​គាត់​កុំ​ឲ្យ​បង់​លុយ', en: 'Stop him from paying' },
+      { kh: 'ពិនិត្យ​សារ​ដែល​ជន​ឆបោក​បាន​ផ្ញើ​មក​គាត់ — អ្នក​មិន​អាច​ឆ្លើយតប​ទៅ​កាន់​ជន​ឆបោក​ដោយ​ផ្ទាល់​ឡើយ', en: 'Read what the scammer is sending him — you cannot reply to the scammer' },
+      { kh: 'ផ្ដល់​ការ​ណែនាំ និង​ពន្យល់​ដល់​ពូ​ឱ្យ​បាន​ត្រឹមត្រូវ', en: 'Advise your uncle correctly' },
+      { kh: 'ទប់ស្កាត់​គាត់​កុំ​ឱ្យ​ផ្ទេរ​ប្រាក់​ទៅ​ជន​ខិលខូច', en: 'Stop him from paying' },
     ],
   },
   {
     scamType: 'job',
-    title: { kh: 'ការ​ផ្ដល់​ការងារ​ក្លែងក្លាយ', en: 'Fake Job Offer' },
+    title: { kh: 'ការ​ផ្ដល់​ឱកាស​ការងារ​ក្លែងបន្លំ', en: 'Fake Job Offer' },
     blurb: {
-      kh: 'ជួយ​បង​ស្រី​ស្គាល់​ការ​បោក​តាម Telegram',
+      kh: 'ជួយ​បងស្រី​ឱ្យ​ដឹង​ទាន់​ល្បិច​ឆបោក​តាម Telegram',
       en: 'Help your sister spot a Telegram scam',
     },
     difficulty: 3,
@@ -72,20 +72,20 @@ export const SCENARIO_ROSTER: readonly RosterEntry[] = [
     icon: Briefcase,
     scammer: { name: { kh: 'HR — ក្រុមហ៊ុន​ជ្រើសរើស​បុគ្គលិក', en: 'HR — Global Recruit Co.' }, icon: Briefcase, verified: false },
     story: {
-      kh: 'បង​ស្រី​របស់​អ្នក​កំពុង​រក​ការងារ។ នៅ​លើ Telegram មាន​គេ​ផ្ដល់​ការងារ​ដែល​បើក​ប្រាក់​ខែ​ខ្ពស់​ពេក​សម្រាប់​ការងារ​ងាយ​ពេក — ហើយ​គេ​ចង់​បាន​ថ្លៃ​ចុះ​ឈ្មោះ។',
+      kh: 'បងស្រី​របស់​អ្នក​កំពុង​ស្វែងរក​ការងារ​ធ្វើ។ នៅ​លើ Telegram មាន​គណនី​មួយ​បាន​ផ្ដល់​ការងារ​ដែល​មាន​ប្រាក់​បៀវត្សរ៍​ខ្ពស់​ខុស​ពី​ធម្មតា​សម្រាប់​កិច្ចការ​ងាយស្រួល ប៉ុន្តែ​ទាមទារ​ឱ្យ​បង់ប្រាក់​ថ្លៃ​ចុះឈ្មោះ​ជាមុន។',
       en: 'Your sister is job hunting. On Telegram, someone is offering a salary far too high for work far too easy — and they want a registration fee.',
     },
     mission: [
-      { kh: 'អាន​ការ​ផ្ដល់​ការងារ​ដែល​គេ​ផ្ញើ​មក​គាត់', en: 'Read the offer they are sending her' },
-      { kh: 'ជួយ​បង​ស្រី​ឲ្យ​ឃើញ​សញ្ញា​គ្រោះថ្នាក់', en: 'Help your sister see the red flags' },
-      { kh: 'បញ្ឈប់​គាត់​កុំ​ឲ្យ​បង់​ថ្លៃ​ចុះ​ឈ្មោះ', en: 'Stop her from paying the fee' },
+      { kh: 'ពិនិត្យ​សារ​ផ្ដល់​ការងារ​ដែល​ជន​អនាមិក​បាន​ផ្ញើ​មក​គាត់', en: 'Read the offer they are sending her' },
+      { kh: 'ជួយ​បងស្រី​ឱ្យ​មើលឃើញ​ពី​ចំណុច​មិន​ប្រក្រតី និង​សញ្ញា​គួរ​ឱ្យ​សង្ស័យ', en: 'Help your sister see the red flags' },
+      { kh: 'ទប់ស្កាត់​គាត់​កុំ​ឱ្យ​បង់ប្រាក់​ថ្លៃ​ចុះឈ្មោះ​ជាដាច់ខាត', en: 'Stop her from paying the fee' },
     ],
   },
   {
     scamType: 'crypto',
-    title: { kh: 'ក្រុម​គ្រីបតូ​ក្លែងក្លាយ', en: 'Fake Crypto Group' },
+    title: { kh: 'ក្រុម​បោកបញ្ឆោត​វិនិយោគ​គ្រីបតូ', en: 'Fake Crypto Group' },
     blurb: {
-      kh: 'ជួយ​បង​ប្រុស​ពី​ការ​បោក​វិនិយោគ​គ្រីបតូ',
+      kh: 'ជួយ​សង្គ្រោះ​បងប្រុស​ពី​អន្ទាក់​ឆបោក​វិនិយោគ​គ្រីបតូ',
       en: 'Save your brother from a pig-butchering scam',
     },
     difficulty: 4,
@@ -93,20 +93,20 @@ export const SCENARIO_ROSTER: readonly RosterEntry[] = [
     icon: TrendingUp,
     scammer: { name: { kh: 'ក្រុម VIP វិនិយោគ​គ្រីបតូ', en: 'VIP Crypto Signals' }, icon: Coins, verified: true },
     story: {
-      kh: 'បង​ប្រុស​របស់​អ្នក​ត្រូវ​បាន​គេ​បញ្ចូល​ក្នុង​ក្រុម​វិនិយោគ​គ្រីបតូ។ អ្នក​រាល់​គ្នា​ក្នុង​ក្រុម​កំពុង​ចំណេញ — ឬ​មើល​ទៅ​ដូច្នេះ។ ឥឡូវ​គេ​ចង់​ឲ្យ​គាត់​ដាក់​លុយ​ច្រើន​ជាង​មុន។',
+      kh: 'បងប្រុស​របស់​អ្នក​ត្រូវ​បាន​គេ​ទាញ​បញ្ចូល​ទៅ​ក្នុង​ក្រុម​វិនិយោគ​គ្រីបតូ​មួយ។ សមាជិក​ក្នុង​ក្រុម​ហាក់ដូចជា​ទទួល​បាន​ប្រាក់ចំណេញ​គ្រប់ៗ​គ្នា ប៉ុន្តែ​ធាតុពិត​ជា​ការ​រៀបចំ​ទុកជាមុន។ ឥឡូវ​នេះ ពួកគេ​កំពុង​បញ្ចុះបញ្ចូល​ឱ្យ​គាត់​ដាក់​ប្រាក់​បន្ថែម​ទៀត។',
       en: 'Your brother has been added to a crypto investment group. Everyone in it is making money — or seems to be. Now they want him to put in more.',
     },
     mission: [
-      { kh: 'អាន​អ្វី​ដែល​ក្រុម​កំពុង​និយាយ​ជាមួយ​គាត់', en: 'Read what the group is telling him' },
-      { kh: 'ជួយ​បង​ប្រុស​ឲ្យ​ឃើញ​ការ​បោក', en: 'Help your brother see the trap' },
-      { kh: 'បញ្ឈប់​គាត់​មុន​ពេល​គាត់​ដាក់​លុយ​បន្ថែម', en: 'Stop him before he deposits more' },
+      { kh: 'ពិនិត្យមើល​សារ និង​ល្បិច​បញ្ចុះបញ្ចូល​ដែល​ក្រុម​នោះ​កំពុង​ប្រើប្រាស់​លើ​គាត់', en: 'Read what the group is telling him' },
+      { kh: 'ជួយ​បងប្រុស​ឱ្យ​ដឹង​ខ្លួន និង​មើលឃើញ​ពី​អន្ទាក់​ឆបោក', en: 'Help your brother see the trap' },
+      { kh: 'ទប់ស្កាត់​គាត់​មុន​ពេល​គាត់​សម្រេចចិត្ត​ដាក់​ប្រាក់​បន្ថែម', en: 'Stop him before he deposits more' },
     ],
   },
   {
     scamType: 'romance',
-    title: { kh: 'ការ​បោក​ស្នេហា', en: 'Romance Manipulation' },
+    title: { kh: 'ល្បិច​ឆបោក​បង្កើត​ទំនុកចិត្ត​ស្នេហា', en: 'Romance Manipulation' },
     blurb: {
-      kh: 'ការពារ​កូន​ស្រី​ពី​អ្នក​បោក​ទំនុកចិត្ត',
+      kh: 'ការពារ​កូនស្រី​ពី​ជន​ឆបោក​តាមរយៈ​ការ​លួងលោម​យក​ទំនុកចិត្ត',
       en: 'Protect your daughter from a trust scammer',
     },
     difficulty: 5,
@@ -114,13 +114,13 @@ export const SCENARIO_ROSTER: readonly RosterEntry[] = [
     icon: Heart,
     scammer: { name: { kh: 'David', en: 'David' }, icon: UserRound, verified: false },
     story: {
-      kh: 'កូន​ស្រី​របស់​អ្នក​បាន​ស្គាល់​នរណា​ម្នាក់​តាម​អនឡាញ។ គាត់​ស្ដាប់​យល់ ធ្វើ​ឲ្យ​សប្បាយ​ចិត្ត ហើយ​ចេះ​និយាយ​គ្រប់​ពាក្យ​ត្រឹមត្រូវ។ ថ្ងៃ​នេះ​គាត់​មាន​បញ្ហា​បន្ទាន់ ហើយ​ត្រូវការ​លុយ។',
+      kh: 'កូនស្រី​របស់​អ្នក​បាន​ស្គាល់​បុគ្គល​ម្នាក់​តាមរយៈ​បណ្ដាញ​អនឡាញ។ បុគ្គល​នោះ​ចេះ​យល់ចិត្ត ចេះ​លួងលោម និង​ប្រើ​ពាក្យសម្ដី​គួរ​ឱ្យ​ទុកចិត្ត។ នៅ​ថ្ងៃ​នេះ គាត់​បាន​ប្រឌិត​រឿង​ថា​មាន​គ្រោះអាសន្ន​បន្ទាន់ ហើយ​ស្នើសុំ​ឱ្យ​នាង​ជួយ​ផ្ញើ​ប្រាក់​ឱ្យ។',
       en: 'Your daughter met someone online. He listens, he is kind, he says all the right things. Today he has an emergency, and he needs money.',
     },
     mission: [
-      { kh: 'អាន​អ្វី​ដែល​គាត់​កំពុង​សរសេរ​ទៅ​កូន​ស្រី', en: 'Read what he is writing to her' },
-      { kh: 'ជួយ​កូន​ស្រី​ឲ្យ​ឃើញ​គំរូ​នៃ​ការ​បោក', en: 'Help your daughter see the pattern' },
-      { kh: 'បញ្ឈប់​គាត់​កុំ​ឲ្យ​ផ្ញើ​លុយ', en: 'Stop her from sending money' },
+      { kh: 'ពិនិត្យ​សារ​លួងលោម​ដែល​បុគ្គល​នោះ​កំពុង​ផ្ញើ​មកកាន់​កូនស្រី', en: 'Read what he is writing to her' },
+      { kh: 'ជួយ​កូនស្រី​ឱ្យ​មើលឃើញ​ពី​ទម្រង់​នៃ​ល្បិច​ឆបោក​បែប​នេះ', en: 'Help your daughter see the pattern' },
+      { kh: 'ទប់ស្កាត់​នាង​កុំ​ឱ្យ​ផ្ទេរ​ប្រាក់​ទៅ​ឱ្យ​ជន​នោះ​ជាដាច់ខាត', en: 'Stop her from sending money' },
     ],
   },
 ]
