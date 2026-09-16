@@ -20,7 +20,7 @@ export default function ChatWindow({
   children: React.ReactNode
   dependency: unknown
   label: string
-  tone?: 'default' | 'threat'
+  tone?: 'default' | 'threat' | 'wallpaper'
   className?: string
 }) {
   const ref = useRef<HTMLDivElement>(null)
@@ -39,8 +39,8 @@ export default function ChatWindow({
       role="log"
       aria-label={label}
       aria-live="polite"
-      className={`flex flex-col gap-stack overflow-y-auto overscroll-contain px-stack py-stack ${
-        tone === 'threat' ? 'bg-zone-threat' : 'bg-bg'
+      className={`flex flex-col gap-bubble-gap overflow-y-auto overscroll-contain px-stack py-stack ${
+        tone === 'threat' ? 'bg-zone-threat' : tone === 'wallpaper' ? 'bg-chat-wallpaper' : 'bg-bg'
       } ${className}`}
     >
       {children}

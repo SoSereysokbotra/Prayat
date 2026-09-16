@@ -37,6 +37,13 @@ interface Message {
   /** `scammer` = a forward from the relative; the player cannot answer it. */
   from: 'scammer' | 'relative' | 'player'
   text: Localized
+  /** Wall-clock time it landed, "14:05" — what a real chat shows. */
+  time: string
+}
+
+function clock(): string {
+  const d = new Date()
+  return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`
 }
 
 export default function Guardian() {
@@ -47,6 +54,7 @@ export default function Guardian() {
   const setSessionId = useGameStore((s) => s.setSessionId)
   const markCompleted = useGameStore((s) => s.markCompleted)
   const setActiveScamType = useGameStore((s) => s.setActiveScamType)
+  const setActiveRelative = useGameStore((s) => s.setActiveRelative)
   // From the picker. Absent (old links, bookmarks) → the first scenario.
   const { scenarioId } = useParams<{ scenarioId: string }>()
 
@@ -91,7 +99,7 @@ export default function Guardian() {
     for (const message of stage.scammerMessages) {
       await sleep(stagger)
       if (!live(run)) return
-      setThread((prev) => [...prev, { key: `s${stage.id}-${prev.length}`, from: 'scammer', text: message }])
+      setThread((prev) => [...prev, { key: `s${stage.id}-${prev.length}`, from: 'scammer', text: message, time: clock() }])
     }
 
     await sleep(typing)
@@ -100,7 +108,7 @@ export default function Guardian() {
 
     setThread((prev) => [
       ...prev,
-      { key: `a${stage.id}-${prev.length}`, from: 'relative', text: stage.relativeMessage },
+      { key: `a${stage.id}-${prev.length}`, from: 'relative', text: stage.relativeMessage, time: clock() },
     ])
     setOptions(stage.options)
     lockRef.current = false
@@ -125,6 +133,7 @@ export default function Guardian() {
         scamTypeRef.current = session.scenario.scamType
         setStageCount(session.scenario.stageCount)
         setRelative(session.scenario.relative)
+        setActiveRelative(session.scenario.relative)
         setRoster(SCENARIO_ROSTER.find((e) => e.scamType === session.scenario.scamType) ?? null)
         setSessionId(session.sessionId)
         setActiveScamType(session.scenario.scamType)
@@ -142,7 +151,7 @@ export default function Guardian() {
     // The UI still re-renders in the new language because every string is
     // Localized and picked at render time.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [playStage, setSessionId, setActiveScamType, scenarioId])
+  }, [playStage, setSessionId, setActiveScamType, setActiveRelative, scenarioId])
 
   /* ---- the player answers ---- */
   const choose = useCallback(
@@ -161,7 +170,7 @@ export default function Guardian() {
       setOptions([])
       setThread((prev) => [
         ...prev,
-        { key: `p${stageId}-${prev.length}`, from: 'player', text: chosen.text },
+        { key: `p${stageId}-${prev.length}`, from: 'player', text: chosen.text, time: clock() },
       ])
 
       const typing = motionToken('--timing-typing-min')
@@ -178,7 +187,7 @@ export default function Guardian() {
         if (result.isCorrect) setCorrect((n) => n + 1)
         setThread((prev) => [
           ...prev,
-          { key: `r${stageId}-${prev.length}`, from: 'relative', text: result.relativeReply },
+          { key: `r${stageId}-${prev.length}`, from: 'relative', text: result.relativeReply, time: clock() },
         ])
 
         if (result.nextStage) {
@@ -240,7 +249,7 @@ export default function Guardian() {
   return (
     <main className="mx-auto flex h-dvh w-full max-w-screen-sm flex-col">
       {/* ---- header: a chat app's header. Who, plus how far along. ---- */}
-      <header className="shrink-0 border-b border-border bg-surface">
+      <header className="shrink-0 bg-surface">
         <div className="flex items-center gap-stack px-screen-x py-stack">
           <Link
             to="/guardian"
@@ -286,18 +295,33 @@ export default function Guardian() {
       <ChatWindow
         label={t('yourChatLabel')}
         dependency={`${thread.length}:${typing}:${options.length}`}
+        tone="wallpaper"
         className="chat-anchor min-h-0 flex-1 px-screen-x"
       >
+        {/* the date chip every chat app pins above the first message */}
+        <p className="flex justify-center">
+          <span className={`rounded-button bg-chat-time/80 px-stack py-ring text-small font-semibold text-primary-text ${kh}`}>
+            {t('today')}
+          </span>
+        </p>
         {thread.map((m, i) => {
           const next = thread[i + 1]
-          // Avatar on the last bubble of a run from the relative's side —
-          // forwards included, since it is the relative who forwarded them.
-          const endOfRun = m.from !== 'player' && (!next || next.from === 'player')
+          // The tail and the avatar go on the last bubble of a run from one
+          // side — forwards count as the relative's side, since it is the
+          // relative who forwarded them.
+          const prev = thread[i - 1]
+          const side = m.from === 'player' ? 'player' : 'relative'
+          const nextSide = next ? (next.from === 'player' ? 'player' : 'relative') : null
+          const prevSide = prev ? (prev.from === 'player' ? 'player' : 'relative') : null
+          const endOfRun = nextSide !== side
           return (
             <ChatBubble
               key={m.key}
               variant={m.from}
-              avatar={endOfRun && !typing ? relativeAvatar : undefined}
+              tail={endOfRun && !(typing && side === 'relative')}
+              newRun={prevSide !== null && prevSide !== side}
+              time={m.time}
+              avatar={endOfRun && side === 'relative' && !typing ? relativeAvatar : undefined}
               forwardedFrom={m.from === 'scammer' ? forwardedFrom : undefined}
             >
               {pick(m.text)}
@@ -315,7 +339,7 @@ export default function Guardian() {
       {/* ---- replies: a sheet, like a quick-reply keyboard ---- */}
       <section
         aria-label={t('whatDoYouReply')}
-        className="flex max-h-zone-options shrink-0 flex-col rounded-t-sheet border-t border-border bg-surface"
+        className="flex max-h-zone-options shrink-0 flex-col border-t border-border bg-surface-alt"
       >
         <p className={`shrink-0 px-screen-x pt-stack text-small font-semibold text-muted ${kh}`}>
           {options.length > 0 ? t('whatDoYouReply') : t('waitingForRelative')}

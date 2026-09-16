@@ -1,16 +1,19 @@
-import { BadgeCheck, Forward } from 'lucide-react'
+import { BadgeCheck, CheckCheck, Forward } from 'lucide-react'
 import { useT, useIsKhmer } from '../hooks/useT'
 
 export type BubbleVariant = 'scammer' | 'relative' | 'player'
 
 /**
- * One message in a conversation.
+ * One message in a conversation, drawn the way Telegram draws it.
  *
- * The player's own messages sit on the right, everyone else on the left —
- * the arrangement every Cambodian already reads fluently from Telegram and
- * Messenger. Nothing here signals that a message is a scam. Real life does
- * not come with warning colours, so the game does not either; the scammer's
- * bubble tint reads as "not your conversation", not as "danger".
+ * The player's own messages sit on the right in the pale green, everyone
+ * else's on the left in white — the arrangement every Cambodian already
+ * reads fluently. The last bubble of a run carries the tail (a squared
+ * corner pointing at the sender); the time sits bottom-right inside the
+ * bubble, with the double tick on your own.
+ *
+ * Nothing here signals that a message is a scam. Real life does not come
+ * with warning colours, so the game does not either.
  *
  * A scammer message is rendered as a FORWARD — "Forwarded from Ministry of
  * Commerce ✓" above the text — because that is how the relative actually got
@@ -23,6 +26,9 @@ export default function ChatBubble({
   animate = true,
   avatar,
   forwardedFrom,
+  tail = false,
+  time,
+  newRun = false,
 }: {
   variant: BubbleVariant
   children: React.ReactNode
@@ -31,6 +37,12 @@ export default function ChatBubble({
   avatar?: React.ReactNode
   /** Who the relative forwarded this from. Scammer bubbles only. */
   forwardedFrom?: { name: string; verified?: boolean }
+  /** Last bubble of a run from one side — draws the tail. */
+  tail?: boolean
+  /** "14:05" — when it arrived. */
+  time?: string
+  /** First bubble after the other side spoke — extra air above. */
+  newRun?: boolean
 }) {
   const t = useT()
   const isKhmer = useIsKhmer()
@@ -45,14 +57,14 @@ export default function ChatBubble({
         : 'bg-bubble-player'
 
   return (
-    <div className={`flex items-end gap-stack ${mine ? 'justify-end' : 'justify-start'}`}>
+    <div className={`flex items-end gap-stack ${mine ? 'justify-end' : 'justify-start'} ${newRun ? 'mt-run-gap' : ''}`}>
       {/* Keep the column aligned whether or not this bubble carries the avatar. */}
       {!mine && <div className="h-avatar w-avatar shrink-0">{avatar}</div>}
 
       <div
-        className={`bubble-max rounded-bubble px-stack py-stack text-body ${tint} ${
-          animate ? 'bubble-in' : ''
-        } ${kh}`}
+        className={`bubble-max rounded-bubble px-stack pb-ring pt-stack text-body text-text shadow-sm ${tint}
+                    ${tail ? (mine ? 'bubble-tail-out' : 'bubble-tail-in') : ''}
+                    ${animate ? 'bubble-in' : ''} ${kh}`}
       >
         {forwardedFrom && (
           <p className="mb-ring flex items-center gap-ring text-small font-semibold text-primary">
@@ -66,6 +78,15 @@ export default function ChatBubble({
           </p>
         )}
         {children}
+        {time && (
+          <span
+            className={`mt-ring flex items-center justify-end gap-ring text-small tabular-nums
+                        ${mine ? 'text-chat-time-mine' : 'text-chat-time'}`}
+          >
+            {time}
+            {mine && <CheckCheck aria-hidden className="h-icon w-icon" />}
+          </span>
+        )}
       </div>
     </div>
   )

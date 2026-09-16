@@ -38,11 +38,11 @@ export default function OptionButton({
                   px-stack py-stack text-left text-body transition-colors duration-option-fade
                   ${
                     selected
-                      ? 'border-primary bg-surface-alt'
-                      : 'border-border bg-surface'
+                      ? 'border-primary bg-bubble-player'
+                      : 'border-surface bg-surface'
                   }
                   ${disabled && !selected ? 'opacity-50' : ''}
-                  ${!disabled ? 'hover:bg-surface-alt' : ''}`}
+                  ${!disabled ? 'hover:border-primary/40' : ''}`}
     >
       <span
         aria-hidden

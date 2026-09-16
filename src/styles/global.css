@@ -34,24 +34,33 @@
 
 :root {
   /* ---- colour — channels only, no rgb() wrapper ------------------------- */
-  --color-bg:            15 23 42;
-  --color-surface:       30 41 59;
-  --color-surface-alt:   51 65 85;
-  --color-text:          241 245 249;
-  --color-text-muted:    148 163 184;
-  --color-border:        51 65 85;
+  --color-bg:            248 250 252;
+  --color-surface:       255 255 255;
+  --color-surface-alt:   241 245 249;
+  --color-text:          15 23 42;
+  --color-text-muted:    100 116 139;
+  --color-border:        226 232 240;
 
-  --color-primary:       56 130 246;   /* see note 1 in the build plan */
-  --color-primary-text:  255 255 255;  /* see note 2 in the build plan */
-  --color-danger:        220 38 38;
-  --color-safe:          22 163 74;
-  --color-caution:       245 158 11;
+  --color-primary:       37 99 235;
+  --color-primary-text:  255 255 255;
+  --color-danger:        185 28 28;
+  --color-safe:          21 128 61;
+  --color-caution:       180 83 9;
 
   /* ---- chat-specific ---------------------------------------------------- */
-  --color-bubble-scammer:  69 26 26;
-  --color-bubble-relative:   51 65 85;
-  --color-bubble-player:   30 58 95;
-  --color-zone-threat:     45 22 22;
+  /* Telegram's grammar: incoming bubbles are white on a pale wallpaper, your
+     own are the pale green. A forward is a white bubble too — real life does
+     not tint a scam, so neither does the thread. */
+  --color-bubble-scammer:  255 255 255;
+  --color-bubble-relative: 255 255 255;
+  --color-bubble-player:   239 253 222;
+  --color-chat-wallpaper:  176 203 219;   /* the thread background — deep enough that white bubbles stand off it */
+  --color-chat-time:       107 127 140;   /* timestamps and ticks inside a bubble */
+  --color-chat-time-mine:  79 174 78;     /* ticks on your own messages */
+  --radius-bubble-tail:    0.25rem;       /* the squared corner that points at the sender */
+  --space-bubble-gap:      0.5rem;        /* between bubbles in a run */
+  --space-run-gap:         1rem;          /* between one side's run and the other's */
+  --color-zone-threat:     254 242 242;
 
   /* ---- radius ----------------------------------------------------------- */
   --radius-card:    0.75rem;
@@ -90,7 +99,7 @@
   --timing-scammer-stagger: 600ms;
   --timing-typing-min:      1500ms;
   --timing-option-fade:     150ms;
-  --timing-consequence:     2500ms;
+  --timing-consequence:     12000ms;  /* the three-days-later scene, before the debrief takes over */
   --timing-route:           200ms;
   --timing-typing-dot:      1200ms;  /* one bounce cycle of a typing dot */
   --timing-bubble-in:       220ms;   /* a bubble arriving */
@@ -112,9 +121,9 @@
   --color-chrome-receipt:  28 38 32;
   --color-verdict-real:    22 163 74;
   --color-verdict-scam:    220 38 38;
-  --color-focus:           147 197 253;  /* focus ring — must clear both themes */
-  --color-input:           30 41 59;     /* form field background */
-  --color-input-border:    71 85 105;    /* a field must read as editable at rest */
+  --color-focus:           37 99 235;
+  --color-input:           255 255 255;
+  --color-input-border:    203 213 225;
   --size-card-min:   14rem;   /* a card never collapses below this */
   --size-qr:         7rem;
   --space-timer-bar: 0.375rem;
@@ -128,20 +137,16 @@
   --text-countdown:        6rem;    /* the countdown digit — the largest type anywhere */
 
   /* ---- home top bar ---- */
-  /* The banner is a fixed light illustration; it does NOT flip with the theme,
-     so the text on it has its own colour that stays dark in both themes. */
+  /* The banner is a fixed light illustration; the text on it has its own colour that stays dark. */
   --image-topbar:      url('/topbar.jpg');
   --size-topbar:       17rem;     /* full banner: sky + treeline + river */
   --size-sheet-overlap: 8rem;     /* how far the content sheet rides up over the river */
-  --size-pull-max:      6.5rem;   /* maximum pull-to-refresh travel. Short of the overlap
-                                     so a strip of river stays behind the sheet's rounded
-                                     corners at full pull, instead of the page background. */
+  --size-sheet-overlap-deep: 12.5rem; /* result screens: only a strip of sky, the content needs the height */
+  --size-pull-max:      6.5rem;   /* maximum pull-to-refresh travel */
   --timing-sheet-settle: 250ms;   /* the sheet sliding back up after a pull */
   --size-wordmark:     3.25rem;    /* shield icon beside the wordmark */
 
   /* ---- mode card illustrations ---- */
-  /* Round crops of the mode artwork. Sized so the Khmer title still has room
-     beside them on a 360px phone; the artwork is decoration, the title is not. */
   --size-illustration:    7rem;    /* primary (Guardian) card */
   --size-illustration-sm: 4.5rem;  /* supporting cards */
   --radius-sheet:      1.5rem;    /* the content sheet curving over the banner */
@@ -161,36 +166,12 @@
   --timing-toolbelt-stagger: 350ms; /* each earned tool arriving after the one before */
   --size-packet:           2.75rem; /* the postcard chip crossing the scene */
   --size-module-bar:       10rem;   /* the "1 of 3" progress bar in the module header */
+  /* ---- investigation clock ---- */
+  --timing-clock-warn:     30000ms; /* bar turns yellow */
+  --timing-clock-danger:   15000ms; /* bar flashes red */
+  --timing-clock-flash:    600ms;   /* one flash */
   --timing-explain-right:  2000ms;  /* correct: 2s */
   --timing-explain-wrong:  3000ms;  /* wrong or missed: 3s, they need longer */
-}
-
-/* --------------------------------------------------------------------------
-   Light theme — overrides the SAME tokens. No component knows this exists.
-   Toggle by adding/removing .theme-light on <html>.
-   -------------------------------------------------------------------------- */
-.theme-light {
-  --color-bg:            248 250 252;
-  --color-surface:       255 255 255;
-  --color-surface-alt:   241 245 249;
-  --color-text:          15 23 42;
-  --color-text-muted:    100 116 139;
-  --color-border:        226 232 240;
-
-  --color-primary:       37 99 235;
-  --color-primary-text:  255 255 255;
-  --color-danger:        185 28 28;
-  --color-safe:          21 128 61;
-  --color-caution:       180 83 9;
-
-  --color-bubble-scammer:  254 226 226;
-  --color-bubble-relative:   241 245 249;
-  --color-bubble-player:   219 234 254;
-  --color-zone-threat:     254 242 242;
-
-  --color-focus:           37 99 235;
-  --color-input:           255 255 255;
-  --color-input-border:    203 213 225;
 }
 
 /* --------------------------------------------------------------------------
@@ -245,6 +226,12 @@
     min-height: var(--space-tap);
     min-width: var(--space-tap);
   }
+
+  /* The squared corner that points at whoever sent the bubble: bottom-left
+     for incoming, bottom-right for yours. Only the last bubble of a run
+     carries it, the way Telegram draws a tail once per group. */
+  .bubble-tail-in  { border-bottom-left-radius: var(--radius-bubble-tail); }
+  .bubble-tail-out { border-bottom-right-radius: var(--radius-bubble-tail); }
 
   /* A chat bubble never spans the full column — the gutter is what makes it
      read as a conversation rather than a document. */
@@ -368,12 +355,21 @@
     from { opacity: 0; transform: scale(0.4) translateY(var(--space-section)); }
     to   { opacity: 1; transform: scale(1) translateY(0); }
   }
+  /* The last fifteen seconds of an investigation. */
+  .clock-flash {
+    animation: clock-flash var(--timing-clock-flash) ease-in-out infinite;
+  }
+  @keyframes clock-flash {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.35; }
+  }
   .verdict-correct { --verdict-color: var(--color-safe); }
   .verdict-wrong   { --verdict-color: var(--color-danger); }
   .verdict-timeout { --verdict-color: var(--color-caution); }
   @media (prefers-reduced-motion: reduce) {
     .refresh-spin,
     .url-fall,
+    .clock-flash,
     .trophy-in,
     .toolbelt-in,
     .toolbelt-in .toolbelt-tick,
