@@ -64,6 +64,30 @@ working — `bg-surface/50` resolves correctly. Never wrap them in `rgb()` in th
 
 ---
 
+## Elevation
+
+| Token | Controls |
+|---|---|
+| `--shadow-card` | Welcome cards — a barely-there lift off the sheet |
+| `--shadow-cta` | The primary button, tinted with `--color-primary` |
+
+Built from the colour tokens (`rgb(var(--color-text) / …)`), so they follow the theme.
+
+---
+
+## Brand mark
+
+| Token | Controls |
+|---|---|
+| `--size-logo` | The logo in the banner lockup (`BrandMark`) |
+
+The source image is [`public/logo.png`](public/logo.png). `node scripts/make-icons.mjs`
+regenerates the favicon and PWA icons from it — re-run it after changing the logo. The
+icon tiles crop the transparent margin off first, so the mark fills them; the banner keeps
+the margin, which is what gives the lockup its air.
+
+---
+
 ## Type
 
 | Token | Controls |

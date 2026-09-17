@@ -52,6 +52,10 @@ export default {
         button: 'var(--radius-button)',
         sheet:  'var(--radius-sheet)',
       },
+      boxShadow: {
+        card: 'var(--shadow-card)',
+        cta:  'var(--shadow-cta)',
+      },
       fontFamily: {
         kh: ['var(--font-kh)'],
         en: ['var(--font-en)'],
@@ -86,6 +90,7 @@ export default {
         'code-box': 'var(--size-code-box)',
         topbar:     'var(--size-topbar)',
         wordmark:   'var(--size-wordmark)',
+        logo:       'var(--size-logo)',
         'sheet-overlap': 'var(--size-sheet-overlap)',
         'sheet-overlap-deep': 'var(--size-sheet-overlap-deep)',
         illustration:    'var(--size-illustration)',
