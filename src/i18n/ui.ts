@@ -404,6 +404,9 @@ const strings = {
   noAccountYet: { kh: 'មិន​ទាន់​មាន​គណនី?', en: 'No account yet?' },
   alreadyHaveAccount: { kh: 'មាន​គណនី​រួច​ហើយ?', en: 'Already have an account?' },
   continueWithoutAccount: { kh: 'បន្ត​ដោយ​មិន​ចាំបាច់​មាន​គណនី', en: 'Continue without an account' },
+  startAsGuest: { kh: 'ចាប់ផ្ដើមលេង — គ្មានគណនី', en: 'Start playing — no account needed' },
+  createAccountOptional: { kh: 'ចង់រក្សាទុកពិន្ទុលើគ្រប់ឧបករណ៍? បង្កើតគណនី', en: 'Want your score on every device? Create an account' },
+  levelZeroHomeBlurb: { kh: 'ហ្គេមខ្នាតតូច ៣ · ~៤ នាទី · ទទួលឧបករណ៍ ៣', en: '3 mini-games · ~4 minutes · earn 3 tools' },
 
   verifyTitle: { kh: 'ពិនិត្យ​អ៊ីមែល​របស់​អ្នក', en: 'Check your email' },
   verifySubtitle: {

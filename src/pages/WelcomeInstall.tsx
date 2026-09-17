@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { Download, Info, Lock, Plus, Share, Smartphone, WifiOff, Zap } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { ArrowRight, Download, Info, Lock, Plus, Share, Smartphone, WifiOff, Zap } from 'lucide-react'
 import OnboardingDots from '../components/OnboardingDots'
 import TopBar from '../components/TopBar'
 import { useT, useIsKhmer } from '../hooks/useT'
+import { useAuthStore } from '../store/authStore'
 import { canPromptInstall, isInstalled, isIOS, onInstallChange, promptInstall } from '../lib/installPrompt'
 import type { UIKey } from '../i18n/ui'
 
@@ -20,14 +21,14 @@ const PERKS: { text: UIKey; icon: typeof WifiOff }[] = [
  * The button only claims what the browser can do: on Android/Chrome it
  * shows the real install prompt; on iOS there is no prompt API, so it
  * points at the Share → Add to Home Screen route; already installed, it
- * just says so. Skipping is always one tap away — install is a
- * convenience, not a gate.
+ * just says so. Install is a convenience, not a gate — and neither is an
+ * account: the big button starts Level 0 as a guest.
  */
 export default function WelcomeInstall() {
   const t = useT()
   const isKhmer = useIsKhmer()
-  const location = useLocation()
-  const from = (location.state as { from?: string } | null)?.from ?? '/'
+  const navigate = useNavigate()
+  const continueAsGuest = useAuthStore((s) => s.continueAsGuest)
   const kh = isKhmer ? 'leading-kh' : ''
 
   const [, rerender] = useState(0)
@@ -81,24 +82,32 @@ export default function WelcomeInstall() {
           {installed ? (
             <p className={`text-body font-semibold text-safe ${kh}`}>{t('alreadyInstalled')}</p>
           ) : (
-            <button
-              type="button"
-              disabled={!canPrompt}
-              onClick={() => void promptInstall()}
-              className={`tap-target flex w-full items-center justify-center gap-stack rounded-button bg-primary
-                          px-section text-body font-bold text-primary-text transition-opacity duration-option-fade
-                          disabled:opacity-50 ${kh}`}
-            >
-              <Download aria-hidden className="h-icon w-icon" />
-              {t('installPrayat')}
-            </button>
+            canPrompt && (
+              <button
+                type="button"
+                onClick={() => void promptInstall()}
+                className={`tap-target flex w-full items-center justify-center gap-stack rounded-button border border-primary
+                            bg-surface px-section text-body font-semibold text-primary transition-colors duration-option-fade ${kh}`}
+              >
+                <Download aria-hidden className="h-icon w-icon" />
+                {t('installPrayat')}
+              </button>
+            )
           )}
-          <Link
-            to="/signup"
-            state={{ from }}
-            className={`tap-target flex items-center justify-center rounded-button px-section text-small font-semibold text-primary ${kh}`}
+          <button
+            type="button"
+            onClick={() => {
+              continueAsGuest()
+              navigate('/bootcamp', { replace: true })
+            }}
+            className={`tap-target flex w-full items-center justify-center gap-stack rounded-button bg-primary
+                        px-section text-body font-bold text-primary-text transition-colors duration-option-fade ${kh}`}
           >
-            {installed ? t('continue') : t('continueInBrowser')}
+            {t('startAsGuest')}
+            <ArrowRight aria-hidden className="h-icon w-icon" />
+          </button>
+          <Link to="/signup" className={`tap-target flex items-center justify-center rounded-button px-section text-center text-small text-muted underline ${kh}`}>
+            {t('createAccountOptional')}
           </Link>
           <OnboardingDots current={4} />
         </div>

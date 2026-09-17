@@ -114,7 +114,7 @@ export default function Welcome() {
             type="button"
             onClick={() => {
               continueAsGuest()
-              navigate(from, { replace: true })
+              navigate('/bootcamp', { replace: true })
             }}
             className={`tap-target flex items-center justify-center rounded-button px-section text-small text-muted ${kh}`}
           >

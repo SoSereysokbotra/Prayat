@@ -1,12 +1,14 @@
 import { useEffect, useState } from 'react'
-import { BarChart3, Search, ShieldCheck, Zap } from 'lucide-react'
-import { Link } from 'react-router-dom'
+import { ArrowRight, BarChart3, GraduationCap, Search, ShieldCheck, Zap } from 'lucide-react'
+import { Link, Navigate } from 'react-router-dom'
 import TopBar from '../components/TopBar'
 import ModeCard from '../components/ModeCard'
 import AccountBadge from '../components/AccountBadge'
 import ScoreDisplay from '../components/ScoreDisplay'
 import ScreenState from '../components/ScreenState'
 import { useT, useIsKhmer } from '../hooks/useT'
+import { useAuthStore } from '../store/authStore'
+import { useBootcampAccessible } from '../store/bootcampStore'
 import { usePullToRefresh } from '../hooks/usePullToRefresh'
 import { listScenarios, placeholdersInUse } from '../api/client'
 
@@ -18,6 +20,9 @@ export default function Home() {
   const [status, setStatus] = useState<Status>('loading')
   const [stageCount, setStageCount] = useState<number | null>(null)
   const [placeholders, setPlaceholders] = useState(false)
+  const session = useAuthStore((s) => s.session)
+  const ready = useAuthStore((s) => s.ready)
+  const bootcampDone = useBootcampAccessible()
 
   useEffect(() => {
     let cancelled = false
@@ -41,6 +46,10 @@ export default function Home() {
 
   // Pull the sheet down to refresh; the river under it is the reward.
   const pull = usePullToRefresh(() => location.reload())
+
+  // A phone that has never chosen a way in — account or guest — starts at
+  // the welcome walkthrough. Everyone else lands here.
+  if (ready && !session) return <Navigate to="/welcome" replace />
 
   return (
     <main className="screen-in flex min-h-dvh w-full flex-col">
@@ -66,6 +75,24 @@ export default function Home() {
 
           {status === 'ready' && (
             <>
+              {/* Level 0 stays at the top until it is finished or skipped. */}
+              {!bootcampDone && (
+                <Link
+                  to="/bootcamp"
+                  className={`flex items-center gap-stack rounded-card border border-primary/40 bg-primary/10 p-stack
+                              transition-colors duration-option-fade hover:bg-primary/15 ${kh}`}
+                >
+                  <span aria-hidden className="flex h-avatar w-avatar shrink-0 items-center justify-center rounded-full bg-primary text-primary-text">
+                    <GraduationCap className="h-icon w-icon" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-small font-bold text-primary">{t('levelZero')} · {t('bootcampTitle')}</span>
+                    <span className="block text-small text-muted">{t('levelZeroHomeBlurb')}</span>
+                  </span>
+                  <ArrowRight aria-hidden className="h-icon w-icon shrink-0 text-primary" />
+                </Link>
+              )}
+
               {/* Guardian is the product. It gets the card that looks like it. */}
               <ModeCard
                 emphasis="primary"
