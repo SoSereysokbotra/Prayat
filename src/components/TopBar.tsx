@@ -51,10 +51,10 @@ export default function TopBar({ pull, back }: TopBarProps) {
               <ArrowLeft aria-hidden className="h-icon w-icon" />
             </Link>
           )}
-          <BrandMark className="h-wordmark w-wordmark shrink-0" />
+          <BrandMark className="h-logo w-logo shrink-0" />
           <div className="min-w-0">
             <h1 className="text-display font-bold leading-none tracking-tight text-hero-text">Prayat</h1>
-            <p className={`mt-stack text-small text-hero-muted ${kh}`}>{t('tagline')}</p>
+            <p className={`mt-ring text-small text-hero-muted ${kh}`}>{t('tagline')}</p>
           </div>
         </div>
         <LanguageToggle variant="pill" />

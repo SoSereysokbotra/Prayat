@@ -110,6 +110,11 @@ const strings = {
   featPushbackBody: { kh: 'តួអង្គ​ជជែក​វែកញែក​ដូច​មនុស្ស​ពិត — មិន​ងាយ​ជឿ​ការ​ព្រមាន​របស់​អ្នក​ឡើយ', en: 'Uncle argues back like a real person — he will not just take your word' },
   featFamily: { kh: 'ការពារ​ក្រុម​គ្រួសារ​របស់​អ្នក', en: 'Protect your family' },
   featFamilyBody: { kh: 'ចែករំលែក​ចំណេះដឹង​ការពារ​ខ្លួន​ជាមួយ​ឪពុកម្ដាយ និង​សាច់ញាតិ', en: 'Share what you learn with parents and siblings' },
+  welcomeFeaturesHeading: { kh: 'អ្វី​ដែល​អ្នក​នឹង​ទទួល​បាន', en: 'What you get' },
+  sampleScamSender: { kh: 'ACLEDA', en: 'ACLEDA' },
+  trustFree: { kh: 'ឥត​គិត​ថ្លៃ', en: 'Free' },
+  trustNoAccount: { kh: 'មិន​ចាំបាច់​មាន​គណនី', en: 'No account needed' },
+  trustBilingual: { kh: 'ខ្មែរ និង​អង់គ្លេស', en: 'Khmer & English' },
 
   /* ---- welcome: how it works ---- */
   howItWorks: { kh: 'របៀប​ដំណើរការ', en: 'How it works' },

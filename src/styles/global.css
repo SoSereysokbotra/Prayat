@@ -144,7 +144,14 @@
   --size-sheet-overlap-deep: 12.5rem; /* result screens: only a strip of sky, the content needs the height */
   --size-pull-max:      6.5rem;   /* maximum pull-to-refresh travel */
   --timing-sheet-settle: 250ms;   /* the sheet sliding back up after a pull */
-  --size-wordmark:     3.25rem;    /* shield icon beside the wordmark */
+  --size-wordmark:     3.25rem;    /* large icon beside a heading */
+  --size-logo:         4.5rem;     /* the logo in the banner lockup */
+
+  /* ---- elevation ---- */
+  /* Built from the colour tokens so they follow the theme. Cards are barely
+     lifted; the primary button is the one thing meant to sit ON the page. */
+  --shadow-card: 0 1px 2px rgb(var(--color-text) / 0.05), 0 6px 16px rgb(var(--color-text) / 0.06);
+  --shadow-cta:  0 8px 20px rgb(var(--color-primary) / 0.28);
 
   /* ---- mode card illustrations ---- */
   --size-illustration:    7rem;    /* primary (Guardian) card */
