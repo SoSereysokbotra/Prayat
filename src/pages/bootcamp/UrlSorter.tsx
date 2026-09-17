@@ -9,9 +9,9 @@ import { useBootcampStore } from '../../store/bootcampStore'
 /**
  * Module 3 — The Map. The URL Sorter.
  *
- * Twelve addresses drop one at a time. Each has until it reaches the
+ * Four addresses drop one at a time. Each has until it reaches the
  * bottom to be sorted SAFE or TRASH; let it land and it counts as wrong.
- * Pass = 8 of 12; four wrong resets the sorter. The owner label is set in
+ * Pass = 3 of 4; two wrong resets the sorter. The owner label is set in
  * bold on every card, so the rule is shown, not just tested.
  *
  * One rule decides every card: the word just before .com / .org / .kh is
@@ -33,17 +33,9 @@ const CARDS: UrlCard[] = [
   { url: 'faceb00k.com', safe: false, owner: 'faceb00k' },
   { url: 'www.ababank.com', safe: true, owner: 'ababank' },
   { url: 'google.com.verify-login.net', safe: false, owner: 'verify-login' },
-  { url: 'accounts.google.com', safe: true, owner: 'google' },
-  { url: 'ababank-kh.com', safe: false, owner: 'ababank-kh' },
-  { url: 'telegram.org', safe: true, owner: 'telegram' },
-  { url: 'rnicrosoft.com', safe: false, owner: 'rnicrosoft' },
-  { url: 'm.facebook.com', safe: true, owner: 'facebook' },
-  { url: 'facebook.com.security-check.info', safe: false, owner: 'security-check' },
-  { url: 'mail.google.com', safe: true, owner: 'google' },
-  { url: 'telegram-login-kh.com', safe: false, owner: 'telegram-login-kh' },
 ]
-const PASS_MARK = 8
-const MAX_WRONG = 4
+const PASS_MARK = 3
+const MAX_WRONG = 2
 
 type Verdict = 'safe' | 'trash'
 type Flash = 'correct' | 'wrong' | 'timeout'

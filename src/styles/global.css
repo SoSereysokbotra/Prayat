@@ -158,7 +158,7 @@
   --timing-packet-pause:   900ms;   /* the stranger's reaction, before the next one */
   --timing-coffee-shop:    60000ms; /* the whole game */
   --timing-vip-club:       45000ms; /* three rounds at the door */
-  --timing-url-sorter:     90000ms; /* twelve addresses, with room to read each one */
+  --timing-url-sorter:     40000ms; /* four addresses, with room to read each one */
   --timing-url-fall:       7000ms;  /* one address falling from the top of the sorter to the bottom */
   --timing-url-next:       450ms;   /* the verdict flash before the next address drops */
   --size-url-drop:         3rem;    /* how far an address falls while it is on screen */
