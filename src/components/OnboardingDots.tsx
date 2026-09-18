@@ -1,5 +1,5 @@
 /** How many screens the signed-out walkthrough has. Welcome is 1. */
-export const ONBOARDING_STEPS = 4
+export const ONBOARDING_STEPS = 3
 
 /**
  * "Where am I in the walkthrough" — the row of dots under an onboarding

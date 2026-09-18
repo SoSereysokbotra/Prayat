@@ -17,7 +17,6 @@ import InvestigationSelect from './pages/InvestigationSelect'
 import Welcome from './pages/Welcome'
 import WelcomeHow from './pages/WelcomeHow'
 import WelcomeWho from './pages/WelcomeWho'
-import WelcomeInstall from './pages/WelcomeInstall'
 import SignIn from './pages/auth/SignIn'
 import SignUp from './pages/auth/SignUp'
 import VerifyEmail from './pages/auth/VerifyEmail'
@@ -48,7 +47,6 @@ export default function App() {
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/welcome/how-it-works" element={<WelcomeHow />} />
         <Route path="/welcome/who-is-it-for" element={<WelcomeWho />} />
-        <Route path="/welcome/install" element={<WelcomeInstall />} />
         <Route path="/signin" element={<SignIn />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/verify" element={<VerifyEmail />} />

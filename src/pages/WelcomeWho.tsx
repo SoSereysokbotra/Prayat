@@ -1,8 +1,9 @@
-import { Link, useLocation } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { ArrowRight, Landmark, MapPin, UserRound, Users } from 'lucide-react'
 import OnboardingDots from '../components/OnboardingDots'
 import TopBar from '../components/TopBar'
 import { useT, useIsKhmer } from '../hooks/useT'
+import { useAuthStore } from '../store/authStore'
 import type { UIKey } from '../i18n/ui'
 
 const AUDIENCES: { title: UIKey; body: UIKey; image: string; icon: typeof UserRound }[] = [
@@ -16,13 +17,14 @@ const AUDIENCES: { title: UIKey; body: UIKey; image: string; icon: typeof UserRo
  *
  * Three audiences and the line that separates this from a generic quiz:
  * every scenario is built from tactics actually used on Telegram, Facebook
- * and Wing in Cambodia. NEXT continues to sign-up, still carrying `from`.
+ * and Wing in Cambodia. The last step of the walkthrough: the button starts
+ * Level 0 as a guest — no install screen, no account, nothing in the way.
  */
 export default function WelcomeWho() {
   const t = useT()
   const isKhmer = useIsKhmer()
-  const location = useLocation()
-  const from = (location.state as { from?: string } | null)?.from ?? '/'
+  const navigate = useNavigate()
+  const continueAsGuest = useAuthStore((s) => s.continueAsGuest)
   const kh = isKhmer ? 'leading-kh' : ''
 
   return (
@@ -66,15 +68,18 @@ export default function WelcomeWho() {
         </aside>
 
         <div className="mt-auto flex flex-col gap-stack">
-          <Link
-            to="/welcome/install"
-            state={{ from }}
-            className={`tap-target flex items-center justify-center gap-stack rounded-button bg-primary
+          <button
+            type="button"
+            onClick={() => {
+              continueAsGuest()
+              navigate('/bootcamp', { replace: true })
+            }}
+            className={`tap-target flex w-full items-center justify-center gap-stack rounded-button bg-primary
                         px-section text-body font-bold text-primary-text transition-colors duration-option-fade ${kh}`}
           >
-            {t('thatsMeNext')}
+            {t('startAsGuest')}
             <ArrowRight aria-hidden className="h-icon w-icon" />
-          </Link>
+          </button>
           <OnboardingDots current={3} />
         </div>
       </div>
